@@ -1,0 +1,19 @@
+.nav-bar{
+  display: flex;
+  align-items: center;
+
+  height: 50px;
+  text-align: center;
+}
+
+.nav-bar .nav-bar-item{
+  flex:1;
+}
+
+.nav-bar .nav-bar-item .item{
+  color:#333;
+}
+
+.nav-bar .nav-bar-item .item.active{
+  color:red;
+}

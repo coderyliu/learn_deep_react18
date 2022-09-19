@@ -1,0 +1,37 @@
+body,
+h1,
+h2,
+h3 {
+  padding: 0;
+  margin: 0;
+}
+
+.nav-bar {
+  display: flex;
+  align-items: center;
+
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+}
+
+.nav-bar .left,
+.nav-bar .right {
+  width: 80px;
+  height: 100%;
+}
+
+.nav-bar .left {
+  background-color: #f00;
+}
+
+.nav-bar .right {
+  background-color: #bfa;
+}
+
+.nav-bar .center {
+  flex: 1;
+  height: 100%;
+
+  background-color: orange;
+}

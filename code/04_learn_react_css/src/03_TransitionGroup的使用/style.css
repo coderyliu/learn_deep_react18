@@ -1,0 +1,21 @@
+.coder-enter {
+  opacity: 0;
+  transform: translateX(150px);
+}
+
+.coder-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: all 2s ease;
+}
+
+.coder-exit {
+  opacity: 1;
+  transform: translateX(0px);
+}
+
+.coder-exit-active {
+  opacity: 0;
+  transform: translateX(150px);
+  transition: all 2s ease;
+}

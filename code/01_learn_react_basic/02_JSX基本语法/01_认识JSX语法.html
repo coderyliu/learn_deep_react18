@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script src="../lib/react.js"></script>
+  <script src="../lib/react-dom.js"></script>
+  <script src="../lib/babel.js"></script>
+
+  <script type="text/babel">
+    const root=ReactDOM.createRoot(document.querySelector('#root'))
+
+    class App extends React.Component{
+      constructor(){
+        super()
+
+        this.state={
+
+        }
+      }
+      // react中为什么没有将html,css分开，而是所有都写在一个文件中.jsx?
+      // 这根react的团队的文化有关，react认为页面的渲染机制和ui的业务逻辑是密不可分的，所以all in js
+
+      // jsx可以理解为javascript extensions（扩展），扩展了js的功能，或者为js xml
+
+      render(){
+        {/* 
+          jsx语法的书写规范:
+            1.只有一个根元素，和vue2一样，后续会了解Fragment
+            2.通常会在外面有一个括号，便于书写，换行
+            3.jsx中的标签是双标签闭合，也可以是单标签，不过必须用 /闭合
+        */}
+        return (
+          <div>
+            <h2>你好啊，李银河</h2>
+            <img src="https://10.idqqimg.com/qqcourse_logo_ng/ajNVdqHZLLBSSNwZgY1XX4CObmcgdvPxMVy1P9j3SQibnDdtS8r9RQcwb58Jiaaib3yDQ9ODgo1f10/356" alt="" />
+          </div>
+        )
+      }
+    }
+
+    root.render(<App />)
+  </script>
+</body>
+
+</html>

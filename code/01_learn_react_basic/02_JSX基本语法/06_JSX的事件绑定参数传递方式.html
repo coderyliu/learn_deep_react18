@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script src="../lib/react.js"></script>
+  <script src="../lib/react-dom.js"></script>
+  <script src="../lib/babel.js"></script>
+
+  <script type="text/babel">
+    const root=ReactDOM.createRoot(document.querySelector('#root'))
+
+    class App extends React.Component{
+      constructor(){
+        super()
+
+        this.state={
+
+        }
+      }
+
+      handleBtnClick(event,name,age){
+        console.log(event,name,age);
+      }
+
+      render(){
+        return (
+          <div>
+            {/* 事件绑定中，比较重要的一个默认参数是event事件对象，我们还希望传递一些其它的参数，这时候怎么做呢 */}
+            {/* 1.event事件对象参数的传递*/}
+            {/* 对应this绑定的第一种方式,默认不用传递 */}
+            <button onClick={this.handleBtnClick.bind(this)}>按钮1</button>
+            {/* 对应this绑定的第三种方式 */}
+            <button onClick={(event)=>this.handleBtnClick(event)}>按钮2</button>
+
+            {/* 2.传递其他参数的方式,推荐使用箭头函数，比较灵活*/}
+            <button onClick={(event)=>this.handleBtnClick(event,'coder',21)}>按钮3</button>
+          </div>
+        )
+      }
+    }
+
+    root.render(<App />)
+  </script>
+</body>
+
+</html>

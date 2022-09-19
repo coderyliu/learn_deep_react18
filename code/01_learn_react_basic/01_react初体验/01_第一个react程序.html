@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 
+    react:为应用构建页面提供的javascript库
+    react的特点
+    1.声明式编程：我们只关心维护state中的对界面渲染有关的变量
+    2.组件化的开发方式:无论是vue,react,小程序都在以组件化的方式开发，复杂的问题，简单化
+    3.跨平台:react的应用不仅仅是web端，facebook提出的reactNative还可以应用在移动端，并且通过react-dom还可以在ios\安卓运行
+  -->
+
+  <!-- react的依赖有三个库
+    react:提供主要的react核心API
+    react-dom:在reactNative(RN)出现以前就只有一个库，后来为了把react开发的应用渲染在不同的平台上，有了react-dom
+    babel:主要是把react的jsx语法，解析成我们浏览器可以识别的js代码
+  -->
+
+  <div id="root"></div>
+  <div id="app"></div>
+
+  <!-- crossorigin这个属性为了在react16以上的版本能更好的检查错误 -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+  <script type="text/babel">
+    // 1.react18以前创建一个应用程序的方法
+    // ReactDOM.render( <h2> hello react </h2>,document.querySelector('#root'))
+
+    // 2.react18创建的方法
+    // ReactDOM.createRoot()创建一个根元素，以后的render()负责把组件渲染到该根元素下
+    const root=ReactDOM.createRoot(document.querySelector('#root'))
+    root.render(<h2>你好啊，李银河</h2>)
+    
+    // 注意：createRoot，我们也可以创建多个根
+    const app=ReactDOM.createRoot(document.querySelector('#app'))
+    app.render(<h2>hello kobe</h2>)
+  </script>
+
+</body>
+
+</html>

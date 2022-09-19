@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script src="../lib/react.js"></script>
+  <script src="../lib/react-dom.js"></script>
+  <script src="../lib/babel.js"></script>
+
+  <script type="text/babel">
+    const root=ReactDOM.createRoot(document.querySelector('#root'))
+
+    class App extends React.Component{
+      constructor(){
+        super()
+
+        this.state={
+          message:'你好啊，李银河',
+          url:'https://10.idqqimg.com/qqcourse_logo_ng/ajNVdqHZLLBSSNwZgY1XX4CObmcgdvPxMVy1P9j3SQibnDdtS8r9RQcwb58Jiaaib3yDQ9ODgo1f10/356',
+          href:'https://ke.qq.com/course/list/coderwhy',
+          isActive:true,
+
+          objStyle:{color:'red',fontSize:'50px'}
+        }
+      }
+
+      render(){
+        // react中所有动态的绑定变量，插入，事件监听等都是通过{}来实现的
+        const title='李银河'
+        const {message,url,href,isActive,objStyle}=this.state
+
+        // 1.绑定className的方式一
+        const className=`a b ${isActive}?'c':''`
+
+        // 2.绑定className的方式二
+        const classNames=['a','c']
+        if(isActive) classNames.push('c')
+
+        // 3.绑定className的方式三,利用classNames这个库，以后写项目的时候接触
+
+        return (
+          <div>
+            {/* 1.动态绑定属性*/}
+            <h2 title={title}>{message}</h2>    
+            <img src={url} alt="" />
+            <a href={href} target='_blank'>腾讯课堂</a>
+
+            {/* 2.动态绑定class,因为all in js，在js中class是一个关键字，所以在react中使用className来定义class*/}
+            <h2 className='aaa bb'>{message}</h2>
+            <h2 className={className}>就这</h2>
+            <h2 className={classNames}>就这</h2>
+
+            {/* 3.动态绑定style ,两个{{}}这样，在里面写相应的样式*/}
+            <h2 style={{color:'red',fontSize:'30px'}}>{message}</h2>
+            <h2 style={{...objStyle}}>哈哈哈</h2>
+          </div>
+        )
+      }
+    }
+
+    root.render(<App />)
+  </script>
+</body>
+
+</html>

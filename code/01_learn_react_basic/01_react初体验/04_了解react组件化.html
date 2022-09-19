@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script src="../lib/react.js"></script>
+  <script src="../lib/react-dom.js"></script>
+  <script src="../lib/babel.js"></script>
+
+  <script type="text/babel">
+    // 1.创建根元素
+    const root=ReactDOM.createRoot(document.querySelector('#root'))
+
+    // 类组件
+    class App extends React.Component {
+      constructor(){
+        super()
+
+        this.state={
+          message:'hello react'
+        }
+
+        // 注意：onClick={this.handleBtnClick}这种写法的this的指向是undefined（严格模式下）
+        // 所以，我们还要修改thi指向
+        this.handleBtnClick=this.handleBtnClick.bind(this)
+      }
+
+      handleBtnClick(){
+        // 注意；setState是React.Component继承而来的方法
+        // 并且这个方法，修改了state中的数据，也同时调用了render函数重新渲染，不用我们手动调用render
+        this.setState({
+          message:'你好啊，李银河'
+        })
+      }
+
+      // 组件要渲染必须要有一个render函数，返回一个jsx语法
+      // 在jsx中我们的数据如果是随界面更新的，那么要在state对象中声明，成为数据依赖，用setState()方法来更新state中的数据
+      render(){
+        return (
+          <div>
+            <h2>{this.state.message}</h2>  
+            <button onClick={this.handleBtnClick}>修改文本</button>
+          </div>
+        )
+      }
+    }
+    // 2.要渲染的根组件
+    // 我们之前是使用这种方式去渲染根组件，但是这样写很不友好，没有组件化的开发思想
+    // 实际上，render函数不仅仅可以是jsx语法，还可以是一个组件，组件在react当中可以用类组件或者函数式组件来实现
+    // root.render((
+    //   <div>
+    //     <h2>你好啊，李银河</h2>
+    //   </div>
+    // ))
+
+    root.render(<App />)
+  </script>
+</body>
+
+</html>

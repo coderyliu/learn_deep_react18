@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script src="../lib/react.js"></script>
+  <script src="../lib/react-dom.js"></script>
+  <script src="../lib/babel.js"></script>
+
+  <script type="text/babel">
+    // 1.创建要挂载的根元素
+    const root=ReactDOM.createRoot(document.querySelector('#root'))
+
+    class App extends React.Component {
+      constructor(){
+        super()
+
+        this.state={
+          movies:['阿甘正传','绿皮书','时空恋旅人','卡特教练','肖申克的救赎'],
+        }
+      }
+
+      render(){
+        // 1 .列表渲染的方式---不常用
+        // const els=[]
+        // for(let i=0;i<this.state.movies.length;i++){
+        //   const movie=this.state.movies[i]
+        //   const el=<li>{movie}</li>
+        //   els.push(el)
+        // }
+
+        // 2.渲染方式 map---常用
+        const els=this.state.movies.map(movie=><li>{movie}</li>)
+
+        return (
+          <div>
+            <h2>电影列表</h2>  
+            <ul>
+              {this.state.movies.map(movie=><li>{movie}</li>)}
+            </ul>
+          </div>
+        )
+      }
+    }
+
+    // 2.要渲染的根元素
+    root.render(<App />)
+  </script>
+</body>
+</html>

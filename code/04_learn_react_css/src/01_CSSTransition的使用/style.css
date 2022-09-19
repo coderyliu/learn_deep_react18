@@ -1,0 +1,26 @@
+/* 
+  通过添加css属性来实现过渡动画
+  有三个状态：appear(最先渲染的时候)  enter exit
+  执行状态：enter --> enter-active --> enter-done
+          exit  --> exit-active --> exit-done
+          appear -- > appear-active --> appear-done
+*/
+.coder-appear,
+.coder-enter{
+  opacity:0;
+}
+
+.coder-appear-active,
+.coder-enter-active{
+  opacity: 1;
+  transition:opacity 2s ease;
+}
+
+.coder-exit{
+  opacity:1;
+}
+
+.coder-exit-active{
+  opacity: 0;
+  transition: opacity 2s ease;
+}
