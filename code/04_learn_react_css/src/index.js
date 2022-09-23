@@ -6,7 +6,9 @@ import { createRoot } from 'react-dom/client'
 // import App from './04_内联样式的CSS/App'
 // import App from './05_普通的CSS/App'
 // import App from './06_CSSModules/App'
-import App from './07_cssModules编写less/App'
+// import App from './07_cssModules编写less/App'
+// import App from './08_CSS_in_JS/App'
+import App from './09_classNames的使用/App'
 
 const root=createRoot(document.querySelector('#root'))
 root.render(<App></App>)

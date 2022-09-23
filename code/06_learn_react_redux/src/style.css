@@ -1,0 +1,17 @@
+.page {
+  display: flex;
+
+  height: 100px;
+}
+
+.page>div {
+  flex:1;
+}
+
+.page .home{
+  border:3px solid #f00;
+}
+
+.page .profile{
+  border:3px solid #bfa;
+}
