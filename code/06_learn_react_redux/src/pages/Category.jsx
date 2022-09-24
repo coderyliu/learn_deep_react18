@@ -12,7 +12,7 @@ export class Category extends PureComponent {
 
   render() {
     const { bannerLists, recommends } = this.props;
-    console.log(store.getState());
+    // console.log(store.getState());
 
     return (
       <div>
