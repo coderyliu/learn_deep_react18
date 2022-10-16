@@ -1,13 +1,42 @@
-import { createSlice } from '@reduxjs/toolkit'
+import {
+  createAsyncThunk,
+  createSlice
+} from '@reduxjs/toolkit'
 
-const homeSlice=createSlice({
-  name:'home',
-  initialState:{
-    productList:[]
+import {
+  getHomeGoodPriceInfoData
+} from '@/network/modules/home'
+
+export const fetchHomeGoodPriceInfo = createAsyncThunk('fetchHomeData', async (payload, {
+  dispatch
+}) => {
+  const goodPriceInfo = await getHomeGoodPriceInfoData()
+  dispatch(changeGoodPriceInfoAction(goodPriceInfo))
+
+  // return res
+})
+
+const homeSlice = createSlice({
+  name: 'home',
+  initialState: {
+    goodPriceInfo: {}
   },
-  reducers:{
-    changeProductListAction(state,{payload}){}
+  reducers: {
+    changeGoodPriceInfoAction(state, {
+      payload
+    }) {
+      state.goodPriceInfo = payload
+    }
+  },
+  extraReducers: {
+    // [fetchHomeGoodPriceInfo.fulfilled](state,{payload}){
+    //   state.goodPriceInfo=payload
+    // }
   }
 })
+
+export const {
+  changeGoodPriceInfoAction
+} = homeSlice.actions
 
 export default homeSlice.reducer

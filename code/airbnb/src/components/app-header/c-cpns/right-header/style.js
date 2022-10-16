@@ -20,6 +20,7 @@ export const RightHeaderWrapper = styled.div `
       padding:12px 15px;
       cursor:pointer;
       border-radius:22px;
+      box-sizing: content-box;
 
       &:hover{
         background-color: #f5f5f5;
