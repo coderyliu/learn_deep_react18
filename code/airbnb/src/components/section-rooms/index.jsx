@@ -5,7 +5,7 @@ import SectionItem from "../section-item";
 import { SectionRoomsWrapper } from "./style";
 
 const SectionRooms = memo((props) => {
-  const {roomList}=props
+  const { roomList, itemWidth } = props;
 
   return (
     <SectionRoomsWrapper>
@@ -16,8 +16,8 @@ const SectionRooms = memo((props) => {
               itemData={item}
               key={item.id}
               className="item"
-            >
-            </SectionItem>
+              itemWidth={itemWidth}
+            ></SectionItem>
           );
         })}
       </div>
@@ -26,7 +26,8 @@ const SectionRooms = memo((props) => {
 });
 
 SectionRooms.propTypes = {
-  roomList:PropTypes.array
+  roomList: PropTypes.array,
+  itemWidth: PropTypes.string,
 };
 
 export default SectionRooms;

@@ -5,11 +5,12 @@ import Rating from "@mui/material/Rating";
 import { SectionItemWrapper } from "./style";
 
 const SectionItem = memo((props) => {
-  const { itemData } = props;
+  const { itemData, itemWidth } = props;
 
   return (
     <SectionItemWrapper
       verifyColor={itemData.verify_info?.text_color || "#39576a"}
+      itemWidth={itemWidth}
     >
       <div className="section-item">
         <div className="cover">
@@ -19,17 +20,17 @@ const SectionItem = memo((props) => {
         <div className="name">{itemData.name}</div>
         <div className="price">¥{itemData.price}/晚</div>
         <div className="bottom">
-          <Rating 
-            name="read-only" 
-            value={itemData.star_rating ?? 5} 
+          <Rating
+            name="read-only"
+            value={itemData.star_rating ?? 5}
             precision={0.1}
-            readOnly 
-            sx={{color:'#00848A',fontSize:'12px',marginRight:'-1px'}}
+            readOnly
+            sx={{ color: "#00848A", fontSize: "12px", marginRight: "-1px" }}
           />
           <span className="count">{itemData.reviews_count}</span>
-          {
-            itemData.bottom_info && <span className="extra">·{itemData.bottom_info?.content}</span>
-          }
+          {itemData.bottom_info && (
+            <span className="extra">·{itemData.bottom_info?.content}</span>
+          )}
         </div>
       </div>
     </SectionItemWrapper>
@@ -38,6 +39,7 @@ const SectionItem = memo((props) => {
 
 SectionItem.propTypes = {
   itemData: PropTypes.object,
+  itemWidth: PropTypes.string,
 };
 
 export default SectionItem;

@@ -4,28 +4,61 @@ import {
 } from '@reduxjs/toolkit'
 
 import {
-  getHomeGoodPriceInfoData
+  getHomeDiscountData,
+  getHomeGoodPriceInfoData,
+  getHomeHighScoreInfoData,
+  getHomeHotRecommendData
 } from '@/network/modules/home'
 
-export const fetchHomeGoodPriceInfo = createAsyncThunk('fetchHomeData', async (payload, {
+export const fetchHomeData = createAsyncThunk('fetchHomeData', (payload, {
   dispatch
 }) => {
-  const goodPriceInfo = await getHomeGoodPriceInfoData()
-  dispatch(changeGoodPriceInfoAction(goodPriceInfo))
+  // 这里就不用async/await了，同步执行，影响拿到服务器的数据，阻塞渲染
+  getHomeDiscountData().then(res => {
+    dispatch(changeDiscountInfoAction(res))
+  })
 
-  // return res
+  getHomeGoodPriceInfoData().then(res => {
+    dispatch(changeGoodPriceInfoAction(res))
+  })
+
+  getHomeHighScoreInfoData().then(res => {
+    dispatch(changeHighScoreInfoAction(res))
+  })
+
+  getHomeHotRecommendData().then(res => {
+    dispatch(changeHotRecommendAction(res))
+  })
 })
 
 const homeSlice = createSlice({
   name: 'home',
   initialState: {
-    goodPriceInfo: {}
+    discountInfo: {},
+    goodPriceInfo: {},
+    highScoreInfo: {},
+    recommendInfo: {}
   },
   reducers: {
+    changeDiscountInfoAction(state, {
+      payload
+    }) {
+      state.discountInfo = payload
+    },
     changeGoodPriceInfoAction(state, {
       payload
     }) {
       state.goodPriceInfo = payload
+    },
+    changeHighScoreInfoAction(state, {
+      payload
+    }) {
+      state.highScoreInfo = payload
+    },
+    changeHotRecommendAction(state, {
+      payload
+    }) {
+      state.recommendInfo = payload
     }
   },
   extraReducers: {
@@ -36,7 +69,10 @@ const homeSlice = createSlice({
 })
 
 export const {
-  changeGoodPriceInfoAction
+  changeDiscountInfoAction,
+  changeGoodPriceInfoAction,
+  changeHighScoreInfoAction,
+  changeHotRecommendAction
 } = homeSlice.actions
 
 export default homeSlice.reducer

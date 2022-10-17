@@ -1,33 +1,45 @@
 import React, { memo, useEffect } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 
-import { fetchHomeGoodPriceInfo } from "@/store/modules/home";
+import { fetchHomeData } from "@/store/modules/home";
+import { isEmptyObj } from "@/utils";
 
 import HomeBanner from "./c-cpns/home-banner";
-import SectionHeader from "@/components/section-header";
-import SectionRooms from "@/components/section-rooms";
+import HomeSectionV1 from "./c-cpns/home-section-v1";
+import HomeSectionV2 from "./c-cpns/home-section-v2";
 import { HomeWrapper } from "./style";
 
 const Home = memo(() => {
   // redux Hook
-  const { goodPriceInfo } = useSelector((state) => ({
-    goodPriceInfo: state.home.goodPriceInfo,
-  }),shallowEqual);
+  const { goodPriceInfo, highScoreInfo, discountInfo, recommendInfo } =
+    useSelector(
+      (state) => ({
+        discountInfo: state.home.discountInfo,
+        goodPriceInfo: state.home.goodPriceInfo,
+        highScoreInfo: state.home.highScoreInfo,
+        recommendInfo: state.home.recommendInfo,
+      }),
+      shallowEqual
+    );
   const dispatch = useDispatch();
 
   // 副作用
   useEffect(() => {
-    dispatch(fetchHomeGoodPriceInfo());
+    dispatch(fetchHomeData());
   }, [dispatch]);
 
   return (
     <HomeWrapper>
       <HomeBanner></HomeBanner>
       <div className="content-wrap">
-        <div className="good-price-wrap">
-          <SectionHeader title={goodPriceInfo?.title}></SectionHeader>
-          <SectionRooms roomList={goodPriceInfo?.list}></SectionRooms>
-        </div>
+        {isEmptyObj(discountInfo) && (
+          <HomeSectionV2 infoData={discountInfo}></HomeSectionV2>
+        )}
+        <HomeSectionV1 infoData={goodPriceInfo}></HomeSectionV1>
+        <HomeSectionV1 infoData={highScoreInfo}></HomeSectionV1>
+        {isEmptyObj(recommendInfo) && (
+          <HomeSectionV2 infoData={recommendInfo}></HomeSectionV2>
+        )}
       </div>
     </HomeWrapper>
   );

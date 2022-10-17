@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-export const SectionItemWrapper=styled.div`
+export const SectionItemWrapper = styled.div `
   box-sizing: border-box;
-  width:25%;
+  width:${props=>props.itemWidth};
   padding:8px;
 
   .section-item{
