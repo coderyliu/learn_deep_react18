@@ -1,16 +1,14 @@
 import styled from "styled-components";
 
 export const SectionTabsWrapper=styled.div`
-  display: flex;
-  align-items: center;
-
   .item{
-    flex-basis: 100px;
+    flex-basis: 120px;
     flex-shrink: 0;
     padding:8px 16px;
     margin-right:16px;
     border:0.5px solid #d8d8d8;
-    
+    border-radius: 3px;
+
     font-size: 17px;
     text-align: center;
     white-space: nowrap;

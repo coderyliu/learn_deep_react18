@@ -7,7 +7,9 @@ import {
   getHomeDiscountData,
   getHomeGoodPriceInfoData,
   getHomeHighScoreInfoData,
-  getHomeHotRecommendData
+  getHomeHotRecommendData,
+  getHomeLongForData,
+  getHomePlusData
 } from '@/network/modules/home'
 
 export const fetchHomeData = createAsyncThunk('fetchHomeData', (payload, {
@@ -29,6 +31,14 @@ export const fetchHomeData = createAsyncThunk('fetchHomeData', (payload, {
   getHomeHotRecommendData().then(res => {
     dispatch(changeHotRecommendAction(res))
   })
+
+  getHomeLongForData().then(res => {
+    dispatch(changeLongForInfoAction(res))
+  })
+
+  getHomePlusData().then(res => {
+    dispatch(changePlusInfoAction(res))
+  })
 })
 
 const homeSlice = createSlice({
@@ -37,7 +47,9 @@ const homeSlice = createSlice({
     discountInfo: {},
     goodPriceInfo: {},
     highScoreInfo: {},
-    recommendInfo: {}
+    recommendInfo: {},
+    longForInfo: {},
+    plusInfo: {}
   },
   reducers: {
     changeDiscountInfoAction(state, {
@@ -59,6 +71,16 @@ const homeSlice = createSlice({
       payload
     }) {
       state.recommendInfo = payload
+    },
+    changeLongForInfoAction(state, {
+      payload
+    }) {
+      state.longForInfo = payload
+    },
+    changePlusInfoAction(state, {
+      payload
+    }) {
+      state.plusInfo = payload
     }
   },
   extraReducers: {
@@ -72,7 +94,9 @@ export const {
   changeDiscountInfoAction,
   changeGoodPriceInfoAction,
   changeHighScoreInfoAction,
-  changeHotRecommendAction
+  changeHotRecommendAction,
+  changeLongForInfoAction,
+  changePlusInfoAction
 } = homeSlice.actions
 
 export default homeSlice.reducer

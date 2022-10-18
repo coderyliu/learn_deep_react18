@@ -7,20 +7,30 @@ import { isEmptyObj } from "@/utils";
 import HomeBanner from "./c-cpns/home-banner";
 import HomeSectionV1 from "./c-cpns/home-section-v1";
 import HomeSectionV2 from "./c-cpns/home-section-v2";
+import HomeSectionV3 from "./c-cpns/home-section-v3";
+import HomeLongFor from "./c-cpns/home-longfor";
 import { HomeWrapper } from "./style";
 
 const Home = memo(() => {
   // redux Hook
-  const { goodPriceInfo, highScoreInfo, discountInfo, recommendInfo } =
-    useSelector(
-      (state) => ({
-        discountInfo: state.home.discountInfo,
-        goodPriceInfo: state.home.goodPriceInfo,
-        highScoreInfo: state.home.highScoreInfo,
-        recommendInfo: state.home.recommendInfo,
-      }),
-      shallowEqual
-    );
+  const {
+    goodPriceInfo,
+    highScoreInfo,
+    discountInfo,
+    recommendInfo,
+    longForInfo,
+    plusInfo,
+  } = useSelector(
+    (state) => ({
+      discountInfo: state.home.discountInfo,
+      goodPriceInfo: state.home.goodPriceInfo,
+      highScoreInfo: state.home.highScoreInfo,
+      recommendInfo: state.home.recommendInfo,
+      longForInfo: state.home.longForInfo,
+      plusInfo: state.home.plusInfo,
+    }),
+    shallowEqual
+  );
   const dispatch = useDispatch();
 
   // 副作用
@@ -36,10 +46,12 @@ const Home = memo(() => {
           <HomeSectionV2 infoData={discountInfo}></HomeSectionV2>
         )}
         <HomeSectionV1 infoData={goodPriceInfo}></HomeSectionV1>
+        <HomeLongFor infoData={longForInfo}></HomeLongFor>
         <HomeSectionV1 infoData={highScoreInfo}></HomeSectionV1>
         {isEmptyObj(recommendInfo) && (
           <HomeSectionV2 infoData={recommendInfo}></HomeSectionV2>
         )}
+        <HomeSectionV3 infoData={plusInfo}></HomeSectionV3>
       </div>
     </HomeWrapper>
   );
