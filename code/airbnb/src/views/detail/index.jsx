@@ -1,10 +1,15 @@
 import React, { memo } from 'react'
 
+import DetailInfos from './c-cpns/detail-infos'
+import DetailPictures from './c-cpns/detail-pictures'
+import { DetailWrapper } from './style'
+
 const Detail = memo(() => {
   return (
-    <div>
-      <h2>Detail Page</h2>
-    </div>
+    <DetailWrapper>
+      <DetailPictures></DetailPictures>
+      <DetailInfos></DetailInfos>
+    </DetailWrapper>
   )
 })
 
