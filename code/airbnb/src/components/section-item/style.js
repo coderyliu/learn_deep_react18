@@ -9,6 +9,42 @@ export const SectionItemWrapper = styled.div `
   .section-item{
     width:100%;
 
+    .slider{
+      position: relative;
+      cursor: pointer;
+
+      &:hover{
+        > .control{
+          display: flex;
+        }
+      }
+
+      > .control{
+        position: absolute;
+        z-index:9;
+        left:0;
+        right:0;
+        top:0;
+        bottom:0;
+        display: none;
+        justify-content: space-between;
+        color:#fff;
+
+        .btn{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 83px;
+          height: 100%;
+          background: linear-gradient(to left,transparent 0%, rgba(0,0,0,.25) 100%);
+
+          &.right{
+            background: linear-gradient(to right,transparent 0%, rgba(0,0,0,.25) 100%);
+          }
+        }
+      }
+    }
+
     .cover{
       position:relative;
       box-sizing: border-box;
@@ -23,6 +59,7 @@ export const SectionItemWrapper = styled.div `
         top:0;
         width:100%;
         height: 100%;
+        object-fit: cover;
       }
     }
 

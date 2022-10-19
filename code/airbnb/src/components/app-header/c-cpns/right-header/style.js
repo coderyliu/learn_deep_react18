@@ -56,6 +56,8 @@ export const RightHeaderWrapper = styled.div `
       background-color:#fff;
       color:#666;
 
+      z-index:999;
+
       .top,.bottom{
         padding:10px 0;
 
