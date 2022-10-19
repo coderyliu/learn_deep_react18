@@ -5,14 +5,18 @@ import Rating from "@mui/material/Rating";
 import { SectionItemWrapper } from "./style";
 
 const SectionItem = memo((props) => {
-  const { itemData, itemWidth } = props;
+  const { itemData, itemWidth, itemClick } = props;
+
+  function handleItemClick() {
+    if (itemClick) itemClick();
+  }
 
   return (
     <SectionItemWrapper
       verifyColor={itemData.verify_info?.text_color || "#39576a"}
       itemWidth={itemWidth}
     >
-      <div className="section-item">
+      <div className="section-item" onClick={(e) => handleItemClick()}>
         <div className="cover">
           <img src={itemData.picture_url} alt="" className="picture" />
         </div>
@@ -40,6 +44,7 @@ const SectionItem = memo((props) => {
 SectionItem.propTypes = {
   itemData: PropTypes.object,
   itemWidth: PropTypes.string,
+  itemClick: PropTypes.func,
 };
 
 export default SectionItem;

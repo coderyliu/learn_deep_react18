@@ -19,7 +19,7 @@ const routes=[
     element:<Entire></Entire>
   },
   {
-    path:'/detail:id',
+    path:'/detail',
     element:<Detail></Detail>
   }
 ]
