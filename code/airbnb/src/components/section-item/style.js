@@ -43,6 +43,35 @@ export const SectionItemWrapper = styled.div `
           }
         }
       }
+
+      .indicator{
+        position: absolute;
+        z-index: 19;
+        left:0;
+        right:0;
+        bottom:10px;
+        width:30%;
+        margin:0 auto;
+
+        .item{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width:14.29%;
+
+          .dot{
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: #fff;
+
+            &.active{
+              width: 8px;
+              height: 8px;
+            }
+          }
+        }
+      }
     }
 
     .cover{

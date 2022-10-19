@@ -1,14 +1,16 @@
 import PropTypes from "prop-types";
-import React, { memo, useRef } from "react";
+import React, { memo, useRef, useState } from "react";
 import Rating from "@mui/material/Rating";
 import { Carousel } from "antd";
 
 import IconLeftArrow from "@/assets/svg/icon-left-arrow";
 import IconRightArrow from "@/assets/svg/icon-right-arrow";
 import { SectionItemWrapper } from "./style";
+import Indicator from "@/base-ui/indicator";
 
 const SectionItem = memo((props) => {
   const { itemData, itemWidth, itemClick } = props;
+  const [sliderIndex, setSliderIndex] = useState(0);
   const sliderRef = useRef();
 
   // 事件处理 轮播图
@@ -16,6 +18,12 @@ const SectionItem = memo((props) => {
     e.stopPropagation();
     // 切换上一张/下一张
     isRight ? sliderRef.current.next() : sliderRef.current.prev();
+
+    // 设置指示器索引
+    let newIndex = isRight ? sliderIndex + 1 : sliderIndex - 1;
+    if (newIndex < 0) newIndex = itemData.picture_urls.length - 1;
+    if (newIndex > itemData.picture_urls.length - 1) newIndex = 0;
+    setSliderIndex(newIndex);
   }
 
   function handleItemClick(itemData) {
@@ -38,6 +46,19 @@ const SectionItem = memo((props) => {
         <div className="btn right" onClick={(e) => handleSliderClick(e, true)}>
           <IconRightArrow width={30} height={30}></IconRightArrow>
         </div>
+      </div>
+      <div className="indicator">
+        <Indicator sliderIndex={sliderIndex}>
+          {itemData?.picture_urls?.map((item, index) => {
+            return (
+              <div key={item} className="item">
+                <span
+                  className={sliderIndex === index ? "dot active" : "dot"}
+                ></span>
+              </div>
+            );
+          })}
+        </Indicator>
       </div>
       <Carousel dots={false} ref={sliderRef}>
         {itemData?.picture_urls?.map((item, index) => {
