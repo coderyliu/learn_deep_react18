@@ -14,7 +14,11 @@ const AppFooter = memo(() => {
                 <div className="title">{item.name}</div>
                 <div className="item">
                   {item.list.map((value) => {
-                    return <div key={value} className='iten'>{value}</div>
+                    return (
+                      <div key={value} className="iten">
+                        {value}
+                      </div>
+                    );
                   })}
                 </div>
               </div>
@@ -22,7 +26,10 @@ const AppFooter = memo(() => {
           })}
         </div>
         <div className="bottom">
-          <div className="statement">© 2022 Airbnb, Inc. All rights reserved.条款 · 隐私政策 · 网站地图 · 全国旅游投诉渠道 12301</div>
+          <div className="statement">
+            © 2022 Airbnb, Inc. All rights reserved.条款 · 隐私政策 · 网站地图 ·
+            全国旅游投诉渠道 12301
+          </div>
         </div>
       </div>
     </FooterWrapper>

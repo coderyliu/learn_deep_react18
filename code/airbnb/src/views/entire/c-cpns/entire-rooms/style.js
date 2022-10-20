@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const EntireRoomWrapper = styled.div `
   position: relative;
-  padding:20px 20px;
+  padding:130px 20px 20px;
 
   .entire-title{
     color:${props=>props.theme.text.secondaryColor};

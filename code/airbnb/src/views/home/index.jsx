@@ -10,6 +10,8 @@ import HomeSectionV2 from "./c-cpns/home-section-v2";
 import HomeSectionV3 from "./c-cpns/home-section-v3";
 import HomeLongFor from "./c-cpns/home-longfor";
 import { HomeWrapper } from "./style";
+import AppHeader from "@/components/app-header";
+import { changeHeaderInfoFixedAction } from "@/store/modules/main";
 
 const Home = memo(() => {
   // redux Hook
@@ -20,6 +22,7 @@ const Home = memo(() => {
     recommendInfo,
     longForInfo,
     plusInfo,
+    headerInfo,
   } = useSelector(
     (state) => ({
       discountInfo: state.home.discountInfo,
@@ -28,6 +31,7 @@ const Home = memo(() => {
       recommendInfo: state.home.recommendInfo,
       longForInfo: state.home.longForInfo,
       plusInfo: state.home.plusInfo,
+      headerInfo: state.main.headerInfo,
     }),
     shallowEqual
   );
@@ -36,10 +40,12 @@ const Home = memo(() => {
   // 副作用
   useEffect(() => {
     dispatch(fetchHomeData());
+    dispatch(changeHeaderInfoFixedAction({ isFixed: true, topAlpha: true }));
   }, [dispatch]);
 
   return (
     <HomeWrapper>
+      <AppHeader isFixed={headerInfo.isFixed}></AppHeader>
       <HomeBanner></HomeBanner>
       <div className="content-wrap">
         {isEmptyObj(discountInfo) && (

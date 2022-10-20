@@ -13,17 +13,20 @@ import theme from '@/assets/theme'
 
 // 配置craco create-react-app config 帮助我们配置路径别名/webpack的其他配置
 
+// 使用store需要注意的一点，当我们的组件懒加载时，使用React.lazy,我们用Suspense组件包裹的时候，懒加载的组件不会订阅store.subscribe
+// 解决的办法是，需要让Provider包裹Suspense
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // <React.StrictMode>
-  <Suspense fallback='loading'>
+  <Provider store={store}>
     <ThemeProvider theme={theme}>
-      <Provider store={store}>
-        <HashRouter>
-          <App />
-        </HashRouter>
-      </Provider>
+      <Suspense fallback='loading'>
+          <HashRouter>
+            <App />
+          </HashRouter>
+      </Suspense>
     </ThemeProvider>
-  </Suspense>
+  </Provider>
   // </React.StrictMode>
 );

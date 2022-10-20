@@ -5,9 +5,9 @@ import IconLogo from "@/assets/svg/icon-logo";
 import { LeftHeaderWrapper } from "./style";
 
 const LeftHeader = memo(() => {
-  const navigate=useNavigate()
-  function navigateToHome(){
-    navigate('/home')
+  const navigate = useNavigate();
+  function navigateToHome() {
+    navigate("/home");
   }
 
   return (
