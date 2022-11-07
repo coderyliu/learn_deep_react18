@@ -6,7 +6,6 @@ import { DiscoverWrapper } from './style'
 const Discover = memo(() => {
   return (
     <DiscoverWrapper>
-      <div>discover page</div>
       <Outlet></Outlet>
     </DiscoverWrapper>
   )

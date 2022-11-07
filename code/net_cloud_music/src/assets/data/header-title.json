@@ -1,0 +1,28 @@
+[
+  {
+    "title": "发现音乐",
+    "path": "/discover"
+  },
+  {
+    "title": "我的音乐",
+    "path": "/profile"
+  },
+  {
+    "title": "关注",
+    "path": "/focus"
+  },
+  {
+    "title": "商城",
+    "path": "/cart",
+    "isUrl": true
+  },
+  {
+    "title": "音乐人",
+    "path": "/singer",
+    "isUrl": true
+  },
+  {
+    "title": "下载客户端",
+    "path": "/download"
+  }
+]
