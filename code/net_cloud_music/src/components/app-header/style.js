@@ -78,10 +78,12 @@ export const AppHeaderWrapper = styled.div `
       margin:0 10px;
       border:1px solid #4F4F4F;
       border-radius:20px;
+      cursor: pointer;
     }
 
     .login{
       color:#787878;
+      cursor: pointer;
     }
   }
 `

@@ -1,3 +1,4 @@
 /* 引入antd组件库样式 */
 @import '~antd/dist/antd.css';
 @import url(./reset.css);
+@import url(./base.css);

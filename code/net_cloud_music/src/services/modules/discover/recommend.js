@@ -25,8 +25,31 @@ export function getNewDisk(limit=10){
 }
 
 // 获取榜单数据
-export function getRankingData(){
+export function getRankingData(id){
   return lyFetch.get({
-    url:'/'
+    url:'/playlist/detail',
+    params:{
+      id
+    }
+  })
+}
+
+// 获取热门歌手主播
+export function getArtistData(limit=10){
+  return lyFetch.get({
+    url:'/artist/list',
+    params:{
+      limit
+    }
+  })
+}
+
+// 获取热门主播
+export function getPopularDJ(limit=30){
+  return lyFetch.get({
+    url:'/dj/toplist/popular',
+    params:{
+      limit
+    }
   })
 }

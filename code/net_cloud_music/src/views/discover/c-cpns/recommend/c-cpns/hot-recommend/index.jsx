@@ -2,7 +2,7 @@ import SectionItemV1 from '@/components/section-item-v1'
 import PropTypes from 'prop-types'
 import React, { memo, useCallback } from 'react'
 
-import HeaderSection from '../header-section'
+import HeaderSection from '../../../../../../components/header-section'
 import { HotRecommendWrapper } from './style'
 
 const HotRecommend = memo((props) => {
@@ -16,7 +16,7 @@ const HotRecommend = memo((props) => {
   return (
     <HotRecommendWrapper>
       <HeaderSection title='热门推荐' moreClick={handleMoreTap}></HeaderSection>
-      <SectionItemV1 itemData={hotRecommend.slice(0,10)}></SectionItemV1>
+      <SectionItemV1 itemData={hotRecommend.slice(0,8)}></SectionItemV1>
     </HotRecommendWrapper>
   )
 })

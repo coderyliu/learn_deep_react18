@@ -2,14 +2,17 @@ import styled from "styled-components";
 
 export const SectionItemV1Wrapper=styled.div`
   display: flex;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
+  margin-left:-40px;
 
   .section-item{
     width:140px;
     height: 204px;
-    margin:15px 40px 20px 0;
+    padding:20px 0 10px 40px;
+    
+    box-sizing: content-box;
 
     .album{
       position: relative;
