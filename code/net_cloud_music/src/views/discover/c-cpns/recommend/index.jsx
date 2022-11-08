@@ -8,8 +8,8 @@ import HotRecommend from "./c-cpns/hot-recommend";
 import NewDisk from "./c-cpns/new-disk";
 import PartRanking from "./c-cpns/ranking";
 import UserLogin from "./c-cpns/user-login";
-import { RecommendWrapper } from "./style";
 import SettleSinger from "./c-cpns/settle-singer";
+import { RecommendWrapper } from "./style";
 
 const Recommend = memo((props) => {
   // redux相关
@@ -46,8 +46,10 @@ const Recommend = memo((props) => {
       <RecommendBanner banners={topBanner}></RecommendBanner>
       <div className="content-wrapper">
         <div className="con-left">
-          <HotRecommend hotRecommend={hotRecommend}></HotRecommend>
-          <NewDisk newDisk={newDisk}></NewDisk>
+          {hotRecommend.length && (
+            <HotRecommend hotRecommend={hotRecommend}></HotRecommend>
+          )}
+          {newDisk.length && <NewDisk newDisk={newDisk}></NewDisk>}
           <PartRanking
             topUpList={topUpList}
             topHotList={topHotList}
@@ -56,8 +58,12 @@ const Recommend = memo((props) => {
         </div>
         <div className="con-right">
           <UserLogin></UserLogin>
-          <SettleSinger artists={artists} title='入驻歌手'></SettleSinger>
-          <SettleSinger isShowApply={false} title='热门主播' artists={popularDJ}></SettleSinger>
+          <SettleSinger artists={artists} title="入驻歌手"></SettleSinger>
+          <SettleSinger
+            isShowApply={false}
+            title="热门主播"
+            artists={popularDJ}
+          ></SettleSinger>
         </div>
       </div>
     </RecommendWrapper>

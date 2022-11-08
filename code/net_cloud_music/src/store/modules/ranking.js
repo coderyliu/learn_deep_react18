@@ -24,7 +24,7 @@ const rankingSlice = createSlice({
   name: 'ranking',
   initialState: {
     rankingInfo: [],
-    rankingDetail: []
+    rankingDetail: {}
   },
   reducers: {
     changeRankingInfoAction(state, {

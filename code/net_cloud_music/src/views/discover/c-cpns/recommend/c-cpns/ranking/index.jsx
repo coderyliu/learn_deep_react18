@@ -10,7 +10,7 @@ const PartRanking = memo((props) => {
 
   return (
     <PartRankingWrapper>
-      <HeaderSection title="榜单"></HeaderSection>
+      {topUpList.length && <HeaderSection title="榜单"></HeaderSection>}
       <div className="part-ranking-wrap">
         <RankItem rankInfo={topUpList}></RankItem>
         <RankItem rankInfo={topHotList}></RankItem>
