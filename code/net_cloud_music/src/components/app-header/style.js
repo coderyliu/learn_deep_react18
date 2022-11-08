@@ -41,6 +41,7 @@ export const AppHeaderWrapper = styled.div `
     margin-right:50px;
 
     .item{
+      position: relative;
       line-height:70px;
       padding:0 19px;
 
@@ -48,6 +49,21 @@ export const AppHeaderWrapper = styled.div `
       &:hover{
         color:#fff;
         background-color: #000;
+      }
+
+      .triangle2{
+        position: absolute;
+        z-index:99;
+        left:50%;
+        bottom:0;
+        display: block;
+        width:0;
+        height:0;
+
+        border:5px solid transparent;
+        border-bottom-color:#C20C0C;
+
+        transform: translateX(-50%);
       }
     }
 
@@ -84,6 +100,45 @@ export const AppHeaderWrapper = styled.div `
     .login{
       color:#787878;
       cursor: pointer;
+    }
+  }
+
+
+  .recommend-nav{
+    position: relative;
+    width:100%;
+    height: 35px;
+
+    background-color: #C20C0C;
+
+    .nav-wrap{
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      width:1100px;
+      height: 35px;
+
+      margin:0 auto;
+      padding-left:200px;
+
+      .iten{
+        padding:1px 15px;
+        margin-right:40px;
+        border-radius:20px;
+
+        font-size: 13px;
+        color:#fff;
+
+        cursor: pointer;
+
+        &:hover{
+          background-color: #9B0909;
+        }
+      }
+
+      .iten.active{
+        background-color: #9B0909;
+      }
     }
   }
 `

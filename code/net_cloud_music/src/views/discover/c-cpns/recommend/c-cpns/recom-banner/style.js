@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const RecommendBannerWrapper=styled.div`
   width:100%;
   height:285px;
+  margin-top:35px;
 
   background: url(${props=>props.bgImage.imageUrl}) center center/10000px;
 

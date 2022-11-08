@@ -5,22 +5,22 @@
   },
   {
     "title": "排行榜",
-    "path": "/ranking"
+    "path": "/discover/toplist"
   },
   {
     "title": "歌单",
-    "path": "/songMenu"
+    "path": "/discover/songMenu"
   },
   {
     "title": "主播电台",
-    "path": "/radio"
+    "path": "/discover/radio"
   },
   {
     "title": "歌手",
-    "path": "/singer"
+    "path": "/discover/singer"
   },
   {
     "title": "新碟上架",
-    "path": "/disk"
+    "path": "/discover/disk"
   }
 ]
