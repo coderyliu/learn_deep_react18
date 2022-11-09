@@ -14,7 +14,7 @@ const NewDiskItemV1 = memo((props) => {
         </div>
         <div className="info">
           <span className='song omit'>{itemData.name}</span>
-          <span className="singer">{itemData.artist.name}</span>
+          <span className="singer omit">{itemData.artist.name}</span>
         </div>
       </div>
     </NewDiskItemV1Wrapper>
