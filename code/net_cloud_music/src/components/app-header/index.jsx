@@ -1,7 +1,8 @@
-import React, { memo, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import headerTitle from "@/assets/data/header-title.json";
+
 import headerNav from "@/assets/data/header-nav.json";
 import { AppHeaderWrapper } from "./style";
 
@@ -27,6 +28,13 @@ const AppHeader = memo(() => {
     navigate(path);
     setFindIndex(index);
   }
+
+  // ?处理href改变
+  useEffect(()=>{
+    if(location.pathname==='/discover/recommend'){
+      setFindIndex(0)
+    }
+  },[location])
 
   return (
     <AppHeaderWrapper>

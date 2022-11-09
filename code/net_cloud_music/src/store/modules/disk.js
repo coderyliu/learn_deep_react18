@@ -10,7 +10,6 @@ import {
 export const fetchDiskData = createAsyncThunk('fetch/disk', (info, {
   dispatch
 }) => {
-  console.log(info)
   getHotDiskData().then(res => {
     dispatch(changeHotDiskListAction(res.albums))
   })
