@@ -2,6 +2,7 @@ import React, { memo, useCallback, useEffect } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 
 import { fetchRankingData } from "@/store/modules/ranking";
+import { rankTableList } from "@/assets/data/header-table";
 
 import RankInfo from "./c-cpns/rank-info";
 import PlayerHeader from "@/components/player-header";
@@ -40,7 +41,7 @@ const Ranking = memo((props) => {
         </div>
         <div className="con-right">
           <PlayerHeader rankingDetail={rankingDetail}></PlayerHeader>
-          <PlayerSection rankingDetail={rankingDetail}></PlayerSection>
+          <PlayerSection rankingDetail={rankingDetail} tableList={rankTableList}></PlayerSection>
         </div>
       </div>
     </RankingWrapper>

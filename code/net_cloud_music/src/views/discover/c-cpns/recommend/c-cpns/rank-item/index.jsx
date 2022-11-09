@@ -27,7 +27,7 @@ const RankItem = memo((props) => {
               <span className={index <= 2 ? "index active" : "index"}>
                 {index + 1}
               </span>
-              <span className="name">{item.name}</span>
+              <span className="name omit">{item.name}</span>
             </div>
           );
         })}
