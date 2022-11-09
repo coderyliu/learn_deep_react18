@@ -4,11 +4,13 @@ import {
 
 import recommendReducer from './modules/recommend'
 import rankingReducer from './modules/ranking'
+import diskReducer from './modules/disk'
 
 const store = configureStore({
   reducer: {
     recommend: recommendReducer,
-    ranking: rankingReducer
+    ranking: rankingReducer,
+    disk: diskReducer
   }
 })
 

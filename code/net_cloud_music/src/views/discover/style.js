@@ -5,6 +5,7 @@ export const DiscoverWrapper=styled.div`
 
   .btn-back{
     position: fixed;
+    z-index:99;
     left:50%;
     margin-left:500px;
     bottom:160px;

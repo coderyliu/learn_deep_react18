@@ -1,14 +1,14 @@
-import PropTypes from 'prop-types'
-import React, { memo } from 'react'
+import PropTypes from "prop-types";
+import React, { memo } from "react";
 
-import { HeaderSectionWrapper } from './style'
+import { HeaderSectionWrapper } from "./style";
 
 const HeaderSection = memo((props) => {
-  const {title,moreClick,keyword=[]}=props
+  const { title, moreClick, keyword = [], isShowMore = true } = props;
 
   // 更多点击处理
-  function handleMoreClick(){
-    moreClick()
+  function handleMoreClick() {
+    moreClick();
   }
 
   return (
@@ -27,17 +27,22 @@ const HeaderSection = memo((props) => {
           } */}
         </div>
       </div>
-      <div className="section-right">
-        <span className='text' onClick={()=>handleMoreClick()}>更多</span>
-        <i className='icon'></i>
-      </div>
+      {isShowMore && (
+        <div className="section-right">
+          <span className="text" onClick={() => handleMoreClick()}>
+            更多
+          </span>
+          <i className="icon"></i>
+        </div>
+      )}
     </HeaderSectionWrapper>
-  )
-})
+  );
+});
 
-HeaderSection.propTypes={
-  title:PropTypes.string,
-  moreClick:PropTypes.func
-}
+HeaderSection.propTypes = {
+  title: PropTypes.string,
+  moreClick: PropTypes.func,
+  isShowMore: PropTypes.bool,
+};
 
-export default HeaderSection
+export default HeaderSection;
