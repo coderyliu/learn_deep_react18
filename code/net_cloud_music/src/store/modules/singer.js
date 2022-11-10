@@ -9,7 +9,7 @@ import {
 export const fetchSingerData = createAsyncThunk('fetch/singerData', (info, {
   dispatch
 }) => {
-  getSingerCategoryList(info.area, info.type).then(res => {
+  getSingerCategoryList(info.area, info.type, info.initial).then(res => {
     dispatch(changeCategoryListAction(res.artists))
   })
 })
@@ -17,19 +17,30 @@ export const fetchSingerData = createAsyncThunk('fetch/singerData', (info, {
 const singerSlice = createSlice({
   name: 'singer',
   initialState: {
-    categoryList: []
+    categoryList: [],
+    currentArea: -1,
+    currentType: -1,
+    currentTitle: '推荐歌手'
   },
   reducers: {
     changeCategoryListAction(state, {
       payload
     }) {
       state.categoryList = payload
+    },
+    changeParamsAction(state, {
+      payload
+    }) {
+      state.currentArea = payload.area
+      state.currentType = payload.type
+      state.currentTitle = payload.title
     }
   }
 })
 
 export const {
-  changeCategoryListAction
+  changeCategoryListAction,
+  changeParamsAction
 } = singerSlice.actions
 
 export default singerSlice.reducer

@@ -20,8 +20,8 @@ const AppHeader = memo(() => {
     if (!path.isUrl) {
       setCurrentIndex(index);
       navigate(path.path);
-    }else{
-      window.open(path.isUrl,'_blank')
+    } else {
+      window.open(path.isUrl, "_blank");
     }
   }
 
@@ -32,11 +32,32 @@ const AppHeader = memo(() => {
   }
 
   // ?处理href改变
-  useEffect(()=>{
-    if(location.pathname==='/discover/recommend'){
-      setFindIndex(0)
+  useEffect(() => {
+    let pathName = location.pathname;
+    switch (pathName) {
+      case "/discover/recommend":
+        setFindIndex(0);
+        break;
+      case "/discover/toplist":
+        setFindIndex(1);
+        break;
+      case "/discover/songMenu":
+        setFindIndex(2);
+        break;
+      case "/discover/radio":
+        setFindIndex(3);
+        break;
+      case "/discover/singer":
+        setFindIndex(4);
+        break;
+      case "/discover/disk":
+        setFindIndex(5);
+        break;
+      default:
+        setFindIndex(0);
+        break;
     }
-  },[location])
+  }, [location]);
 
   return (
     <AppHeaderWrapper>

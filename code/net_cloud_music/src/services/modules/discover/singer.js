@@ -6,8 +6,8 @@ export function getSingerCategoryList(area, type, initial) {
   let params = {
     limit: 100
   }
-  if (area === -1 && type ===1) {
-    url = '/top/artist'
+  if (area === -1 && type === -1) {
+    url = '/toplist/artist'
   } else {
     if (area === -1) {
       params = {

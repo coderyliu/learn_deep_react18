@@ -32,11 +32,12 @@ export const SingerCategoryWrapper = styled.div `
             text-decoration: underline;
           }
         }
-      }
-    }
 
-    .item.active{
-      color:#c20c0c;
+        .section.active{
+          color:#c20c0c;
+          background-color: hsl(0, 0%, 90%);
+        }
+      }
     }
   }
 `
