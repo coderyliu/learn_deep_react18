@@ -1,16 +1,30 @@
-import PropTypes from 'prop-types'
-import React, { memo } from 'react'
+import React, { memo } from "react";
+import { useEffect } from "react";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
 
-import { RadioStationWrapper } from './style'
+import { fetchRadioData } from "@/store/modules/radio";
+
+import { RadioStationWrapper } from "./style";
 
 const RadioStation = memo((props) => {
+  // redux相关
+  const { categoryList } = useSelector(
+    (state) => ({
+      categoryList: state.radio.categoryList,
+    }),
+    shallowEqual
+  );
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchRadioData());
+  }, [dispatch]);
+
   return (
     <RadioStationWrapper>
       <h2>radio station wrapper</h2>
     </RadioStationWrapper>
-  )
-})
+  );
+});
 
-RadioStation.propTypes = {}
-
-export default RadioStation
+export default RadioStation;

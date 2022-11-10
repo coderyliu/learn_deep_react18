@@ -8,6 +8,7 @@ import rankingReducer from './modules/ranking'
 import diskReducer from './modules/disk'
 import songMenuReducer from './modules/songMenu'
 import singerReducer from './modules/singer'
+import radioReducer from './modules/radio'
 
 const store = configureStore({
   reducer: {
@@ -16,7 +17,8 @@ const store = configureStore({
     ranking: rankingReducer,
     disk: diskReducer,
     songMenu: songMenuReducer,
-    singer: singerReducer
+    singer: singerReducer,
+    radio: radioReducer
   }
 })
 
