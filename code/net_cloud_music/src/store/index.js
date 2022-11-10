@@ -7,6 +7,7 @@ import recommendReducer from './modules/recommend'
 import rankingReducer from './modules/ranking'
 import diskReducer from './modules/disk'
 import songMenuReducer from './modules/songMenu'
+import singerReducer from './modules/singer'
 
 const store = configureStore({
   reducer: {
@@ -14,7 +15,8 @@ const store = configureStore({
     recommend: recommendReducer,
     ranking: rankingReducer,
     disk: diskReducer,
-    songMenu: songMenuReducer
+    songMenu: songMenuReducer,
+    singer: singerReducer
   }
 })
 
