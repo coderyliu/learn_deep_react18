@@ -12,7 +12,7 @@ const AppFooter = memo(() => {
           {footerNavList.map((item, index) => {
             return (
               <li key={index} className="item">
-                <a href={item.link} target="_blank" className={item.icon}>
+                <a href={item.link} target="_blank" className={item.icon} rel="noreferrer">
                   <span className="text omit">{item.title}</span>
                 </a>
               </li>
@@ -24,7 +24,7 @@ const AppFooter = memo(() => {
             {footerBasicList.map((item, index) => {
               return (
                 <li key={index} className="item">
-                  <a href={item.link} target="_blank">
+                  <a href={item.link} target="_blank" rel="noreferrer">
                     <span className="text">{item.title}</span>
                   </a>
                 </li>

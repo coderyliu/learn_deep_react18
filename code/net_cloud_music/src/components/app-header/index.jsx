@@ -17,9 +17,11 @@ const AppHeader = memo(() => {
   const navigate = useNavigate();
   // ?顶部导航路由跳转
   function navigateTo(path, index) {
-    setCurrentIndex(index);
     if (!path.isUrl) {
+      setCurrentIndex(index);
       navigate(path.path);
+    }else{
+      window.open(path.isUrl,'_blank')
     }
   }
 
