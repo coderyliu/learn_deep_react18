@@ -13,6 +13,15 @@ const Disk=React.lazy(()=>import('views/discover/c-cpns/disk'))
 // 我的音乐
 const Mine=React.lazy(()=>import('views/mine'))
 
+// 关注
+const Focus =React.lazy(()=>import('views/focus'))
+
+// 下载客户端
+const Download=React.lazy(()=>import('views/download'))
+
+// 登录注册
+const Login=React.lazy(()=>import('views/login'))
+
 const routes=[
   {
     path:'/',
@@ -55,6 +64,18 @@ const routes=[
   {
     path:'/profile',
     element:<Mine></Mine>
+  },
+  {
+    path:'/focus',
+    element:<Focus></Focus>
+  },
+  {
+    path:'/download',
+    element:<Download></Download>
+  },
+  {
+    path:'/login',
+    element:<Login></Login>
   }
 ]
 

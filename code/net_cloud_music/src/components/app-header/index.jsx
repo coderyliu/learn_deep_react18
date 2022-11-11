@@ -1,14 +1,17 @@
-import React, { memo, useEffect, useState } from "react";
+import React, { memo, useCallback, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import headerTitle from "@/assets/data/header-title.json";
-
 import headerNav from "@/assets/data/header-nav.json";
+
+import LoginModal from "./c-cpns/login-modal";
 import { AppHeaderWrapper } from "./style";
 
 const AppHeader = memo(() => {
+  // 组件状态
   const [currentIndex, setCurrentIndex] = useState(0);
   const [findIndex, setFindIndex] = useState(0);
+  const [isShowLogin, setIsShowLogin] = useState(false);
 
   // 处理首页导航
   const location = useLocation();
@@ -59,6 +62,20 @@ const AppHeader = memo(() => {
     }
   }, [location]);
 
+  // ?监听登录按钮点击
+  function handleLoginClick() {
+    // ?1.某个页面单独处理
+    // navigate('/login')
+
+    // ?2.整个modal弹出框
+    setIsShowLogin(true);
+  }
+
+  // ?登录框的关闭
+  const handleCloseClick = useCallback(() => {
+    setIsShowLogin(false);
+  },[]);
+
   return (
     <AppHeaderWrapper>
       <div className="header-inner">
@@ -88,7 +105,9 @@ const AppHeader = memo(() => {
             />
           </div>
           <div className="text section">创作者中心</div>
-          <div className="login">登录</div>
+          <div className="login" onClick={() => handleLoginClick()}>
+            登录
+          </div>
         </div>
         {/* <div className="triangle"></div> */}
       </div>
@@ -109,6 +128,7 @@ const AppHeader = memo(() => {
           </ul>
         </div>
       )}
+      {isShowLogin && <LoginModal closeClick={handleCloseClick}></LoginModal>}
     </AppHeaderWrapper>
   );
 });
