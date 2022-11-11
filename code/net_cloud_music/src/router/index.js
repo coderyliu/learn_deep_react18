@@ -2,25 +2,25 @@ import React from 'react'
 import { Navigate } from 'react-router-dom'
 
 // 首页相关
-const Discover=React.lazy(()=>import('views/discover'))
-const Ranking=React.lazy(()=>import('views/discover/c-cpns/ranking'))
-const Recommend=React.lazy(()=>import('views/discover/c-cpns/recommend'))
-const SongMenu=React.lazy(()=>import('views/discover/c-cpns/song-menu'))
-const RadioStation=React.lazy(()=>import('views/discover/c-cpns/radio-station'))
-const Singer=React.lazy(()=>import('views/discover/c-cpns/singer'))
-const Disk=React.lazy(()=>import('views/discover/c-cpns/disk'))
+const Discover=React.lazy(()=>import(/* webpackChunkName:'discover' */'views/discover'))
+const Ranking=React.lazy(()=>import(/* webpackChunkName:'ranking' */'views/discover/c-cpns/ranking'))
+const Recommend=React.lazy(()=>import(/* webpackChunkName:'recommend' */'views/discover/c-cpns/recommend'))
+const SongMenu=React.lazy(()=>import(/* webpackChunkName:'songMenu' */'views/discover/c-cpns/song-menu'))
+const RadioStation=React.lazy(()=>import(/* webpackChunkName:'radio' */'views/discover/c-cpns/radio-station'))
+const Singer=React.lazy(()=>import(/* webpackChunkName:'singer' */'views/discover/c-cpns/singer'))
+const Disk=React.lazy(()=>import(/* webpackChunkName:'disk' */'views/discover/c-cpns/disk'))
 
 // 我的音乐
-const Mine=React.lazy(()=>import('views/mine'))
+const Mine=React.lazy(()=>import(/* webpackChunkName:'mine' */'views/mine'))
 
 // 关注
-const Focus =React.lazy(()=>import('views/focus'))
+const Focus =React.lazy(()=>import(/* webpackChunkName:'focus' */'views/focus'))
 
 // 下载客户端
-const Download=React.lazy(()=>import('views/download'))
+const Download=React.lazy(()=>import(/* webpackChunkName:'download' */'views/download'))
 
 // 登录注册
-const Login=React.lazy(()=>import('views/login'))
+const Login=React.lazy(()=>import(/* webpackChunkName:'login' */'views/login'))
 
 const routes=[
   {
