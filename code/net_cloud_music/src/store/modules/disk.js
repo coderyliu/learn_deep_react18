@@ -10,11 +10,13 @@ import {
 export const fetchDiskData = createAsyncThunk('fetch/disk', (info, {
   dispatch
 }) => {
-  getHotDiskData().then(res => {
-    dispatch(changeHotDiskListAction(res.albums))
-  })
+  if (info.isGetCate) {
+    getHotDiskData().then(res => {
+      dispatch(changeHotDiskListAction(res.albums))
+    })
+  }
 
-  getAllDiskData(info.limit,info.offset).then(res => {
+  getAllDiskData(info.limit, info.offset).then(res => {
     dispatch(changeAllDiskListAction(res))
   })
 })

@@ -22,7 +22,7 @@ const Disk = memo((props) => {
 
   // 发起网络请求
   useEffect(() => {
-    dispatch(fetchDiskData({ limit: 30, offset: 0 }));
+    dispatch(fetchDiskData({ limit: 30, offset: 0, isGetCate: true }));
   }, [dispatch]);
 
   return (

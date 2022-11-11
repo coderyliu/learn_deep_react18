@@ -42,7 +42,7 @@ const SongMenu = memo((props) => {
   return (
     <SongMenuWrapper>
       <div className="song-menu-wrapper">
-        <HeaderSection title="全部" isShowMore={false}></HeaderSection>
+        <HeaderSection title="全部" isShowMore={false} categoryList={categoryList}></HeaderSection>
         <AllSongMenu categoryData={categoryData}></AllSongMenu>
         <div className="pagination">
           <Pagination count={count} onChange={handlePageChange} />
