@@ -21,21 +21,28 @@ const SongMenu = memo((props) => {
   // ?redux相关
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchSongMenuData({ cat: "全部", limit: 35, offset: 0 }));
+    dispatch(
+      fetchSongMenuData({ cat: "全部", limit: 35, offset: 0, isGetCate: true })
+    );
   }, [dispatch]);
 
   // ?分页点击事件
   const count = Math.ceil(totalCount / 35);
   function handlePageChange(e, v) {
     dispatch(
-      fetchSongMenuData({ cat: "全部", limit: 35, offset: (v - 1) * 35 })
+      fetchSongMenuData({
+        cat: "全部",
+        limit: 35,
+        offset: (v - 1) * 35,
+        isGetCate: false,
+      })
     );
   }
 
   return (
     <SongMenuWrapper>
       <div className="song-menu-wrapper">
-        <HeaderSection title='全部' isShowMore={false}></HeaderSection>
+        <HeaderSection title="全部" isShowMore={false}></HeaderSection>
         <AllSongMenu categoryData={categoryData}></AllSongMenu>
         <div className="pagination">
           <Pagination count={count} onChange={handlePageChange} />

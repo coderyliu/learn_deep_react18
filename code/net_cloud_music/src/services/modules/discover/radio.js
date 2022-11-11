@@ -8,7 +8,19 @@ export function getDjRadioCatelist() {
   })
 }
 
-// 获取推荐的radio
+// 获取新晋/热门的radio
+export function getDjRadioNew(type, offset = 0, limit = 200) {
+  return lyFetch.get({
+    url: '/dj/toplist',
+    params: {
+      type,
+      offset,
+      limit
+    }
+  })
+}
+
+// 获取分类推荐的radio
 export function getDjRadioRecommend(type) {
   return lyFetch.get({
     url: '/dj/recommend/type',
@@ -19,13 +31,13 @@ export function getDjRadioRecommend(type) {
 }
 
 // 获取热门radio
-export function getDjRadioHot(cateId, limit, offset) {
+export function getDjRadioHot(cateId, offset, limit = 22) {
   return lyFetch.get({
     url: '/dj/radio/hot',
     params: {
       cateId,
-      limit,
-      offset
+      offset,
+      limit
     }
   })
 }

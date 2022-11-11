@@ -1,19 +1,18 @@
 import styled from "styled-components";
 
-export const AllDiskWrapper = styled.div `
-  .content-wrap{
+export const SectionItemV2Wrapper=styled.div`
+  .excellent-wrap{
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
     justify-content: flex-start;
-
-    margin-left:-30px;
+    align-items: center;
   }
 
   .pagination{
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    width:100%;
     margin-top:50px;
   }
 `

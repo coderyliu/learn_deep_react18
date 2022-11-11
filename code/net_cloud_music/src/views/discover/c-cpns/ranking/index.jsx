@@ -22,13 +22,16 @@ const Ranking = memo((props) => {
 
   useEffect(() => {
     // 请求数据
-    dispatch(fetchRankingData(19723756));
+    dispatch(fetchRankingData({ id: 19723756, isGetCate: true }));
   }, [dispatch]);
 
   // ?处理榜单的点击
-  const handleToggleRankClick = useCallback((v) => {
-    dispatch(fetchRankingData(v.id));
-  },[dispatch]);
+  const handleToggleRankClick = useCallback(
+    (v) => {
+      dispatch(fetchRankingData({ id: v.id, isGetCate: false }));
+    },
+    [dispatch]
+  );
 
   return (
     <RankingWrapper>
@@ -41,7 +44,10 @@ const Ranking = memo((props) => {
         </div>
         <div className="con-right">
           <PlayerHeader rankingDetail={rankingDetail}></PlayerHeader>
-          <PlayerSection rankingDetail={rankingDetail} tableList={rankTableList}></PlayerSection>
+          <PlayerSection
+            rankingDetail={rankingDetail}
+            tableList={rankTableList}
+          ></PlayerSection>
         </div>
       </div>
     </RankingWrapper>

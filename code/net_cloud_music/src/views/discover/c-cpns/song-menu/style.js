@@ -19,7 +19,7 @@ export const SongMenuWrapper = styled.div `
       justify-content: center;
       align-items: center;
 
-      margin-top:40px;
+      margin-top:50px;
     }
   }
 `

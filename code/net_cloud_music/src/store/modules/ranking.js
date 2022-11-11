@@ -8,14 +8,14 @@ import {
   getRankingInfo
 } from '@/services/modules/discover/ranking'
 
-export const fetchRankingData = createAsyncThunk('fetch/ranking', (id, {
+export const fetchRankingData = createAsyncThunk('fetch/ranking', (info, {
   dispatch
 }) => {
   getRankingInfo().then(res => {
     dispatch(changeRankingInfoAction(res.list))
   })
 
-  getRankingDetail(id).then(res => {
+  getRankingDetail(info.id).then(res => {
     dispatch(changeRankingDetailAction(res.playlist))
   })
 })

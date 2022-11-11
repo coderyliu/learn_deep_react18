@@ -10,9 +10,11 @@ import {
 export const fetchSongMenuData = createAsyncThunk('fetch/songMenu', (info, {
   dispatch
 }) => {
-  getSongCategory().then(res => {
-    dispatch(changeCategoryListAction(res))
-  })
+  if (info.isGetCate) {
+    getSongCategory().then(res => {
+      dispatch(changeCategoryListAction(res))
+    })
+  }
 
   getSongCategoryList(info.cat, info.limit, info.offset).then(res => {
     dispatch(changeCategoryDataAction(res))
