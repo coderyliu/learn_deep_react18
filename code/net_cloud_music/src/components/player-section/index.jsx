@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import React, { memo } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { secondToMinuteFn } from "@/utils/format";
 
@@ -7,6 +8,12 @@ import { PlayerSectionWrapper } from "./style";
 
 const PlayerSection = memo((props) => {
   const { rankingDetail, isShowTopImage = true, isShowAlbum = false,tableList } = props;
+
+  // ?处理跳转至播放页
+  const navigate=useNavigate()
+  function handleNavigatePlayer(data){
+    navigate(`/song/${data.id}`)
+  }
 
   return (
     <PlayerSectionWrapper tableList={tableList}>
@@ -41,7 +48,7 @@ const PlayerSection = memo((props) => {
                     <img src={item.al.picUrl} alt="" />
                   )}
                   <span className="player-icon"></span>
-                  <span className="name">{item.name}</span>
+                  <span className="name" onClick={()=>handleNavigatePlayer(item)}>{item.name}</span>
                 </div>
                 <div className="time section">{secondToMinuteFn(item.dt)}</div>
                 <div className="singer section">{item.ar[0].name}</div>

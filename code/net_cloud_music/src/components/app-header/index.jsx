@@ -74,7 +74,32 @@ const AppHeader = memo(() => {
   // ?登录框的关闭
   const handleCloseClick = useCallback(() => {
     setIsShowLogin(false);
-  },[]);
+  }, []);
+
+  // ?处理推荐页面的元素
+  let element;
+  if (
+    location.pathname.includes("discover") ||
+    location.pathname.includes("song")
+  ) {
+    element = (
+      <div className="recommend-nav">
+        <ul className="nav-wrap">
+          {headerNav.map((item, index) => {
+            return (
+              <li
+                key={item.title}
+                className={findIndex === index ? "iten active" : "iten"}
+                onClick={(e) => handleRecClick(item.path, index)}
+              >
+                {item.title}
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    );
+  }
 
   return (
     <AppHeaderWrapper>
@@ -111,23 +136,7 @@ const AppHeader = memo(() => {
         </div>
         {/* <div className="triangle"></div> */}
       </div>
-      {location.pathname.includes("discover") && (
-        <div className="recommend-nav">
-          <ul className="nav-wrap">
-            {headerNav.map((item, index) => {
-              return (
-                <li
-                  key={item.title}
-                  className={findIndex === index ? "iten active" : "iten"}
-                  onClick={(e) => handleRecClick(item.path, index)}
-                >
-                  {item.title}
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-      )}
+      {element}
       {isShowLogin && <LoginModal closeClick={handleCloseClick}></LoginModal>}
     </AppHeaderWrapper>
   );

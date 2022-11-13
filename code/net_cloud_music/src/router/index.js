@@ -9,6 +9,7 @@ const SongMenu=React.lazy(()=>import(/* webpackChunkName:'songMenu' */'views/dis
 const RadioStation=React.lazy(()=>import(/* webpackChunkName:'radio' */'views/discover/c-cpns/radio-station'))
 const Singer=React.lazy(()=>import(/* webpackChunkName:'singer' */'views/discover/c-cpns/singer'))
 const Disk=React.lazy(()=>import(/* webpackChunkName:'disk' */'views/discover/c-cpns/disk'))
+const Player=React.lazy(()=>import('views/player'))
 
 // 我的音乐
 const Mine=React.lazy(()=>import(/* webpackChunkName:'mine' */'views/mine'))
@@ -76,6 +77,10 @@ const routes=[
   {
     path:'/login',
     element:<Login></Login>
+  },
+  {
+    path:'/song/:id',
+    element:<Player></Player>
   }
 ]
 

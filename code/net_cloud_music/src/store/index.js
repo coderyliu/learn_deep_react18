@@ -9,6 +9,7 @@ import diskReducer from './modules/disk'
 import songMenuReducer from './modules/songMenu'
 import singerReducer from './modules/singer'
 import radioReducer from './modules/radio'
+import playerReducer from './modules/player'
 
 const store = configureStore({
   reducer: {
@@ -18,7 +19,8 @@ const store = configureStore({
     disk: diskReducer,
     songMenu: songMenuReducer,
     singer: singerReducer,
-    radio: radioReducer
+    radio: radioReducer,
+    player: playerReducer
   }
 })
 

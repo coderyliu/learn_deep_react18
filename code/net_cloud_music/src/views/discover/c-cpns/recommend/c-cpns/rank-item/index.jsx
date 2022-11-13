@@ -1,10 +1,17 @@
 import PropTypes from "prop-types";
 import React, { memo } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { RankItemWrapper } from "./style";
 
 const RankItem = memo((props) => {
   const { rankInfo } = props;
+
+  // ?处理点击跳转到歌曲详情页
+  const navigate=useNavigate()
+  function handleNavigatePlayer(data){
+    navigate(`/song/${data.id}`)
+  }
 
   return (
     <RankItemWrapper>
@@ -27,7 +34,7 @@ const RankItem = memo((props) => {
               <span className={index <= 2 ? "index active" : "index"}>
                 {index + 1}
               </span>
-              <span className="name omit">{item.name}</span>
+              <span className="name omit" onClick={()=>handleNavigatePlayer(item)}>{item.name}</span>
             </div>
           );
         })}
