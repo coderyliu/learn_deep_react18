@@ -3,31 +3,38 @@ import React, { memo } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
-import { changeCurrentSongAction, changePlayListAction } from "@/store/modules/player";
+import {
+  changePlayListAction,
+  getSongDetailAction,
+} from "@/store/modules/player";
 
 import { secondToMinuteFn } from "@/utils/format";
 
 import { PlayerSectionWrapper } from "./style";
 
 const PlayerSection = memo((props) => {
-  const { rankingDetail, isShowTopImage = true, isShowAlbum = false,tableList } = props;
+  const {
+    rankingDetail,
+    isShowTopImage = true,
+    isShowAlbum = false,
+    tableList,
+  } = props;
 
   // ?处理跳转至播放页
-  const navigate=useNavigate()
-  function handleNavigatePlayer(data){
-    navigate(`/song/${data.id}`)
+  const navigate = useNavigate();
+  function handleNavigatePlayer(data) {
+    navigate(`/song/${data.id}`);
   }
 
   // ?处理歌曲播放
-  const dispatch=useDispatch()
-  function handleSongPlayerClick(data){
-    dispatch(changeCurrentSongAction(data))
-    dispatch(changePlayListAction(data))
+  const dispatch = useDispatch();
+  function handleSongPlayerClick(data) {
+    dispatch(getSongDetailAction({ id: data.id }));
   }
 
   // ?将歌曲添加到播放列表中
-  function handleAddPlaylist(data){
-    dispatch(changePlayListAction(data))
+  function handleAddPlaylist(data) {
+    dispatch(changePlayListAction(data));
   }
 
   return (
@@ -45,13 +52,13 @@ const PlayerSection = memo((props) => {
       </div>
       <div className="content-wrap">
         <div className="table-header">
-          {
-            tableList.map((tName,index)=>{
-              return (
-                <div className={`${tName.value} section`} key={index}>{tName.label}</div>
-              )
-            })
-          }
+          {tableList.map((tName, index) => {
+            return (
+              <div className={`${tName.value} section`} key={index}>
+                {tName.label}
+              </div>
+            );
+          })}
         </div>
         <div className="table-mainner">
           {rankingDetail?.tracks?.map((item, index) => {
@@ -62,18 +69,31 @@ const PlayerSection = memo((props) => {
                   {isShowTopImage && index < 3 && (
                     <img src={item.al.picUrl} alt="" />
                   )}
-                  <span className="player-icon" onClick={()=>handleSongPlayerClick(item)}></span>
-                  <span className="name" onClick={()=>handleNavigatePlayer(item)}>{item.name}</span>
+                  <span
+                    className="player-icon"
+                    onClick={() => handleSongPlayerClick(item)}
+                  ></span>
+                  <span
+                    className="name omit"
+                    onClick={() => handleNavigatePlayer(item)}
+                  >
+                    {item.name}
+                  </span>
                 </div>
                 <div className="time section">{secondToMinuteFn(item.dt)}</div>
                 <div className="control">
-                  <span className="add" onClick={()=>handleAddPlaylist(item)}></span>
+                  <span
+                    className="add"
+                    onClick={() => handleAddPlaylist(item)}
+                  ></span>
                   <span className="collect"></span>
                   <span className="share"></span>
                   <span className="download"></span>
                 </div>
                 <div className="singer section">{item.ar[0].name}</div>
-                {isShowAlbum && <div className="album section">{item.al.name}</div>}
+                {isShowAlbum && (
+                  <div className="album section">{item.al.name}</div>
+                )}
               </div>
             );
           })}

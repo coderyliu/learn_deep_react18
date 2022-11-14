@@ -3,10 +3,7 @@ import React, { memo } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import {
-  changeCurrentSongAction,
-  changePlayListAction,
-} from "@/store/modules/player";
+import { getSongDetailAction } from "@/store/modules/player";
 
 import { RankItemWrapper } from "./style";
 
@@ -22,13 +19,12 @@ const RankItem = memo((props) => {
   // ?处理歌曲播放
   const dispatch = useDispatch();
   function handleSongPlayerClick(data) {
-    dispatch(changeCurrentSongAction(data));
-    dispatch(changePlayListAction(data));
+    dispatch(getSongDetailAction({ id: data.id }));
   }
 
   // ?将歌曲添加到播放列表中
   function handleAddPlaylist(data) {
-    dispatch(changePlayListAction(data));
+    dispatch(getSongDetailAction(data));
   }
 
   return (

@@ -1,13 +1,16 @@
-import React, { memo, useEffect, useRef } from "react";
-import { useState } from "react";
+import React, { memo, useEffect, useRef, useState, useCallback } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { Slider } from "antd";
 
 import { getPlayUrl, secondToMinuteFn } from "@/utils/format";
 
 import { AppPlayerBarWrapper } from "./style";
-import { fetchPlayerData } from "@/store/modules/player";
-import { useNavigate } from "react-router-dom";
+import {
+  changePlaySequenceAction,
+  changeSongPlayAction,
+  getSongDetailAction,
+} from "@/store/modules/player";
 
 const AppPlayerBar = memo(() => {
   // ?组件状态相关
@@ -16,15 +19,13 @@ const AppPlayerBar = memo(() => {
   const [durationTime, setDurationTime] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
   const [isChange, setIsChange] = useState(false);
-  const [isLoop, setIsLoop] = useState(false);
-  const [isSingle, setIsSingle] = useState(false);
-  const [isOrder, setIsOrder] = useState(true);
 
   // ?redux相关
-  const { currentSong, playlist } = useSelector(
+  const { currentSong, playlist, playSequence } = useSelector(
     (state) => ({
       currentSong: state.player.currentSong,
       playlist: state.player.playlist,
+      playSequence: state.player.playSequence,
     }),
     shallowEqual
   );
@@ -32,7 +33,7 @@ const AppPlayerBar = memo(() => {
   // ?获取歌曲信息详情
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchPlayerData({ id: currentSong.id, isGetCate: false }));
+    dispatch(getSongDetailAction({ id: currentSong.id }));
   }, [dispatch]);
 
   // ?获取audio元素
@@ -50,8 +51,34 @@ const AppPlayerBar = memo(() => {
     setDurationTime(currentSong.dt);
   }, [currentSong]);
 
+  // ?处理进度条
+  useEffect(() => {
+    setIsChange(false);
+  }, [isChange]);
+
+  // todo 处理播放按钮点击
+  function handlePlayStatus(type) {
+    setIsPlaying(!isPlaying);
+    if (type === "stop") {
+      audioRef.current.pause();
+    } else {
+      audioRef.current.play();
+    }
+  }
+
+  // todo 处理上一首下一首点击
+  function handleChangeSong(tag) {
+    dispatch(changeSongPlayAction({ tag }));
+  }
+
   // ?处理歌曲播放顺序
-  function handleSongOrder(type) {}
+  function handleSongOrder(type) {
+    if (type === 2) {
+      dispatch(changePlaySequenceAction(0));
+    } else {
+      dispatch(changePlaySequenceAction(type + 1));
+    }
+  }
 
   // ?处理歌曲时间更新事件
   function timeUpdate(e) {
@@ -64,18 +91,41 @@ const AppPlayerBar = memo(() => {
 
   // ?处理歌曲播放完毕
   function timeEnded(e) {
-    
+    if (playSequence === 2 || playlist.length === 1) {
+      audioRef.current.currentTime = 0;
+      audioRef.current.play();
+    } else {
+      dispatch(changeSongPlayAction(1));
+    }
   }
 
   // ?监听歌曲播放,进度条改变
-  function sliderChange(value) {
-    console.log(value);
-  }
+  const sliderChange = useCallback(
+    (value) => {
+      setSliderValue(value);
+      const time = ((value / 100) * durationTime) / 1000;
+
+      audioRef.current.currentTime = time;
+      setCurrentTime(time);
+      setIsChange(true);
+    },
+    [durationTime]
+  );
 
   // ?处理进度条拖拽
-  function afterChange(value) {
-    console.log(value);
-  }
+  const afterChange = useCallback(
+    (value) => {
+      const time = ((value / 100) * durationTime) / 1000;
+      audioRef.current.currentTime = time;
+
+      setCurrentTime(time);
+      setIsChange(true);
+      if (!isPlaying) {
+        handlePlayStatus("start");
+      }
+    },
+    [durationTime, isPlaying, handlePlayStatus]
+  );
 
   // ?跳转至歌曲详情页
   const navigate = useNavigate();
@@ -87,10 +137,20 @@ const AppPlayerBar = memo(() => {
     <AppPlayerBarWrapper>
       <div className="player-bar-wrap">
         <div className="control-btns">
-          <span className="prev"></span>
-          {!isPlaying && <span className="stop"></span>}
-          {isPlaying && <span className="start"></span>}
-          <span className="next"></span>
+          <span className="prev" onClick={() => handleChangeSong(-1)}></span>
+          {!isPlaying && (
+            <span
+              className="start"
+              onClick={() => handlePlayStatus("start")}
+            ></span>
+          )}
+          {isPlaying && (
+            <span
+              className="stop"
+              onClick={() => handlePlayStatus("stop")}
+            ></span>
+          )}
+          <span className="next" onClick={() => handleChangeSong(1)}></span>
         </div>
         <div className="infos">
           <div className="cover_pic" onClick={() => handleNavigatePlayer()}>
@@ -126,22 +186,22 @@ const AppPlayerBar = memo(() => {
           </div>
           <div className="right">
             <span className="section sound"></span>
-            {isLoop && (
+            {playSequence === 1 && (
               <span
                 className="section loop"
-                onClick={(e) => handleSongOrder("loop")}
+                onClick={(e) => handleSongOrder(1)}
               ></span>
             )}
-            {isSingle && (
+            {playSequence === 2 && (
               <span
                 className="section single"
-                onClick={(e) => handleSongOrder("single")}
+                onClick={(e) => handleSongOrder(2)}
               ></span>
             )}
-            {isOrder && (
+            {playSequence === 0 && (
               <span
                 className="section order"
-                onClick={(e) => handleSongOrder("order")}
+                onClick={(e) => handleSongOrder(0)}
               ></span>
             )}
             <span className="section playlist">{playlist.length}</span>

@@ -45,7 +45,7 @@ export const AppPlayerBarWrapper = styled.div `
       }
 
       .stop{
-        background-position: -40 -204px;
+        background-position: 0 -165px;
       }
 
       .next{
