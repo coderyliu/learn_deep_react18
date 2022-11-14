@@ -1,6 +1,8 @@
 import React, { memo, useCallback, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
 
+import { changeIsShowLoginAction } from "@/store/modules/main";
 import headerTitle from "@/assets/data/header-title.json";
 import headerNav from "@/assets/data/header-nav.json";
 
@@ -11,7 +13,15 @@ const AppHeader = memo(() => {
   // 组件状态
   const [currentIndex, setCurrentIndex] = useState(0);
   const [findIndex, setFindIndex] = useState(0);
-  const [isShowLogin, setIsShowLogin] = useState(false);
+
+  // ?redux相关
+  const { isShowLogin } = useSelector(
+    (state) => ({
+      isShowLogin: state.main.isShowLogin,
+    }),
+    shallowEqual
+  );
+  const dispatch = useDispatch();
 
   // 处理首页导航
   const location = useLocation();
@@ -68,12 +78,12 @@ const AppHeader = memo(() => {
     // navigate('/login')
 
     // ?2.整个modal弹出框
-    setIsShowLogin(true);
+    dispatch(changeIsShowLoginAction(true));
   }
 
   // ?登录框的关闭
   const handleCloseClick = useCallback(() => {
-    setIsShowLogin(false);
+    dispatch(changeIsShowLoginAction(false));
   }, []);
 
   // ?处理推荐页面的元素

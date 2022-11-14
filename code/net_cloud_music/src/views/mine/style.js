@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const FocusWrapper = styled.div `
+export const MineWrapper = styled.div `
   width:100%;
 
   background-color: #f5f5f5;
@@ -18,26 +18,16 @@ export const FocusWrapper = styled.div `
 
     .login_cover{
       width:807px;
-      height:388px;
+      height:278px;
       margin:50px auto;
 
-      background: url(${require('@/assets/img/notlogin.jpeg')}) no-repeat  ;
-    }
-
-    .desc{
-      position: absolute;
-      z-index:9;
-      top:230px;
-      right:95px;
-
-      font-size: 14px;
-      color:#666;
+      background: url(${require('@/assets/img/mymusic.png')}) no-repeat  ;
     }
 
     .login_btn{
       position: absolute;
       z-index: 90;
-      top:310px;
+      top:250px;
       right:201px;
       width:157px;
       height:48px;

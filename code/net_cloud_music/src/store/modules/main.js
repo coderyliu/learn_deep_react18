@@ -5,19 +5,26 @@ import {
 const mainSlice = createSlice({
   name: "main",
   initialState: {
-    token: ''
+    token: '',
+    isShowLogin: false
   },
   reducers: {
     changeTokenAction(state, {
       payload
     }) {
       state.token = payload
+    },
+    changeIsShowLoginAction(state, {
+      payload
+    }) {
+      state.isShowLogin = payload
     }
   }
 })
 
 export const {
-  changeTokenAction
+  changeTokenAction,
+  changeIsShowLoginAction
 } = mainSlice.actions
 
 export default mainSlice.reducer
