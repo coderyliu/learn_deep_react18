@@ -10,6 +10,7 @@ export const AppHeaderWrapper = styled.div `
   background-color:#242424 ;
   
   .header-inner{
+    position: relative;
     display: flex;
     align-items: center;
 
@@ -91,7 +92,7 @@ export const AppHeaderWrapper = styled.div `
 
     .text{
       padding:8px 15px;
-      margin:0 10px;
+      margin:0 15px;
       border:1px solid #4F4F4F;
       border-radius:20px;
       cursor: pointer;
@@ -101,8 +102,88 @@ export const AppHeaderWrapper = styled.div `
       color:#787878;
       cursor: pointer;
     }
+
+    .avatar{
+      width:30px;
+      height: 30px;
+      margin-left:10px; 
+      
+      img{
+        width:100%;
+        height:100%;
+        border-radius: 50%;
+      }
+    }
   }
 
+  .profile-wrap{
+      position: absolute;
+      z-index:-1;
+      top:60px;
+      right:-40px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      width:158px;
+      border-radius: 5px;
+
+      cursor: pointer;
+      background-color: #242424;
+
+      .iten{
+        display: flex;
+        align-items: center;
+        width:100%;
+        padding:5px 20px;
+
+        &:nth-of-type(4){
+          border-bottom:1px solid #000;
+        }
+
+        &:nth-of-type(6){
+          border-bottom:1px solid #000;
+        }
+
+        .icon{
+          display: block;
+          width: 18px;
+          height: 18px;
+          margin-right:5px;
+
+          color:#ccc;
+          background: url(${require('@/assets/img/login_icon.png')}) no-repeat 0 9999px;
+        }
+
+        .mine{
+          background-position: 0 -80px;
+        }
+
+        .message{
+          background-position: -20px -120px;
+        }
+
+        .grade{
+          background-position: 0 -100px;
+        }
+
+        .vip{
+          background-position: 0 -221px;
+        }
+
+        .set{
+          background-position: 0 -140px;
+        }
+
+        .name{
+          background-position: -20px -142px;
+        }
+
+        .exit{
+          background-position: 0 -200px;
+        }
+      }
+    }
 
   .recommend-nav{
     position: relative;

@@ -6,7 +6,8 @@ const mainSlice = createSlice({
   name: "main",
   initialState: {
     token: '',
-    isShowLogin: false
+    isShowLogin: false,
+    userInfo: {}
   },
   reducers: {
     changeTokenAction(state, {
@@ -18,13 +19,19 @@ const mainSlice = createSlice({
       payload
     }) {
       state.isShowLogin = payload
+    },
+    changeUserInfoAction(state, {
+      payload
+    }) {
+      state.userInfo = payload
     }
   }
 })
 
 export const {
   changeTokenAction,
-  changeIsShowLoginAction
+  changeIsShowLoginAction,
+  changeUserInfoAction
 } = mainSlice.actions
 
 export default mainSlice.reducer

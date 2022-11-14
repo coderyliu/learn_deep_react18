@@ -31,3 +31,10 @@ export function validateCaptFetch(phone, cate) {
     }
   })
 }
+
+// 退出
+export function logoutMusicApp(){
+  return lyFetch.get({
+    url:'/logout'
+  })
+}

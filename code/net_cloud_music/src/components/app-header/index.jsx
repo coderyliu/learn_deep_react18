@@ -1,8 +1,11 @@
-import React, { memo, useCallback, useEffect, useState } from "react";
+import React, { memo, useCallback, useEffect, useState, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 
-import { changeIsShowLoginAction } from "@/store/modules/main";
+import { changeIsShowLoginAction, changeTokenAction } from "@/store/modules/main";
+import { logoutMusicApp } from "@/services/modules/login";
+
+import { loginList } from "@/assets/data/header-login";
 import headerTitle from "@/assets/data/header-title.json";
 import headerNav from "@/assets/data/header-nav.json";
 
@@ -13,11 +16,14 @@ const AppHeader = memo(() => {
   // 组件状态
   const [currentIndex, setCurrentIndex] = useState(0);
   const [findIndex, setFindIndex] = useState(0);
+  const modalRef = useRef();
 
   // ?redux相关
-  const { isShowLogin } = useSelector(
+  const { isShowLogin, token, userInfo } = useSelector(
     (state) => ({
       isShowLogin: state.main.isShowLogin,
+      token: state.main.token,
+      userInfo: state.main.userInfo,
     }),
     shallowEqual
   );
@@ -86,6 +92,28 @@ const AppHeader = memo(() => {
     dispatch(changeIsShowLoginAction(false));
   }, []);
 
+  // ?处理鼠标移入事件
+  function handleMouseEnter(type) {
+    if (type === "enter") {
+      modalRef.current.style.zIndex = "99";
+    } else {
+      modalRef.current.style.zIndex = "-1";
+    }
+  }
+
+  // ?处理item点击
+  function handleProfileItemClick(item) {
+    switch(item.name){
+      case 'exit':
+        localStorage.removeItem('token')
+        dispatch(changeTokenAction(''))
+        logoutMusicApp()
+        break
+      default:
+        break
+    }
+  }
+
   // ?处理推荐页面的元素
   let element;
   if (
@@ -140,11 +168,36 @@ const AppHeader = memo(() => {
             />
           </div>
           <div className="text section">创作者中心</div>
-          <div className="login" onClick={() => handleLoginClick()}>
-            登录
-          </div>
+          {!token && (
+            <div className="login" onClick={() => handleLoginClick()}>
+              登录
+            </div>
+          )}
+          {token && (
+            <div
+              className="avatar"
+              onMouseEnter={(e) => handleMouseEnter("enter")}
+            >
+              <img src={userInfo?.profile?.avatarUrl} alt="" />
+            </div>
+          )}
         </div>
-        {/* <div className="triangle"></div> */}
+        {token && (
+          <div
+            className="profile-wrap"
+            ref={modalRef}
+            onMouseLeave={(e) => handleMouseEnter("leave")}
+          >
+            {loginList.map((item, index) => {
+              return (
+                <div className="iten" key={index} onClick={e=>handleProfileItemClick(item)}>
+                  <span className={`icon ${item.name}`}></span>
+                  <span className="texts">{item.title}</span>
+                </div>
+              );
+            })}
+          </div>
+        )}
       </div>
       {element}
       {isShowLogin && <LoginModal closeClick={handleCloseClick}></LoginModal>}

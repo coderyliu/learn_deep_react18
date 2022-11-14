@@ -5,7 +5,7 @@ import { message } from 'antd';
 import { getLoginCaptFetch, loginFetch } from "@/services/modules/login";
 
 import { LoginModalWrapper } from "./style";
-import { changeTokenAction } from "@/store/modules/main";
+import { changeTokenAction, changeUserInfoAction } from "@/store/modules/main";
 
 const LoginModal = memo((props) => {
   const { closeClick } = props;
@@ -62,6 +62,9 @@ const LoginModal = memo((props) => {
       // todo 保存token
       dispatch(changeTokenAction(res.token))
       localStorage.setItem('token',res.token)
+
+      // todo 保存用户信息
+      dispatch(changeUserInfoAction(res))
     })
   }
 
