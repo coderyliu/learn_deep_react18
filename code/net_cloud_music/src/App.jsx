@@ -7,6 +7,7 @@ import { changeTokenAction } from "./store/modules/main";
 
 import AppHeader from "./components/app-header";
 import AppFooter from "./components/app-footer";
+import AppPlayerBar from "./views/player/app-player-bar";
 import { AppWrapper } from "./style";
 
 const App = memo(() => {
@@ -19,6 +20,7 @@ const App = memo(() => {
       <AppHeader></AppHeader>
       <div className="content">{useRoutes(routes)}</div>
       <AppFooter></AppFooter>
+      <AppPlayerBar></AppPlayerBar>
     </AppWrapper>
   );
 });

@@ -16,6 +16,8 @@ export const RankItemWrapper=styled.div`
       width:80px;
       margin-right:10px;
 
+      box-shadow: 0 0 5px rgba(0,0,0,.1);
+
       img{
         width:80px;
       }
@@ -63,6 +65,7 @@ export const RankItemWrapper=styled.div`
     color: #000;
 
     .item{
+      position: relative;
       display: flex;
       align-items: center;
 
@@ -84,6 +87,12 @@ export const RankItemWrapper=styled.div`
         cursor: pointer;
       }
 
+      &:hover{
+        .control{
+          width:75px;
+        }
+      }
+
       .index{
         padding-right:10px;
 
@@ -94,7 +103,45 @@ export const RankItemWrapper=styled.div`
         color:#C10D0c;
       }
 
+      .control{
+          position: absolute;
+          z-index:99;
+          right:0;
+          display: flex;
+          align-items: center;
+          width: 0px;
+
+          span{
+            display: block;
+            width: 18px;
+            height: 16px;
+            margin-right:5px;
+
+            cursor: pointer;
+            background: url(${require('@/assets/img/sprite_11.png')}) no-repeat 0 9999px;
+          }
+
+          .play{
+            width:25px;
+            height: 25px;
+            background: url(${require('@/assets/img/sprite_02.png')}) no-repeat -267px -205px;
+          }
+
+          .add{
+            width: 13px;
+            height: 16px;
+
+            background-image: url(${require('@/assets/img/sprite_10.png')});
+            background-position: 0 -700px;
+          }
+
+          .collect{
+            background-position: 0 -174px;
+          }
+        }
+
       .name{
+        width:100px;
         cursor:pointer;
 
         &:hover{

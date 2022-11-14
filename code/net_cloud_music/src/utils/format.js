@@ -13,11 +13,16 @@ export function formatCount(count) {
 }
 
 // 时间格式化
-export function getUpdateTime(timestamp){
+export function getUpdateTime(timestamp) {
   return dayjs(timestamp).format('MM-DD')
 }
 
 // 将毫秒转化为分钟
-export function secondToMinuteFn(timestamp){
+export function secondToMinuteFn(timestamp) {
   return dayjs(timestamp).format('mm:ss')
+}
+
+// 获取歌曲播放的url地址
+export function getPlayUrl(id) {
+  return `https://music.163.com/song/media/outer/url?id=${id}.mp3`
 }

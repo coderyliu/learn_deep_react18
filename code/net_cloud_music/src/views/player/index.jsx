@@ -26,7 +26,7 @@ const Player = memo(() => {
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchPlayerData({ id: params.id }));
+    dispatch(fetchPlayerData({ id: params.id, isGetCate: true }));
   }, [dispatch]);
 
   return (

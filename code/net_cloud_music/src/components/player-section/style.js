@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const PlayerSectionWrapper=styled.div`
+export const PlayerSectionWrapper = styled.div `
   margin-top:20px;
 
   .header-wrap{
@@ -86,6 +86,16 @@ export const PlayerSectionWrapper=styled.div`
         align-items: center;
         padding:10px 0;
 
+        &:hover{
+          .time{
+            display: none;
+          }
+
+          .control{
+            width:85px;
+          }
+        }
+
         .section{
           padding-left:10px;
           cursor: pointer;
@@ -136,6 +146,42 @@ export const PlayerSectionWrapper=styled.div`
         .time{
           width:${props=>props.tableList[2].width}px;
           color:#666;
+        }
+
+        .control{
+          display: flex;
+          align-items: center;
+          width: 0px;
+
+          span{
+            display: block;
+            width: 18px;
+            height: 16px;
+            margin-right:5px;
+
+            cursor: pointer;
+            background: url(${require('@/assets/img/sprite_11.png')}) no-repeat 0 9999px;
+          }
+
+          .add{
+            width: 13px;
+            height: 16px;
+
+            background-image: url(${require('@/assets/img/sprite_10.png')});
+            background-position: 0 -700px;
+          }
+
+          .collect{
+            background-position: 0 -174px;
+          }
+
+          .share{
+            background-position: 0 -195px;
+          }
+
+          .download{
+            background-position: -81px -174px;
+          }
         }
 
         .singer{

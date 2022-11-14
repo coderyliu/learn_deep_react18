@@ -1,6 +1,12 @@
 import PropTypes from "prop-types";
 import React, { memo } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+
+import {
+  changeCurrentSongAction,
+  changePlayListAction,
+} from "@/store/modules/player";
 
 import { RankItemWrapper } from "./style";
 
@@ -8,9 +14,21 @@ const RankItem = memo((props) => {
   const { rankInfo } = props;
 
   // ?处理点击跳转到歌曲详情页
-  const navigate=useNavigate()
-  function handleNavigatePlayer(data){
-    navigate(`/song/${data.id}`)
+  const navigate = useNavigate();
+  function handleNavigatePlayer(data) {
+    navigate(`/song/${data.id}`);
+  }
+
+  // ?处理歌曲播放
+  const dispatch = useDispatch();
+  function handleSongPlayerClick(data) {
+    dispatch(changeCurrentSongAction(data));
+    dispatch(changePlayListAction(data));
+  }
+
+  // ?将歌曲添加到播放列表中
+  function handleAddPlaylist(data) {
+    dispatch(changePlayListAction(data));
   }
 
   return (
@@ -34,7 +52,23 @@ const RankItem = memo((props) => {
               <span className={index <= 2 ? "index active" : "index"}>
                 {index + 1}
               </span>
-              <span className="name omit" onClick={()=>handleNavigatePlayer(item)}>{item.name}</span>
+              <span
+                className="name omit"
+                onClick={() => handleNavigatePlayer(item)}
+              >
+                {item.name}
+              </span>
+              <div className="control">
+                <span
+                  className="play"
+                  onClick={() => handleSongPlayerClick(item)}
+                ></span>
+                <span
+                  className="add"
+                  onClick={() => handleAddPlaylist(item)}
+                ></span>
+                <span className="collect"></span>
+              </div>
             </div>
           );
         })}

@@ -10,7 +10,9 @@ import {
   getSongLyric
 } from "@/services/modules/player";
 
-import { ParseLyric } from "@/utils/lrc-parse";
+import {
+  ParseLyric
+} from "@/utils/lrc-parse";
 
 export const fetchPlayerData = createAsyncThunk('fetch/player', (info, {
   dispatch
@@ -20,17 +22,19 @@ export const fetchPlayerData = createAsyncThunk('fetch/player', (info, {
   })
 
   getSongLyric(info.id).then(res => {
-    const lyrics=ParseLyric(res.lrc.lyric)
+    const lyrics = ParseLyric(res.lrc.lyric)
     dispatch(changeSongLyricInfoAction(lyrics))
   })
 
-  getSameSongMenu(info.id).then(res => {
-    dispatch(changeSamePlayListAction(res.playlists))
-  })
+  if (info.isGetCate) {
+    getSameSongMenu(info.id).then(res => {
+      dispatch(changeSamePlayListAction(res.playlists))
+    })
 
-  getSameSong(info.id).then(res => {
-    dispatch(changeSameSongAction(res.songs))
-  })
+    getSameSong(info.id).then(res => {
+      dispatch(changeSameSongAction(res.songs))
+    })
+  }
 })
 
 const playerSlice = createSlice({
@@ -39,7 +43,9 @@ const playerSlice = createSlice({
     songDetailInfo: {},
     songLyricInfo: [],
     samePlaylist: [],
-    sameSong: []
+    sameSong: [],
+    currentSong: {},
+    playlist: []
   },
   reducers: {
     changeSongDetailInfoAction(state, {
@@ -61,6 +67,25 @@ const playerSlice = createSlice({
       payload
     }) {
       state.sameSong = payload
+    },
+    changeCurrentSongAction(state, {
+      payload
+    }) {
+      state.currentSong = payload
+    },
+    changePlayListAction(state, {
+      payload
+    }) {
+      const playlist = state.playlist
+
+      for (let item of playlist) {
+        if (item.id === payload.id) {
+          return
+        }
+      }
+
+      playlist.push(payload)
+      state.playlist = playlist
     }
   }
 })
@@ -69,7 +94,9 @@ export const {
   changeSongDetailInfoAction,
   changeSongLyricInfoAction,
   changeSamePlayListAction,
-  changeSameSongAction
+  changeSameSongAction,
+  changeCurrentSongAction,
+  changePlayListAction
 } = playerSlice.actions
 
 export default playerSlice.reducer

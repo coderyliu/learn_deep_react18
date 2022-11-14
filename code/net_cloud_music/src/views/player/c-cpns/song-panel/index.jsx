@@ -1,5 +1,8 @@
 import PropTypes from "prop-types";
 import React, { memo, useState } from "react";
+import { useDispatch } from "react-redux";
+
+import { changeCurrentSongAction } from "@/store/modules/player";
 
 import { SongPanelWrapper } from "./style";
 
@@ -12,12 +15,18 @@ const SongPanel = memo((props) => {
 
   function handleLyricShow(type) {
     if (type === "open") {
-      setLyricHeight(lyricInfo.length*23);
+      setLyricHeight(lyricInfo.length * 23);
       setShowType("close");
     } else {
       setLyricHeight(327);
       setShowType("open");
     }
+  }
+
+  // ?播放按钮点击
+  const dispatch = useDispatch();
+  function handlePlaySong() {
+    dispatch(changeCurrentSongAction(detailInfo));
   }
 
   return (
@@ -51,7 +60,9 @@ const SongPanel = memo((props) => {
           <div className="btn-wrap">
             <div className="player">
               <span className="icon"></span>
-              <span className="text">播放</span>
+              <span className="text" onClick={() => handlePlaySong()}>
+                播放
+              </span>
               <span className="left-icon"></span>
             </div>
             <div className="collect">

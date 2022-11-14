@@ -1,6 +1,9 @@
 import PropTypes from "prop-types";
 import React, { memo } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
+import { changeCurrentSongAction, changePlayListAction } from "@/store/modules/player";
 
 import { secondToMinuteFn } from "@/utils/format";
 
@@ -13,6 +16,18 @@ const PlayerSection = memo((props) => {
   const navigate=useNavigate()
   function handleNavigatePlayer(data){
     navigate(`/song/${data.id}`)
+  }
+
+  // ?处理歌曲播放
+  const dispatch=useDispatch()
+  function handleSongPlayerClick(data){
+    dispatch(changeCurrentSongAction(data))
+    dispatch(changePlayListAction(data))
+  }
+
+  // ?将歌曲添加到播放列表中
+  function handleAddPlaylist(data){
+    dispatch(changePlayListAction(data))
   }
 
   return (
@@ -47,10 +62,16 @@ const PlayerSection = memo((props) => {
                   {isShowTopImage && index < 3 && (
                     <img src={item.al.picUrl} alt="" />
                   )}
-                  <span className="player-icon"></span>
+                  <span className="player-icon" onClick={()=>handleSongPlayerClick(item)}></span>
                   <span className="name" onClick={()=>handleNavigatePlayer(item)}>{item.name}</span>
                 </div>
                 <div className="time section">{secondToMinuteFn(item.dt)}</div>
+                <div className="control">
+                  <span className="add" onClick={()=>handleAddPlaylist(item)}></span>
+                  <span className="collect"></span>
+                  <span className="share"></span>
+                  <span className="download"></span>
+                </div>
                 <div className="singer section">{item.ar[0].name}</div>
                 {isShowAlbum && <div className="album section">{item.al.name}</div>}
               </div>
