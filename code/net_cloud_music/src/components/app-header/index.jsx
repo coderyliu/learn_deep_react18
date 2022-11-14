@@ -72,6 +72,18 @@ const AppHeader = memo(() => {
       case "/discover/disk":
         setFindIndex(5);
         break;
+      case "/discover/disk":
+        setFindIndex(5);
+        break;
+      case "/download":
+        setCurrentIndex(5);
+        break;
+      case "/focus":
+        setCurrentIndex(2);
+        break;
+      case "/profile":
+        setCurrentIndex(1);
+        break;
       default:
         setFindIndex(0);
         break;

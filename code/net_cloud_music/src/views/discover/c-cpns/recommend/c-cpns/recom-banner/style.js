@@ -40,7 +40,7 @@ export const RecommendBannerWrapper=styled.div`
 
     .item{
       img{
-        width:100%;
+        width:730px;
         height:285px;
         object-fit: cover;
       }
@@ -70,6 +70,27 @@ export const RecommendBannerWrapper=styled.div`
       .iten.active{
         background-color: #f00;
       }
+    }
+  }
+
+  .download-rec{
+    position: absolute;
+    z-index:100px;
+    top:0;
+    right:0;
+    bottom:0;
+    left:730px;
+    width:250px;
+
+    background: url(${require('@/assets/img/download.png')}) no-repeat center 0;
+
+    .cover-text{
+      width:100%;
+      height:56px;
+      margin-top:180px;
+
+      cursor: pointer;
+      text-indent: -9999px;
     }
   }
 `

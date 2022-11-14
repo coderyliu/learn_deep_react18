@@ -1,11 +1,13 @@
 import PropTypes from "prop-types";
 import React, { memo, useRef, useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 import { Carousel } from "antd";
+
 import { RecommendBannerWrapper } from "./style";
 
 const RecommendBanner = memo((props) => {
   const { banners } = props;
+  const navigate=useNavigate()
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const bannerRef = useRef();
@@ -34,8 +36,13 @@ const RecommendBanner = memo((props) => {
     bannerRef.current.goTo(index);
   }
 
+  // 处理点击下载相应
+  function handleDownloadClick(){
+    navigate('/download')
+  }
+
   return (
-    <div>
+    <div className="banner-wrapper">
       {banners.length && (
         <RecommendBannerWrapper bgImage={banners[currentIndex]}>
           <div className="content">
@@ -72,6 +79,9 @@ const RecommendBanner = memo((props) => {
                   ></div>
                 );
               })}
+            </div>
+            <div className="download-rec">
+              <div className="cover-text" onClick={handleDownloadClick}>下载客户端</div>
             </div>
           </div>
         </RecommendBannerWrapper>
