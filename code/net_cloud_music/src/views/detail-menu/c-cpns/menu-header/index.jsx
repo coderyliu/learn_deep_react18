@@ -27,7 +27,7 @@ const MenuHeader = memo((props) => {
       default:
         break;
     }
-  }, []);
+  }, [params.type]);
 
   return (
     <MenuHeaderWrapper topPosition={topP}>

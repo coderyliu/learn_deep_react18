@@ -1,14 +1,25 @@
 import {
+  createSlice,
+  createAsyncThunk
+} from "@reduxjs/toolkit";
+
+import {
+  getOtherAlbum
+} from "@/services/modules/discover/disk";
+import {
+  getHotDj
+} from "@/services/modules/discover/radio";
+import {
   getAllAlbumList,
   getAllRadioList,
   getAllSongDetail,
   getAllSongList,
-  getRadioDetail
+  getRadioDetail,
+  likeSongUsers
 } from "@/services/modules/menu";
 import {
-  createSlice,
-  createAsyncThunk
-} from "@reduxjs/toolkit";
+  getHotSongMenuList
+} from "@/services/modules/discover/songMenu";
 
 export const fetchSongList = createAsyncThunk('fetch/allSong', (info, {
   dispatch
@@ -20,6 +31,14 @@ export const fetchSongList = createAsyncThunk('fetch/allSong', (info, {
   getAllSongDetail(info.id).then(res => {
     dispatch(changeSongCountDetailAction(res))
   })
+
+  likeSongUsers(info.id).then(res => {
+    dispatch(changeLikeUserAction(res.subscribers))
+  })
+
+  getHotSongMenuList().then(res => {
+    dispatch(changeHotSongMenuAction(res.playlists))
+  })
 })
 
 export const fetchAlbumList = createAsyncThunk('fetch/allAlbum', (info, {
@@ -28,6 +47,10 @@ export const fetchAlbumList = createAsyncThunk('fetch/allAlbum', (info, {
   getAllAlbumList(info.id).then(res => {
     dispatch(changeAlbumSongsAction(res.songs))
     dispatch(changeAlbumInfoAction(res.album))
+  })
+
+  getOtherAlbum(info.rid).then(res => {
+    dispatch(changeOtherAlbumAction(res.hotAlbums))
   })
 })
 
@@ -41,6 +64,10 @@ export const fetchRadioList = createAsyncThunk('fetch/allRadio', (info, {
   getRadioDetail(info.id).then(res => {
     dispatch(changeRadioDetailAction(res.data))
   })
+
+  getHotDj().then(res => {
+    dispatch(changeHotRadioAction(res.djRadios))
+  })
 })
 
 const menuSlice = createSlice({
@@ -48,10 +75,14 @@ const menuSlice = createSlice({
   initialState: {
     songList: [],
     songCountDetail: {},
+    likeSongUser: [],
+    hotSongMenu: [],
     albumSongs: [],
     albumInfo: {},
+    otherAlbum: [],
     radioSongs: [],
     radioDetail: {},
+    hotRadio: [],
     currentSealData: {}
   },
   reducers: {
@@ -60,10 +91,18 @@ const menuSlice = createSlice({
     }) {
       state.songList = payload
     },
+    changeHotSongMenuAction(state, {
+      payload
+    }) {
+      state.hotSongMenu = payload
+    },
     changeSongCountDetailAction(state, {
       payload
     }) {
       state.songCountDetail = payload
+    },
+    changeLikeUserAction(state, {payload}) {
+      state.likeSongUser= payload
     },
     changeAlbumSongsAction(state, {
       payload
@@ -75,6 +114,11 @@ const menuSlice = createSlice({
     }) {
       state.albumInfo = payload
     },
+    changeOtherAlbumAction(state, {
+      payload
+    }) {
+      state.otherAlbum = payload
+    },
     changeRadioSongsAction(state, {
       payload
     }) {
@@ -84,6 +128,11 @@ const menuSlice = createSlice({
       payload
     }) {
       state.radioDetail = payload
+    },
+    changeHotRadioAction(state, {
+      payload
+    }) {
+      state.hotRadio = payload
     },
     changeCurrentSealDataAction(state, {
       payload
@@ -95,11 +144,15 @@ const menuSlice = createSlice({
 
 export const {
   changeSongListAction,
+  changeHotSongMenuAction,
   changeSongCountDetailAction,
+  changeLikeUserAction,
   changeAlbumSongsAction,
   changeAlbumInfoAction,
+  changeOtherAlbumAction,
   changeRadioSongsAction,
   changeRadioDetailAction,
+  changeHotRadioAction,
   changeCurrentSealDataAction
 } = menuSlice.actions
 

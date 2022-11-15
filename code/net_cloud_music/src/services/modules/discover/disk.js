@@ -17,3 +17,13 @@ export function getAllDiskData(limit = 30, offset = 0) {
     }
   })
 }
+
+// ?获取歌手的其他热门专辑
+export function getOtherAlbum(id) {
+  return lyFetch.get({
+    url: '/artist/album',
+    params: {
+      id
+    }
+  })
+}

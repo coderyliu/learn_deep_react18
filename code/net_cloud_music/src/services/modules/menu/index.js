@@ -21,11 +21,6 @@ export function getAllSongDetail(id) {
   })
 }
 
-// 获取热门歌单
-export function getHotSongList() {
-
-}
-
 // 获取喜欢这个歌单的用户
 export function likeSongUsers(id) {
   return lyFetch.get({

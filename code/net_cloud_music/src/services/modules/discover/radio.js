@@ -41,3 +41,10 @@ export function getDjRadioHot(cateId, offset, limit = 22) {
     }
   })
 }
+
+// ?获取热门电台
+export function getHotDj() {
+  return lyFetch.get({
+    url: '/dj/hot'
+  })
+}

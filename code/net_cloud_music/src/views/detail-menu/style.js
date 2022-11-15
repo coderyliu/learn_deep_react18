@@ -21,5 +21,10 @@ export const DetailMenuWrapper = styled.div `
       padding:40px;
       border-right:1px solid #d3d3d3;
     }
+
+    .detail-right{
+      width:270px;
+      padding:40px 20px;
+    }
   }
 `

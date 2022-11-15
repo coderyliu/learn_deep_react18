@@ -7,6 +7,7 @@ import { fetchPlayerData } from "@/store/modules/player";
 import SongPanel from "./c-cpns/song-panel";
 import SongPlayList from "./c-cpns/same-playlist";
 import SameSong from "./c-cpns/same-song";
+import DownloadSection from "@/components/download-section";
 import { PlayerWrapper } from "./style";
 
 const Player = memo(() => {
@@ -27,7 +28,7 @@ const Player = memo(() => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchPlayerData({ id: params.id, isGetCate: true }));
-  }, [dispatch]);
+  }, [dispatch,params.id]);
 
   return (
     <PlayerWrapper>
@@ -41,6 +42,7 @@ const Player = memo(() => {
         <div className="right-wrap">
           <SongPlayList playlist={samePlaylist}></SongPlayList>
           <SameSong sameSong={sameSong}></SameSong>
+          <DownloadSection></DownloadSection>
         </div>
       </div>
     </PlayerWrapper>

@@ -16,7 +16,7 @@ const NewDiskItemV1 = memo((props) => {
   // ?item点击跳转至歌曲列表详情页
   const navigate = useNavigate();
   function handleDiskItemClick() {
-    navigate(`/detail/album/${itemData.id}`);
+    navigate(`/detail/album/${itemData.id}?rid=${itemData.artist.id}`);
   }
 
   return (

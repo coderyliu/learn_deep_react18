@@ -75,9 +75,6 @@ const AppHeader = memo(() => {
       case "/discover/disk":
         setFindIndex(5);
         break;
-      case "/discover/disk":
-        setFindIndex(5);
-        break;
       case "/download":
         setCurrentIndex(5);
         break;
@@ -105,7 +102,7 @@ const AppHeader = memo(() => {
   // ?登录框的关闭
   const handleCloseClick = useCallback(() => {
     dispatch(changeIsShowLoginAction(false));
-  }, []);
+  }, [dispatch]);
 
   // ?处理鼠标移入事件
   function handleMouseEnter(type) {

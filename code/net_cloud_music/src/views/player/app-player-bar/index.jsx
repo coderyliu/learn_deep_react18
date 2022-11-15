@@ -4,14 +4,14 @@ import { useNavigate } from "react-router-dom";
 import { Slider } from "antd";
 
 import { getPlayUrl, secondToMinuteFn } from "@/utils/format";
-import { checkMusicCanPlay } from "@/services/modules/player";
+// import { checkMusicCanPlay } from "@/services/modules/player";
 
 import {
   changePlaySequenceAction,
   changeSongPlayAction,
   getSongDetailAction,
 } from "@/store/modules/player";
-import { changeIsShowVipAction } from "@/store/modules/main";
+// import { changeIsShowVipAction } from "@/store/modules/main";
 
 import { AppPlayerBarWrapper } from "./style";
 
@@ -51,7 +51,7 @@ const AppPlayerBar = memo(() => {
   // ?获取歌曲信息详情
   useEffect(() => {
     dispatch(getSongDetailAction({ id: currentSong.id }));
-  }, [dispatch]);
+  }, [dispatch, currentSong.id]);
 
   // ?获取audio元素
   const audioRef = useRef();
@@ -74,14 +74,14 @@ const AppPlayerBar = memo(() => {
   }, [isChange]);
 
   // todo 处理播放按钮点击
-  function handlePlayStatus(type) {
+  const handlePlayStatus = useCallback((type) => {
     setIsPlaying(!isPlaying);
     if (type === "stop") {
       audioRef.current.pause();
     } else {
       audioRef.current.play();
     }
-  }
+  },[isPlaying]);
 
   // todo 处理上一首下一首点击
   function handleChangeSong(tag) {
@@ -176,7 +176,9 @@ const AppPlayerBar = memo(() => {
           <div className="progress">
             <div className="info">
               <span className="name">{currentSong.name}</span>
-              <span className="singer">{currentSong.ar && currentSong.ar[0].name}</span>
+              <span className="singer">
+                {currentSong.ar && currentSong.ar[0].name}
+              </span>
             </div>
             <div className="slider">
               <Slider

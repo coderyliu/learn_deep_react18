@@ -6,7 +6,7 @@ export const SongPlayListWrapper=styled.div`
   .top{
     width:100%;
     padding-bottom:5px;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 600;
 
     border-bottom:1px solid #d3d3d3;

@@ -7,6 +7,13 @@ export function getSongCategory() {
   })
 }
 
+// 获取热门歌单，网友精选
+export function getHotSongMenuList() {
+  return lyFetch.get({
+    url: '/top/playlist'
+  })
+}
+
 // 请求全部歌单
 export function getSongCategoryList(cat = '全部', limit = 50, offset = 0) {
   return lyFetch.get({
