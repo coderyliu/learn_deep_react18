@@ -4,13 +4,16 @@ import { useNavigate } from "react-router-dom";
 import { Slider } from "antd";
 
 import { getPlayUrl, secondToMinuteFn } from "@/utils/format";
+import { checkMusicCanPlay } from "@/services/modules/player";
 
-import { AppPlayerBarWrapper } from "./style";
 import {
   changePlaySequenceAction,
   changeSongPlayAction,
   getSongDetailAction,
 } from "@/store/modules/player";
+import { changeIsShowVipAction } from "@/store/modules/main";
+
+import { AppPlayerBarWrapper } from "./style";
 
 const AppPlayerBar = memo(() => {
   // ?组件状态相关
@@ -30,8 +33,22 @@ const AppPlayerBar = memo(() => {
     shallowEqual
   );
 
-  // ?获取歌曲信息详情
+  // ?歌曲是否可以播放
   const dispatch = useDispatch();
+  // useEffect(() => {
+  //   checkMusicCanPlay(currentSong.id).then((res) => {
+  //     console.log(res);
+  //     if (!res.success) {
+  //       if (playSequence === 2 || playlist.length === 1) {
+  //         dispatch(changeIsShowVipAction(true));
+  //       } else {
+  //         dispatch(changeSongPlayAction(1));
+  //       }
+  //     }
+  //   });
+  // }, [currentSong,dispatch]);
+
+  // ?获取歌曲信息详情
   useEffect(() => {
     dispatch(getSongDetailAction({ id: currentSong.id }));
   }, [dispatch]);
@@ -159,7 +176,7 @@ const AppPlayerBar = memo(() => {
           <div className="progress">
             <div className="info">
               <span className="name">{currentSong.name}</span>
-              {/* <span className="singer">{currentSong.ar[0].name}</span> */}
+              <span className="singer">{currentSong.ar && currentSong.ar[0].name}</span>
             </div>
             <div className="slider">
               <Slider

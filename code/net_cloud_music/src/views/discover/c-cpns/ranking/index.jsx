@@ -45,7 +45,7 @@ const Ranking = memo((props) => {
         <div className="con-right">
           <PlayerHeader rankingDetail={rankingDetail}></PlayerHeader>
           <PlayerSection
-            rankingDetail={rankingDetail}
+            detail={rankingDetail}
             tableList={rankTableList}
           ></PlayerSection>
         </div>

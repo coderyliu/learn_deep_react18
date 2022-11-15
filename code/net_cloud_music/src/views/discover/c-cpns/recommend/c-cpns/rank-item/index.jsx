@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { getSongDetailAction } from "@/store/modules/player";
 
 import { RankItemWrapper } from "./style";
+import { checkMusicCanPlay } from "@/services/modules/player";
+import { changeIsShowVipAction } from "@/store/modules/main";
 
 const RankItem = memo((props) => {
   const { rankInfo } = props;
@@ -19,7 +21,13 @@ const RankItem = memo((props) => {
   // ?处理歌曲播放
   const dispatch = useDispatch();
   function handleSongPlayerClick(data) {
-    dispatch(getSongDetailAction({ id: data.id }));
+    checkMusicCanPlay(data.id).then((res) => {
+      if (res.success) {
+        dispatch(getSongDetailAction({ id: data.id }));
+      } else {
+        dispatch(changeIsShowVipAction(true));
+      }
+    });
   }
 
   // ?将歌曲添加到播放列表中

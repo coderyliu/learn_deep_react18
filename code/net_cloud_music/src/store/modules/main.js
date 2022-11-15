@@ -7,6 +7,7 @@ const mainSlice = createSlice({
   initialState: {
     token: '',
     isShowLogin: false,
+    isShowVipModal: false,
     userInfo: {}
   },
   reducers: {
@@ -24,6 +25,11 @@ const mainSlice = createSlice({
       payload
     }) {
       state.userInfo = payload
+    },
+    changeIsShowVipAction(state, {
+      payload
+    }) {
+      state.isShowVipModal = payload
     }
   }
 })
@@ -31,6 +37,7 @@ const mainSlice = createSlice({
 export const {
   changeTokenAction,
   changeIsShowLoginAction,
+  changeIsShowVipAction,
   changeUserInfoAction
 } = mainSlice.actions
 

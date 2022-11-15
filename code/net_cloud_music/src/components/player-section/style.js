@@ -36,6 +36,7 @@ export const PlayerSectionWrapper = styled.div `
 
   .content-wrap{
     border:1px solid #d3d3d3;
+
     .table-header{
       display: flex;
       align-items: center;
@@ -83,6 +84,7 @@ export const PlayerSectionWrapper = styled.div `
     .table-mainner{
       .item{
         display: flex;
+        justify-content: space-around;
         align-items: center;
         padding:10px 0;
 
@@ -92,7 +94,7 @@ export const PlayerSectionWrapper = styled.div `
           }
 
           .control{
-            width:85px;
+            width:91px;
           }
         }
 
@@ -133,7 +135,7 @@ export const PlayerSectionWrapper = styled.div `
 
           .player-icon{
             display: block;
-            width: 17px;
+            width: 28px;
             height: 17px;
             margin-right:10px;
 
@@ -141,11 +143,35 @@ export const PlayerSectionWrapper = styled.div `
 
             background: url(${require('@/assets/img/sprite_table.png')}) no-repeat 0 -103px;
           }
+
+          .name{
+            flex:1;
+          }
         }
 
         .time{
           width:${props=>props.tableList[2].width}px;
           color:#666;
+        }
+
+        .like-count,
+        .play-count,
+        .time,
+        .date{
+          font-size: 12px;
+          color:#666;
+        }
+
+        .play-count{
+          width:90px;
+        }
+
+        .date{
+          width:90px;
+        }
+
+        .like-count{
+          width:50px;
         }
 
         .control{
@@ -186,6 +212,7 @@ export const PlayerSectionWrapper = styled.div `
 
         .singer{
           width:${props=>props.tableList[3].width}px;
+          color:#666;
         }
       }
     }

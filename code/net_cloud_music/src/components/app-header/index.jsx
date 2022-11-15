@@ -2,7 +2,10 @@ import React, { memo, useCallback, useEffect, useState, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 
-import { changeIsShowLoginAction, changeTokenAction } from "@/store/modules/main";
+import {
+  changeIsShowLoginAction,
+  changeTokenAction,
+} from "@/store/modules/main";
 import { logoutMusicApp } from "@/services/modules/login";
 
 import { loginList } from "@/assets/data/header-login";
@@ -115,14 +118,14 @@ const AppHeader = memo(() => {
 
   // ?处理item点击
   function handleProfileItemClick(item) {
-    switch(item.name){
-      case 'exit':
-        localStorage.removeItem('token')
-        dispatch(changeTokenAction(''))
-        logoutMusicApp()
-        break
+    switch (item.name) {
+      case "exit":
+        localStorage.removeItem("token");
+        dispatch(changeTokenAction(""));
+        logoutMusicApp();
+        break;
       default:
-        break
+        break;
     }
   }
 
@@ -130,7 +133,8 @@ const AppHeader = memo(() => {
   let element;
   if (
     location.pathname.includes("discover") ||
-    location.pathname.includes("song")
+    location.pathname.includes("song") ||
+    location.pathname.includes("detail")
   ) {
     element = (
       <div className="recommend-nav">
@@ -202,7 +206,11 @@ const AppHeader = memo(() => {
           >
             {loginList.map((item, index) => {
               return (
-                <div className="iten" key={index} onClick={e=>handleProfileItemClick(item)}>
+                <div
+                  className="iten"
+                  key={index}
+                  onClick={(e) => handleProfileItemClick(item)}
+                >
                   <span className={`icon ${item.name}`}></span>
                   <span className="texts">{item.title}</span>
                 </div>

@@ -10,6 +10,7 @@ import songMenuReducer from './modules/songMenu'
 import singerReducer from './modules/singer'
 import radioReducer from './modules/radio'
 import playerReducer from './modules/player'
+import menuReducer from './modules/menu'
 
 const store = configureStore({
   reducer: {
@@ -20,7 +21,8 @@ const store = configureStore({
     songMenu: songMenuReducer,
     singer: singerReducer,
     radio: radioReducer,
-    player: playerReducer
+    player: playerReducer,
+    menu: menuReducer
   }
 })
 

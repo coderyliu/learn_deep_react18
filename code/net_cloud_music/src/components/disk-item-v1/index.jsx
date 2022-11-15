@@ -1,10 +1,23 @@
 import PropTypes from "prop-types";
 import React, { memo } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { NewDiskItemV1Wrapper } from "./style";
 
 const NewDiskItemV1 = memo((props) => {
-  const { itemData, itemWidth = 118, itemHeight = 100, imgWidth = 80,paddingLeft=20 } = props;
+  const {
+    itemData,
+    itemWidth = 118,
+    itemHeight = 100,
+    imgWidth = 80,
+    paddingLeft = 20,
+  } = props;
+
+  // ?item点击跳转至歌曲列表详情页
+  const navigate = useNavigate();
+  function handleDiskItemClick() {
+    navigate(`/detail/album/${itemData.id}`);
+  }
 
   return (
     <NewDiskItemV1Wrapper
@@ -13,7 +26,7 @@ const NewDiskItemV1 = memo((props) => {
       imgWidth={imgWidth}
       paddingLeft={paddingLeft}
     >
-      <div className="inner">
+      <div className="inner" onClick={() => handleDiskItemClick()}>
         <div className="bg-cover">
           <img src={itemData.artist.picUrl} alt="" />
         </div>

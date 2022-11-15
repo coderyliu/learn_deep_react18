@@ -49,9 +49,9 @@ const SongPanel = memo((props) => {
           </div>
           <div className="singer">
             <span className="title">歌手：</span>
-            {/* {detailInfo?.ar[0] && (
+            {detailInfo.ar && (
               <span className="text">{detailInfo?.ar[0]?.name}</span>
-            )} */}
+            )}
           </div>
           <div className="album">
             <span className="title">所属专辑：</span>

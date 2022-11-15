@@ -40,3 +40,13 @@ export function getSameSong(id) {
     }
   })
 }
+
+// ?检查音乐是否可用
+export function checkMusicCanPlay(id) {
+  return lyFetch.get({
+    url: '/check/music',
+    params: {
+      id
+    }
+  })
+}
