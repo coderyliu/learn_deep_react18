@@ -1,5 +1,6 @@
 import {
-  configureStore
+  configureStore,
+  getDefaultMiddleware
 } from '@reduxjs/toolkit'
 
 import mainReducer from './modules/main'
@@ -23,7 +24,11 @@ const store = configureStore({
     radio: radioReducer,
     player: playerReducer,
     menu: menuReducer
-  }
+  },
+  middleware: () => getDefaultMiddleware({
+    immutableCheck: false,
+    serializableCheck: false,
+  })
 })
 
 export default store
