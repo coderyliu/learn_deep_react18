@@ -51,7 +51,7 @@ const AppPlayerBar = memo(() => {
   // ?获取歌曲信息详情
   useEffect(() => {
     dispatch(getSongDetailAction({ id: currentSong.id }));
-  }, [dispatch, currentSong.id]);
+  }, [dispatch]);
 
   // ?获取audio元素
   const audioRef = useRef();
@@ -175,9 +175,9 @@ const AppPlayerBar = memo(() => {
           </div>
           <div className="progress">
             <div className="info">
-              <span className="name">{currentSong.name}</span>
+              <span className="name">{currentSong?.name}</span>
               <span className="singer">
-                {currentSong.ar && currentSong.ar[0].name}
+                {currentSong?.ar && currentSong.ar[0].name}
               </span>
             </div>
             <div className="slider">

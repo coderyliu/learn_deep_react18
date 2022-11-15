@@ -26,7 +26,9 @@ const songMenuSlice = createSlice({
   initialState: {
     categoryList: {},
     categoryData: [],
-    totalCount: 0
+    currentCate: '全部',
+    totalCount: 0,
+    isShowSelectModal: false
   },
   reducers: {
     changeCategoryListAction(state, {
@@ -39,13 +41,25 @@ const songMenuSlice = createSlice({
     }) {
       state.totalCount = payload.total
       state.categoryData = payload.playlists
+    },
+    changeCurrentCateAction(state, {
+      payload
+    }) {
+      state.currentCate = payload
+    },
+    changeIsShowModalAction(state, {
+      payload
+    }) {
+      state.isShowSelectModal = payload
     }
   }
 })
 
 export const {
   changeCategoryListAction,
-  changeCategoryDataAction
+  changeCategoryDataAction,
+  changeCurrentCateAction,
+  changeIsShowModalAction
 } = songMenuSlice.actions
 
 export default songMenuSlice.reducer

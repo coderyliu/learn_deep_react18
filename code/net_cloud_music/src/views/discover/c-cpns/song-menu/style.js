@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 export const SongMenuWrapper = styled.div `
+  position: relative;
   width:100%;
 
   background-color: #f5f5f5;

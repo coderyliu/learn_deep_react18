@@ -11,12 +11,28 @@ export const HeaderSectionWrapper=styled.div`
 
   .section-left{
     flex:1;
-    background: url(${require('@/assets/img/sprite_02.png')}) no-repeat -235px -158px;
+    display: flex;
+
+    background: url(${require('@/assets/img/sprite_02.png')}) no-repeat -235px -159px;
 
     .title{
       padding-left:22px;
       font-size: 16px;
       font-weight: 600;
+    }
+
+    .btn{
+      margin-left:15px;
+      padding:5px 15px;
+      border:1px solid #d3d3d3;
+      border-radius: 5px;
+
+      text-align: center;
+      font-size: 12px;
+      color:#0c73c2;
+
+      cursor: pointer;
+      user-select: none;
     }
   }
   
