@@ -52,6 +52,11 @@ const PlayerSection = memo((props) => {
     dispatch(changePlayListAction(data));
   }
 
+  // ?点击跳转至mv页面
+  function handleMVClick(data) {
+    navigate(`/mv/${data.mv}`);
+  }
+
   // ?处理传入的值的一些细节
   const songList = detail?.tracks || detail || [];
 
@@ -104,6 +109,12 @@ const PlayerSection = memo((props) => {
                     >
                       {item.name}
                     </span>
+                    {item.mv!==0 && (
+                      <span
+                        className="mv-icon"
+                        onClick={() => handleMVClick(item)}
+                      ></span>
+                    )}
                   </div>
                   {item.listenerCount && (
                     <div className="play-count section omit">

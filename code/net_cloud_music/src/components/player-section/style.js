@@ -133,7 +133,8 @@ export const PlayerSectionWrapper = styled.div `
             margin-right:20px;
           }
 
-          .player-icon{
+          .player-icon,
+          .mv-icon{
             display: block;
             width: 28px;
             height: 17px;
@@ -142,6 +143,14 @@ export const PlayerSectionWrapper = styled.div `
             cursor: pointer;
 
             background: url(${require('@/assets/img/sprite_table.png')}) no-repeat 0 -103px;
+          }
+
+          .mv-icon{
+            background-position:0 -151px;
+
+            &:hover{
+              background-position:-30px -151px;
+            }
           }
 
           .name{

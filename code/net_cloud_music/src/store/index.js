@@ -13,6 +13,7 @@ import radioReducer from './modules/radio'
 import playerReducer from './modules/player'
 import menuReducer from './modules/menu'
 import artistReducer from './modules/artist'
+import mvReducer from './modules/mv'
 
 const store = configureStore({
   reducer: {
@@ -25,7 +26,8 @@ const store = configureStore({
     radio: radioReducer,
     player: playerReducer,
     menu: menuReducer,
-    artist: artistReducer
+    artist: artistReducer,
+    mv: mvReducer
   },
   middleware: () => getDefaultMiddleware({
     immutableCheck: false,
