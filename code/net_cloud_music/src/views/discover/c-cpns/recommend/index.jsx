@@ -46,10 +46,10 @@ const Recommend = memo((props) => {
       <RecommendBanner banners={topBanner}></RecommendBanner>
       <div className="content-wrapper">
         <div className="con-left">
-          {hotRecommend.length && (
+          {hotRecommend && (
             <HotRecommend hotRecommend={hotRecommend}></HotRecommend>
           )}
-          {newDisk.length && <NewDisk newDisk={newDisk}></NewDisk>}
+          {newDisk && <NewDisk newDisk={newDisk}></NewDisk>}
           <PartRanking
             topUpList={topUpList}
             topHotList={topHotList}
