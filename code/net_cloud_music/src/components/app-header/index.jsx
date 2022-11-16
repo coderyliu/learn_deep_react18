@@ -131,7 +131,8 @@ const AppHeader = memo(() => {
   if (
     location.pathname.includes("discover") ||
     location.pathname.includes("song") ||
-    location.pathname.includes("detail")
+    location.pathname.includes("detail") ||
+    location.pathname.includes("artist")
   ) {
     element = (
       <div className="recommend-nav">

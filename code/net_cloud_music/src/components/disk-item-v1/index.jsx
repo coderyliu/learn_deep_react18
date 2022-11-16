@@ -28,7 +28,7 @@ const NewDiskItemV1 = memo((props) => {
     >
       <div className="inner" onClick={() => handleDiskItemClick()}>
         <div className="bg-cover">
-          <img src={itemData.artist.picUrl} alt="" />
+          <img src={itemData.blurPicUrl||itemData.artist.picUrl} alt="" />
         </div>
         <div className="info">
           <span className="song omit">{itemData.name}</span>

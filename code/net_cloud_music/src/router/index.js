@@ -11,6 +11,7 @@ const Singer=React.lazy(()=>import(/* webpackChunkName:'singer' */'views/discove
 const Disk=React.lazy(()=>import(/* webpackChunkName:'disk' */'views/discover/c-cpns/disk'))
 const Player=React.lazy(()=>import('views/player'))
 const DetailMenu=React.lazy(()=>import('views/detail-menu'))
+const Artist=React.lazy(()=>import('views/artist'))
 
 // 我的音乐
 const Mine=React.lazy(()=>import(/* webpackChunkName:'mine' */'views/mine'))
@@ -86,6 +87,10 @@ const routes=[
   {
     path:'/detail/:type/:id',
     element:<DetailMenu></DetailMenu>
+  },
+  {
+    path:'/artist/:id',
+    element:<Artist></Artist>
   }
 ]
 

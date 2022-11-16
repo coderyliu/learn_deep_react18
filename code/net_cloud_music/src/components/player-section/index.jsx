@@ -8,6 +8,7 @@ import {
   getSongDetailAction,
 } from "@/store/modules/player";
 import { changeIsShowVipAction } from "@/store/modules/main";
+import { rankTableList } from "@/assets/data/header-table";
 
 import { checkMusicCanPlay } from "@/services/modules/player";
 import { getFormatDate, secondToMinuteFn } from "@/utils/format";
@@ -17,9 +18,11 @@ import { PlayerSectionWrapper } from "./style";
 const PlayerSection = memo((props) => {
   const {
     detail,
+    isShowHeader = true,
+    isShowAr = false,
     isShowTopImage = true,
     isShowAlbum = false,
-    tableList,
+    tableList = rankTableList,
     title = "歌曲",
     isShowPlayCount = true,
     isShowTable = true,
@@ -54,19 +57,21 @@ const PlayerSection = memo((props) => {
 
   return (
     <PlayerSectionWrapper tableList={tableList}>
-      <div className="header-wrap">
-        <div className="left">
-          <span className="title">{title}列表</span>
-          <span className="count">{songList.length} 首歌</span>
-        </div>
-        {isShowPlayCount && (
-          <div className="right">
-            <span className="text">播放：</span>
-            <span className="play-count">{detail?.playCount}</span>
-            <span className="text">次</span>
+      {isShowHeader && (
+        <div className="header-wrap">
+          <div className="left">
+            <span className="title">{title}列表</span>
+            <span className="count">{songList.length} 首歌</span>
           </div>
-        )}
-      </div>
+          {isShowPlayCount && (
+            <div className="right">
+              <span className="text">播放：</span>
+              <span className="play-count">{detail?.playCount}</span>
+              <span className="text">次</span>
+            </div>
+          )}
+        </div>
+      )}
       <div className="content-wrap">
         {isShowTable && (
           <div className="table-header">
@@ -134,9 +139,14 @@ const PlayerSection = memo((props) => {
                     <span className="share"></span>
                     <span className="download"></span>
                   </div>
-                  {item.ar && (
+                  {item.ar && isShowAr && (
                     <div className="singer section">
                       {item.ar && item.ar[0].name}
+                    </div>
+                  )}
+                  {item.al && (
+                    <div className="singer section omit">
+                      {item.al && item.al.name}
                     </div>
                   )}
                   {isShowAlbum && (
@@ -155,6 +165,8 @@ PlayerSection.propTypes = {
   detail: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   isShowTopImage: PropTypes.bool,
   isShowAlbum: PropTypes.bool,
+  isShowHeader: PropTypes.bool,
+  isShowAr: PropTypes.bool,
   tableList: PropTypes.array,
   title: PropTypes.string,
 };
