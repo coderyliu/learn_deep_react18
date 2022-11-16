@@ -20,7 +20,7 @@ export const fetchArtistData = createAsyncThunk('fetch/artistData', (info, {
   })
 
   getSameSinger(info.id).then(res => {
-    console.log(res)
+    // console.log(res)
   })
 })
 export const fetchArtistMv = createAsyncThunk('fetch/artistMv', (info, {
