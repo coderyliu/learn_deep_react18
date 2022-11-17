@@ -43,7 +43,7 @@ const RecommendBanner = memo((props) => {
 
   return (
     <div className="banner-wrapper">
-      {banners.length && (
+      {banners && (
         <RecommendBannerWrapper bgImage={banners[currentIndex]}>
           <div className="content">
             <div
