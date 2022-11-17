@@ -22,6 +22,11 @@ export function getFormatDate(timestamp) {
   return dayjs(timestamp).format('YYYY-MM-DD')
 }
 
+// 获取YYYY-MM-DD HH:mm格式
+export function getFormatDate2(timestamp) {
+  return dayjs(timestamp).format('YYYY-MM-DD HH:mm')
+}
+
 // 将毫秒转化为分钟
 export function secondToMinuteFn(timestamp) {
   return dayjs(timestamp).format('mm:ss')

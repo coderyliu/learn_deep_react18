@@ -1,6 +1,7 @@
-import React, { memo, useEffect, useState } from "react";
+import React, { memo, useEffect, useState, useCallback } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { useParams, useSearchParams } from "react-router-dom";
+import { message } from "antd";
 
 import {
   fetchAlbumList,
@@ -8,12 +9,15 @@ import {
   fetchSongList,
 } from "@/store/modules/menu";
 import { rankTableList } from "@/assets/data/header-table";
+import { fetchCommentData } from "@/store/modules/comment";
+import { getSendComment } from "@/services/modules/comment";
 
 import MenuHeader from "./c-cpns/menu-header";
 import PlayerSection from "@/components/player-section";
 import ListenerSection from "./c-cpns/listener-section";
 import SongPlayList from "../player/c-cpns/same-playlist";
 import DownloadSection from "@/components/download-section";
+import Comment from "../comment";
 import { DetailMenuWrapper } from "./style";
 
 const DetailMenu = memo(() => {
@@ -65,17 +69,21 @@ const DetailMenu = memo(() => {
     switch (params.type) {
       case "song":
         dispatch(fetchSongList({ id: params.id }));
+        dispatch(
+          fetchCommentData({ path: "songMenu", id: params.id, type: 2 })
+        );
         break;
       case "radio":
         dispatch(fetchRadioList({ id: params.id }));
         break;
       case "album":
         dispatch(fetchAlbumList({ id: params.id, rid: query.rid }));
+        dispatch(fetchCommentData({ path: "album", id: params.id, type: 3 }));
         break;
       default:
         break;
     }
-  }, [dispatch, params.type, params.id,query.rid]);
+  }, [dispatch, params.type, params.id, query.rid]);
 
   // 处理细节
   function changeStateFn(
@@ -147,6 +155,33 @@ const DetailMenu = memo(() => {
     params.type,
   ]);
 
+  // ?处理分页点击
+  const paginationClick = useCallback(
+    (v) => {
+      dispatch(
+        fetchCommentData({
+          path: params.type === "song" ? "songMenu" : "album",
+          id: params.id,
+          type: params.type === "song" ? 2 : 3,
+          offset: (v - 1) * 20,
+        })
+      );
+    },
+    [dispatch, params.id, params.type]
+  );
+
+  // ?处理发表评论
+  const commentClick = useCallback(
+    (data) => {
+      const type = params.type === "song" ? 2 : 3;
+
+      getSendComment(1, type, params.id, data).then((res) => {
+        message.success("发表评论成功!");
+      });
+    },
+    [params.id, params.type]
+  );
+
   return (
     <DetailMenuWrapper>
       <div className="detail-wrap">
@@ -160,6 +195,12 @@ const DetailMenu = memo(() => {
             isShowPlayCount={isShowPlayCount}
             isShowTable={isShowTable}
           ></PlayerSection>
+          {params.type !== "radio" && (
+            <Comment
+              paginationClick={paginationClick}
+              commentClick={commentClick}
+            ></Comment>
+          )}
         </div>
         <div className="detail-right">
           {params.type === "song" && (

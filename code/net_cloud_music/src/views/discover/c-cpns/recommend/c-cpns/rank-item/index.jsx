@@ -35,14 +35,21 @@ const RankItem = memo((props) => {
     dispatch(getSongDetailAction(data));
   }
 
+  // ?跳转至toplist
+  function handleNavigateToTopList() {
+    navigate("/discover/toplist");
+  }
+
   return (
     <RankItemWrapper>
       <div className="rank-name">
-        <div className="left">
+        <div className="left" onClick={() => handleNavigateToTopList()}>
           <img src={rankInfo.coverImgUrl} alt="" />
         </div>
         <div className="right">
-          <div className="name">{rankInfo.name}</div>
+          <div className="name" onClick={() => handleNavigateToTopList()}>
+            {rankInfo.name}
+          </div>
           <div className="btn">
             <span className="start"></span>
             <span className="add"></span>

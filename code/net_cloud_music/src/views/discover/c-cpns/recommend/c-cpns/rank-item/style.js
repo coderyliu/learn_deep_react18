@@ -16,6 +16,7 @@ export const RankItemWrapper=styled.div`
       width:80px;
       margin-right:10px;
 
+      cursor: pointer;
       box-shadow: 0 0 5px rgba(0,0,0,.1);
 
       img{

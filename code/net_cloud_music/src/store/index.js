@@ -14,6 +14,7 @@ import playerReducer from './modules/player'
 import menuReducer from './modules/menu'
 import artistReducer from './modules/artist'
 import mvReducer from './modules/mv'
+import commentReducer from './modules/comment'
 
 const store = configureStore({
   reducer: {
@@ -27,7 +28,8 @@ const store = configureStore({
     player: playerReducer,
     menu: menuReducer,
     artist: artistReducer,
-    mv: mvReducer
+    mv: mvReducer,
+    comment: commentReducer
   },
   middleware: () => getDefaultMiddleware({
     immutableCheck: false,
