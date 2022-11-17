@@ -5,7 +5,7 @@ export const RecommendBannerWrapper=styled.div`
   height:285px;
   margin-top:35px;
 
-  background: url(${props=>props.bgImage.imageUrl}) center center/10000px;
+  background: url(${props=>props?.bgImage?.imageUrl}) center center/10000px;
 
   .content{
     position: relative;
