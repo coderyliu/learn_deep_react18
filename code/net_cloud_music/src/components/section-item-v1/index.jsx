@@ -22,7 +22,7 @@ const SectionItemV1 = memo((props) => {
 
   return (
     <SectionItemV1Wrapper>
-      {itemData.map((item, index) => {
+      {itemData?.map((item, index) => {
         return (
           <div
             className="section-item"

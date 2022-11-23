@@ -44,11 +44,11 @@ const RankItem = memo((props) => {
     <RankItemWrapper>
       <div className="rank-name">
         <div className="left" onClick={() => handleNavigateToTopList()}>
-          <img src={rankInfo.coverImgUrl} alt="" />
+          <img src={rankInfo?.coverImgUrl} alt="" />
         </div>
         <div className="right">
           <div className="name" onClick={() => handleNavigateToTopList()}>
-            {rankInfo.name}
+            {rankInfo?.name}
           </div>
           <div className="btn">
             <span className="start"></span>
