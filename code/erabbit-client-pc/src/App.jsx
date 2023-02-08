@@ -1,11 +1,23 @@
-import React, { memo } from 'react'
+import React, { memo, useEffect } from "react";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
+
+import { fetchHomeData } from "./store/modules/home";
 
 const App = memo(() => {
-  return (
-    <div>
-      APP Page
-    </div>
-  )
-})
+  const { newFreshData } = useSelector(
+    (state) => ({
+      newFreshData: state.home.newFreshData,
+    }),
+    shallowEqual
+  );
 
-export default App
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchHomeData());
+  },[dispatch]);
+
+  return <div>APP Page</div>;
+});
+
+export default App;
