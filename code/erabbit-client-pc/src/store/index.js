@@ -6,7 +6,7 @@ const store=configureStore({
   reducer:{
     home:homeReducer
   },
-  devTools:true
+  // devTools:true
 })
 
 export default store
