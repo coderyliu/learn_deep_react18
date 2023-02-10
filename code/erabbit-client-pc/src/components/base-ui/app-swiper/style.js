@@ -5,6 +5,8 @@ export const AppSwiperWrapper=styled.div`
   width:100%;
   height: 500px;
 
+  box-sizing:content-box;
+
   .control-wrap{
     position: absolute;
     z-index:99;

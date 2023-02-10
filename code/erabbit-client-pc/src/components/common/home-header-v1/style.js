@@ -7,6 +7,7 @@ export const HomeHeaderV1Wrapper = styled.div `
 
   display: flex;
   align-items:center;
+  box-sizing:content-box;
 
   .left{
     flex:1;
