@@ -4,7 +4,8 @@ import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { fetchHomeData } from "@/store/modules/home";
 
 import AppSwiper from "@/components/base-ui/app-swiper";
-import HomeListV1 from "./c-cpns/home-list-v1";
+import HomeContentV1 from "./c-cpns/home-content-v1";
+import HomeContentV2 from "./c-cpns/home-content-v2";
 import { HomeWrapper } from "./style";
 
 const Home = memo(() => {
@@ -21,7 +22,7 @@ const Home = memo(() => {
     newSpecialData,
   } = useSelector(
     (state) => ({
-      homeBanner:state.home.homeBanner,
+      homeBanner: state.home.homeBanner,
       newFreshData: state.home.newFreshData,
       hotRecommendData: state.home.hotRecommendData,
       hotBrandData: state.home.hotBrandData,
@@ -43,8 +44,16 @@ const Home = memo(() => {
   return (
     <HomeWrapper>
       <AppSwiper bannerData={homeBanner}></AppSwiper>
-      <HomeListV1 listData={newFreshData} title='新鲜好物' desc='新鲜出炉 品质靠谱'></HomeListV1>
-      <HomeListV1 listData={hotRecommendData} title='人气推荐' desc='人气爆款 不容错过'></HomeListV1>
+      <HomeContentV1
+        newFreshData={newFreshData}
+        hotRecommendData={hotRecommendData}
+      ></HomeContentV1>
+      <HomeContentV2
+        goodsHomeInfo={goodsHomeInfo}
+        goodsFoodInfo={goodsFoodInfo}
+        goodsClothesInfo={goodsClothesInfo}
+        goodsChildInfo={goodsChildInfo}
+      ></HomeContentV2>
     </HomeWrapper>
   );
 });

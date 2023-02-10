@@ -14,7 +14,7 @@ export const HomeListItemV1Wrapper = styled.div `
     transform:translateY(-5px);
   }
 
-  .picture{
+  > .picture{
     width:100%;
     height: 306px;
 
@@ -25,7 +25,7 @@ export const HomeListItemV1Wrapper = styled.div `
     }
   }
 
-  .desc{
+  > .descriptions{
     width:100%;
     padding-bottom:20px;
 
@@ -34,21 +34,23 @@ export const HomeListItemV1Wrapper = styled.div `
 
     background-color:#f0f9f4;
 
-    .content,.price,.alt{
+    .desc-cont,.desc-price,.desc-alt{
       height: 30px;
       padding-top:12px;
+
+      box-sizing:content-box;
     }
 
-    .content{
+    .desc-cont{
       padding-left:30px;
       padding-right:30px;
     }
 
-    .price{
+    .desc-price{
       color:#cf4444;
     }
 
-    .alt{
+    .desc-alt{
       color:#999;
       font-size:18px;
     }

@@ -11,10 +11,10 @@ const HomeListItemV1 = memo((props) => {
       <div className="picture">
         <img src={dataInfo.picture} alt="" />
       </div>
-      <div className="desc">
-        <div className="content omit">{dataInfo.name || dataInfo.title}</div>
-        {dataInfo.price && <div className="price">￥{dataInfo.price}</div>}
-        {dataInfo.alt && <div className="alt">{dataInfo.alt}</div>}
+      <div className="descriptions">
+        <div className="desc-cont omit">{dataInfo.name || dataInfo.title}</div>
+        {dataInfo.price && <div className="desc-price">￥{dataInfo.price}</div>}
+        {dataInfo.alt && <div className="desc-alt">{dataInfo.alt}</div>}
       </div>
     </HomeListItemV1Wrapper>
   );

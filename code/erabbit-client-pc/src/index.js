@@ -5,7 +5,7 @@ import { HashRouter } from 'react-router-dom'
 import App from './App';
 
 // 引入antd组件库样式文件
-// import 'antd/dist/reset.css'
+import 'antd/dist/reset.css'
 
 // 样式重置
 import 'normalize.css'

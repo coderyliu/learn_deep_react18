@@ -1,10 +1,17 @@
 import React, { memo } from 'react'
 
+import { AppFooterWrapper } from './style'
+
 const AppFooter = memo(() => {
   return (
-    <div>
-      <h2>footer</h2>
-    </div>
+    <AppFooterWrapper>
+      <div className="footer-top">
+
+      </div>
+      <div className="footer-bottom">
+        
+      </div>
+    </AppFooterWrapper>
   )
 })
 

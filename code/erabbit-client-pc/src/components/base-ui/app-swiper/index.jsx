@@ -35,9 +35,7 @@ const AppSwiper = memo((props) => {
 
   // ?定义一个开始轮播的方法
   function startPlayBanner() {
-    let time=setInterval(() => {
-      nextFn();
-    }, 2000);
+    let time=setInterval(nextFn, 2000);
 
     setTimer(time)
   }
@@ -77,13 +75,13 @@ const AppSwiper = memo((props) => {
 
   // todo 开始轮播
   useEffect(() => {
-    // startPlayBanner()  
+    startPlayBanner()  
 
-    // return ()=>{
-    //   clearInterval(timer)
-    //   setTimer(null)
-    // }
-  }, [currentIndex]);
+    return ()=>{
+      clearInterval(timer)
+      setTimer(null)
+    }
+  },[currentIndex]);
 
   return (
     <AppSwiperWrapper imgsLength={bannerData.length}>

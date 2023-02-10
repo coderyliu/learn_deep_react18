@@ -5,15 +5,16 @@ import routes from './router'
 
 import AppHeader from "./components/common/app-header";
 import AppFooter from "./components/common/app-footer";
+import { AppWrapper } from "./style";
 
 const App = memo(() => {
 
   return (
-    <div>
+    <AppWrapper>
       <AppHeader></AppHeader>
       {useRoutes(routes)}
       <AppFooter></AppFooter>
-    </div>
+    </AppWrapper>
   );
 });
 
