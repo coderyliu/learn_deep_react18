@@ -5,7 +5,7 @@ export const AppHeaderWrapper = styled.div `
   height: ${(props) => (props.headerHeight ? 80 : 132)}px;
   border: 1px solid #e4e4e4;
 
-  box-sizing: content-box;
+  box-sizing: border-box;
   background-color: #fff;
   transition: all 0.4s linear;
 
