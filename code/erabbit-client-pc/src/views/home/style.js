@@ -1,10 +1,8 @@
 import styled from "styled-components";
 
 export const HomeWrapper=styled.div`
-  width:1240px;
-  margin:0 auto;
+  width:100%;
+  padding-top:${props=>props.isHavePadding?180:0}px;
 
-  .list{
-    display: flex;
-  }
+  transition:all 0.2s linear;
 `

@@ -1,6 +1,9 @@
 import styled from "styled-components";
 
 export const HomeListV2Wrapper=styled.div`
+  width:1240px;
+  margin:0 auto;
+
   .content-list{
     display: flex;
     

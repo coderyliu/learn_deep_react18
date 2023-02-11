@@ -20,6 +20,7 @@ const Home = memo(() => {
     goodsClothesInfo,
     goodsChildInfo,
     newSpecialData,
+    isFixedHeader
   } = useSelector(
     (state) => ({
       homeBanner: state.home.homeBanner,
@@ -31,6 +32,7 @@ const Home = memo(() => {
       goodsClothesInfo: state.home.goodsClothesInfo,
       goodsChildInfo: state.home.goodsChildInfo,
       newSpecialData: state.home.newSpecialData,
+      isFixedHeader:state.main.isFixedHeader
     }),
     shallowEqual
   );
@@ -42,8 +44,8 @@ const Home = memo(() => {
   }, [dispatch]);
 
   return (
-    <HomeWrapper>
-      <AppSwiper bannerData={homeBanner}></AppSwiper>
+    <HomeWrapper isHavePadding={isFixedHeader}>
+      {/* <AppSwiper bannerData={homeBanner}></AppSwiper> */}
       <HomeContentV1
         newFreshData={newFreshData}
         hotRecommendData={hotRecommendData}

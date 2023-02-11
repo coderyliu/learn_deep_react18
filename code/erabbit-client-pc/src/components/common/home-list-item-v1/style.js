@@ -3,10 +3,10 @@ import styled from "styled-components";
 export const HomeListItemV1Wrapper = styled.div `
   width:306px;
   height:100%;
-  margin-right:10px;
+  margin-right:4px;
 
   transition:all 0.4s ease;
-  box-sizing:content-box;
+  box-sizing:border-box;
   cursor:pointer;
 
   &:hover{

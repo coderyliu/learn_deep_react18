@@ -1,10 +1,14 @@
-import { configureStore } from "@reduxjs/toolkit";
+import {
+  configureStore
+} from "@reduxjs/toolkit";
 
+import mainReducer from './modules/main'
 import homeReducer from './modules/home'
 
-const store=configureStore({
-  reducer:{
-    home:homeReducer
+const store = configureStore({
+  reducer: {
+    main: mainReducer,
+    home: homeReducer
   },
   // devTools:true
 })
