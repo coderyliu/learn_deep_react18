@@ -1,9 +1,9 @@
 import PropTypes from "prop-types";
 import React, { memo, useEffect, useRef, useState } from "react";
 
-import { AppSwiperWrapper } from "./style";
+import { AppSwiperV1Wrapper } from "./style";
 
-const AppSwiper = memo((props) => {
+const AppSwiperV1 = memo((props) => {
   // state相关状态
   const [currentIndex, setCurrentIndex] = useState(0);
   const [timer, setTimer] = useState(null);
@@ -84,7 +84,7 @@ const AppSwiper = memo((props) => {
   },[currentIndex]);
 
   return (
-    <AppSwiperWrapper imgsLength={bannerData.length}>
+    <AppSwiperV1Wrapper imgsLength={bannerData.length}>
       <div className="control-wrap">
         <div className="left-arrow">
           <div
@@ -125,12 +125,12 @@ const AppSwiper = memo((props) => {
           );
         })}
       </ul>
-    </AppSwiperWrapper>
+    </AppSwiperV1Wrapper>
   );
 });
 
-AppSwiper.propTypes = {
+AppSwiperV1.propTypes = {
   bannerData: PropTypes.array,
 };
 
-export default AppSwiper;
+export default AppSwiperV1;

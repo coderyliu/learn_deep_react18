@@ -7,6 +7,7 @@ import { CategoryWrapper } from "./style";
 const Category = memo(() => {
   // ?路由
   const params = useParams();
+  console.log(params)
 
   // ?redux状态
   const { isFixedHeader } = useSelector(

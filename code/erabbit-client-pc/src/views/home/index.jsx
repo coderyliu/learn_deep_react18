@@ -3,9 +3,11 @@ import { shallowEqual, useDispatch, useSelector } from "react-redux";
 
 import { fetchHomeData } from "@/store/modules/home";
 
-import AppSwiper from "@/components/base-ui/app-swiper";
+// import AppSwiperV1 from "@/components/base-ui/app-swiper-v1";
+import AppSwiperV2 from "@/components/base-ui/app-swiper-v2";
 import HomeContentV1 from "./c-cpns/home-content-v1";
 import HomeContentV2 from "./c-cpns/home-content-v2";
+import HomeListV3 from "./c-cpns/home-list-v3";
 import { HomeWrapper } from "./style";
 
 const Home = memo(() => {
@@ -14,13 +16,13 @@ const Home = memo(() => {
     homeBanner,
     newFreshData,
     hotRecommendData,
-    hotBrandData,
+    // hotBrandData,
     goodsHomeInfo,
     goodsFoodInfo,
     goodsClothesInfo,
     goodsChildInfo,
     newSpecialData,
-    isFixedHeader
+    isFixedHeader,
   } = useSelector(
     (state) => ({
       homeBanner: state.home.homeBanner,
@@ -32,7 +34,7 @@ const Home = memo(() => {
       goodsClothesInfo: state.home.goodsClothesInfo,
       goodsChildInfo: state.home.goodsChildInfo,
       newSpecialData: state.home.newSpecialData,
-      isFixedHeader:state.main.isFixedHeader
+      isFixedHeader: state.main.isFixedHeader,
     }),
     shallowEqual
   );
@@ -45,7 +47,8 @@ const Home = memo(() => {
 
   return (
     <HomeWrapper isHavePadding={isFixedHeader}>
-      {/* <AppSwiper bannerData={homeBanner}></AppSwiper> */}
+      {/* <AppSwiperV1 bannerData={homeBanner}></AppSwiperV1> */}
+      <AppSwiperV2 bannerData={homeBanner}></AppSwiperV2>
       <HomeContentV1
         newFreshData={newFreshData}
         hotRecommendData={hotRecommendData}
@@ -56,6 +59,7 @@ const Home = memo(() => {
         goodsClothesInfo={goodsClothesInfo}
         goodsChildInfo={goodsChildInfo}
       ></HomeContentV2>
+      <HomeListV3 listData={newSpecialData}></HomeListV3>
     </HomeWrapper>
   );
 });

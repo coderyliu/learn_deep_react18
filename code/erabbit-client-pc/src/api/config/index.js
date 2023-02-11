@@ -42,4 +42,6 @@ class lyFetch {
   }
 }
 
-export default new lyFetch(BASEURL,TIMEOUT)
+const fetch=new lyFetch(BASEURL,TIMEOUT)
+
+export default fetch

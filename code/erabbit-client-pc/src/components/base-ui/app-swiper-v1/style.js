@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const AppSwiperWrapper=styled.div`
+export const AppSwiperV1Wrapper=styled.div`
   position:relative;
   width:100%;
   height: 500px;

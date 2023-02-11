@@ -15,25 +15,25 @@ const useScrollPosition = () => {
 
   const dispatch = useDispatch()
 
-  // 定义监听滚动条滚动函数
-  function handleScrollPosition() {
-    const y = window.scrollY
-    if (y >= 53) {
-      dispatch(changeIsFixedHeaderAction(true))
-    } else {
-      dispatch(changeIsFixedHeaderAction(false))
+  useEffect(() => {
+    // 定义监听滚动条滚动函数
+    function handleScrollPosition() {
+      const y = window.scrollY
+      if (y >= 53) {
+        dispatch(changeIsFixedHeaderAction(true))
+      } else {
+        dispatch(changeIsFixedHeaderAction(false))
+      }
+
+      setScrollY(y)
     }
 
-    setScrollY(y)
-  }
-
-  useEffect(() => {
     window.addEventListener('scroll', handleScrollPosition)
 
     return () => {
       window.removeEventListener('scroll', handleScrollPosition)
     }
-  },[])
+  }, [dispatch])
 
   return {
     scrollY,

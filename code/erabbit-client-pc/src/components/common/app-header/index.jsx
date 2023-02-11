@@ -17,7 +17,8 @@ const AppHeader = memo(() => {
   const location = useLocation();
 
   // ?监听scroll滚动
-  const { scrollY } = useScrollPosition();
+  useScrollPosition();
+  
   const { isFixedHeader } = useSelector(
     (state) => ({
       isFixedHeader: state.main.isFixedHeader,

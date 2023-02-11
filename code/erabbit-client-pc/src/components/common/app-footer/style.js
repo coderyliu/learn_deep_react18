@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const AppFooterWrapper=styled.div`
   width:100%;
   height: 638px;
-  margin-top:50px;
   padding-top:30px;
   border-top:1px solid #e7e7e7;
 
