@@ -11,10 +11,17 @@ import {
   getHomeNewSpecial,
   getHomeBanner
 } from "@/api/modules/home";
+import {
+  getAllCategoryData
+} from "@/api/modules/category";
 
 export const fetchHomeData = createAsyncThunk('fetch/homeData', (info, {
   dispatch
 }) => {
+  getAllCategoryData().then(res => {
+    dispatch(changeAllCateDataAction(res.result))
+  })
+
   getHomeNewFreshData().then(res => {
     dispatch(changeNewFreshDataAction(res.result))
   })
@@ -47,6 +54,8 @@ export const fetchBannerData = createAsyncThunk('fetch/bannerData', (info, {
 const homeSlice = createSlice({
   name: 'home',
   initialState: {
+    allCateData: [],
+    isShowBannerControl: true,
     homeBanner: [],
     newFreshData: [],
     hotRecommendData: [],
@@ -58,6 +67,16 @@ const homeSlice = createSlice({
     newSpecialData: []
   },
   reducers: {
+    changeAllCateDataAction(state, {
+      payload
+    }) {
+      state.allCateData = payload
+    },
+    changeIsShowBannerControlAction(state, {
+      payload
+    }) {
+      state.isShowBannerControl = payload
+    },
     changeHomeBannerAction(state, {
       payload
     }) {
@@ -111,6 +130,8 @@ const homeSlice = createSlice({
 })
 
 export const {
+  changeAllCateDataAction,
+  changeIsShowBannerControlAction,
   changeNewFreshDataAction,
   changeHotRecommendDataAction,
   changeHotBrandDataAction,

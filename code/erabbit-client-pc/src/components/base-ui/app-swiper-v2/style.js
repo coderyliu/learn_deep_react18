@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const AppSwiperV2Wrapper = styled.div`
+export const AppSwiperV2Wrapper = styled.div `
   position: relative;
   width: 100%;
   height: 500px;
@@ -17,11 +17,11 @@ export const AppSwiperV2Wrapper = styled.div`
 
     .control-wrap {
       position: absolute;
-      z-index: 99;
+      z-index: ${props=>props.isShowBannerControl?100:97};
       top: 0;
       right: 0;
       bottom: 0;
-      left: 0;
+      left: ${props=>props.isHaveLeftDistance?100:0}px;
 
       display: flex;
       align-items: center;

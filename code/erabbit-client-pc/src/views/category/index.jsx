@@ -31,7 +31,7 @@ const Category = memo(() => {
 
   return (
     <CategoryWrapper isHavePadding={isFixedHeader}>
-      <AppSwiperV2 bannerData={homeBanner}></AppSwiperV2>
+      <AppSwiperV2 bannerData={homeBanner} isHaveLeftDistance={false}></AppSwiperV2>
       <CateContentV1 cateData={firstCateInfo}></CateContentV1>
     </CategoryWrapper>
   );

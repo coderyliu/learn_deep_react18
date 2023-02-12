@@ -5,6 +5,7 @@ import { fetchBannerData, fetchHomeData } from "@/store/modules/home";
 
 // import AppSwiperV1 from "@/components/base-ui/app-swiper-v1";
 import AppSwiperV2 from "@/components/base-ui/app-swiper-v2";
+import HomeCateContent from "./c-cpns/home-cate-content";
 import HomeContentV1 from "./c-cpns/home-content-v1";
 import HomeContentV2 from "./c-cpns/home-content-v2";
 import HomeListV3 from "./c-cpns/home-list-v3";
@@ -13,6 +14,8 @@ import { HomeWrapper } from "./style";
 const Home = memo(() => {
   // ?redux状态相关
   const {
+    allCateData,
+    isShowBannerControl,
     homeBanner,
     newFreshData,
     hotRecommendData,
@@ -25,6 +28,8 @@ const Home = memo(() => {
     isFixedHeader,
   } = useSelector(
     (state) => ({
+      allCateData: state.home.allCateData,
+      isShowBannerControl: state.home.isShowBannerControl,
       homeBanner: state.home.homeBanner,
       newFreshData: state.home.newFreshData,
       hotRecommendData: state.home.hotRecommendData,
@@ -42,14 +47,22 @@ const Home = memo(() => {
   const dispatch = useDispatch();
   // ?请求首页数据
   useEffect(() => {
-    dispatch(fetchBannerData())
+    dispatch(fetchBannerData());
     dispatch(fetchHomeData("请求首页需要的数据源!"));
   }, [dispatch]);
 
   return (
     <HomeWrapper isHavePadding={isFixedHeader}>
       {/* <AppSwiperV1 bannerData={homeBanner}></AppSwiperV1> */}
-      <AppSwiperV2 bannerData={homeBanner}></AppSwiperV2>
+      <AppSwiperV2
+        bannerData={homeBanner}
+        isHaveLeftDistance={true}
+        isShowBannerControl={isShowBannerControl}
+      ></AppSwiperV2>
+      <HomeCateContent
+        cateList={allCateData}
+        isFixedHeader={isFixedHeader}
+      ></HomeCateContent>
       <HomeContentV1
         newFreshData={newFreshData}
         hotRecommendData={hotRecommendData}

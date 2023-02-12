@@ -9,7 +9,7 @@ const AppSwiperV2 = memo((props) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const carouselRef = useRef();
 
-  const { bannerData } = props;
+  const { bannerData, isHaveLeftDistance, isShowBannerControl } = props;
 
   // ?处理轮播图左右按钮点击
   const handleControlClick = (isRight = true) => {
@@ -53,7 +53,11 @@ const AppSwiperV2 = memo((props) => {
   }, []);
 
   return (
-    <AppSwiperV2Wrapper imgsLength={bannerData.length}>
+    <AppSwiperV2Wrapper
+      imgsLength={bannerData.length}
+      isHaveLeftDistance={isHaveLeftDistance}
+      isShowBannerControl={isShowBannerControl}
+    >
       <div className="carousel-wrap">
         <div className="control-wrap">
           <div className="left-arrow">
@@ -110,6 +114,7 @@ const AppSwiperV2 = memo((props) => {
 
 AppSwiperV2.propTypes = {
   bannerData: PropTypes.array,
+  isHaveLeftDistance: PropTypes.bool,
 };
 
 export default AppSwiperV2;
