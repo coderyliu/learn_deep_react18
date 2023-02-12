@@ -15,11 +15,6 @@ import {
 export const fetchHomeData = createAsyncThunk('fetch/homeData', (info, {
   dispatch
 }) => {
-  // console.log(info)
-  getHomeBanner().then(res => {
-    dispatch(changeHomeBannerAction(res.result))
-  })
-
   getHomeNewFreshData().then(res => {
     dispatch(changeNewFreshDataAction(res.result))
   })
@@ -38,6 +33,14 @@ export const fetchHomeData = createAsyncThunk('fetch/homeData', (info, {
 
   getHomeNewSpecial().then(res => {
     dispatch(changeNewSpecialDataAction(res.result))
+  })
+})
+
+export const fetchBannerData = createAsyncThunk('fetch/bannerData', (info, {
+  dispatch
+}) => {
+  getHomeBanner().then(res => {
+    dispatch(changeHomeBannerAction(res.result))
   })
 })
 

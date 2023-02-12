@@ -1,7 +1,7 @@
 import React, { memo, useEffect } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 
-import { fetchHomeData } from "@/store/modules/home";
+import { fetchBannerData, fetchHomeData } from "@/store/modules/home";
 
 // import AppSwiperV1 from "@/components/base-ui/app-swiper-v1";
 import AppSwiperV2 from "@/components/base-ui/app-swiper-v2";
@@ -42,6 +42,7 @@ const Home = memo(() => {
   const dispatch = useDispatch();
   // ?请求首页数据
   useEffect(() => {
+    dispatch(fetchBannerData())
     dispatch(fetchHomeData("请求首页需要的数据源!"));
   }, [dispatch]);
 
