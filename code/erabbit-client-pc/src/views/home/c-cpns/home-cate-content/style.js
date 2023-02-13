@@ -3,9 +3,11 @@ import styled from "styled-components";
 export const HomeCateContentWrapper = styled.div `
   position: absolute;
   z-index:99;
-  top:${props=>props.isHavePadding?181:131}px;
+  top:${props=>props.isHavePadding?180:185}px;
   width:100%;
   height: 500px;
+
+  /* transition:all 0.2s linear; */
   
   .outer-wrap{
     display: flex;

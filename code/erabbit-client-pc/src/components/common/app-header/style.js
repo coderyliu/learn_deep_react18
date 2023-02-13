@@ -10,7 +10,7 @@ export const AppHeaderWrapper = styled.div `
   transition: all 0.4s linear;
 
   position: ${(props) => (props.headerHeight ? "fixed" : "static")};
-  z-index: 100;
+  z-index: 999;
   left: 0;
   top: 0;
   right: 0;
