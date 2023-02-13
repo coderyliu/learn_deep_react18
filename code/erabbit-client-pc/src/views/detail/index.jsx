@@ -26,7 +26,7 @@ const Detail = memo(() => {
 
   return (
     <DetailWrapper>
-      <h2>详情页</h2>
+      <h2>详情页{goodsDetailInfo.id}</h2>
     </DetailWrapper>
   );
 });

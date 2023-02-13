@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import React, { memo } from "react";
 
 import { AboutWrapper } from "./style";
@@ -11,6 +10,5 @@ const About = memo((props) => {
   );
 });
 
-About.propTypes = {};
 
 export default About;

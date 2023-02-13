@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import React, { memo } from "react";
 
 import { VipCenterWrapper } from "./style";
@@ -11,6 +10,5 @@ const VipCenter = memo((props) => {
   );
 });
 
-VipCenter.propTypes = {};
 
 export default VipCenter;

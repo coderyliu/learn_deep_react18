@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import React, { memo } from "react";
 
 import { HelpCenterWrapper } from "./style";
@@ -10,7 +9,5 @@ const HelpCenter = memo((props) => {
     </HelpCenterWrapper>
   );
 });
-
-HelpCenter.propTypes = {};
 
 export default HelpCenter;

@@ -15,7 +15,6 @@ import {
 } from "@/api/modules/log";
 import { changeIsLoginAction } from "@/store/modules/main";
 
-
 import CaptchaTime from "@/components/base-ui/captcha-time";
 import { AppLoginWrapper } from "./style";
 
@@ -34,12 +33,12 @@ const AppLogin = memo(() => {
   }
 
   // todo 发送验证码
-  function handleSendCaptcha() {
+  const handleSendCaptcha = useCallback(() => {
     if (!isChecked) return;
 
     if (
       Number.isNaN(Number(phoneValue)) ||
-      phoneValue == "" ||
+      phoneValue === "" ||
       phoneValue.length !== 11
     ) {
       return;
@@ -50,7 +49,7 @@ const AppLogin = memo(() => {
         }
       });
     }
-  }
+  }, [isChecked,phoneValue]);
 
   // ?点击登录
   const dispatch = useDispatch();
@@ -62,7 +61,7 @@ const AppLogin = memo(() => {
     } else {
       if (
         Number.isNaN(Number(phoneValue)) ||
-        phoneValue == "" ||
+        phoneValue === "" ||
         phoneValue.length !== 11 ||
         Number.isNaN(Number(captchaValue)) ||
         captchaValue.length !== 4

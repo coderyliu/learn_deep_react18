@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import React, { memo } from 'react'
 
 import { ProfileWrapper } from './style'
@@ -11,6 +10,5 @@ const Profile = memo((props) => {
   )
 })
 
-Profile.propTypes = {}
 
 export default Profile
