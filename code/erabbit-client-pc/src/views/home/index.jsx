@@ -51,14 +51,31 @@ const Home = memo(() => {
     dispatch(fetchHomeData("请求首页需要的数据源!"));
   }, [dispatch]);
 
+  // ?处理轮播图item的点击
+  const handleBannerItemClick = (data) => {
+    console.log(data);
+  };
+
   return (
     <HomeWrapper isHavePadding={isFixedHeader}>
       {/* <AppSwiperV1 bannerData={homeBanner}></AppSwiperV1> */}
       <AppSwiperV2
-        bannerData={homeBanner}
+        indicatorList={homeBanner}
         isHaveLeftDistance={true}
         isShowBannerControl={isShowBannerControl}
-      ></AppSwiperV2>
+      >
+        {homeBanner?.map((item) => {
+          return (
+            <div
+              key={item.id}
+              className="banner-list-item"
+              onClick={() => handleBannerItemClick(item)}
+            >
+              <img src={item.imgUrl} alt="" />
+            </div>
+          );
+        })}
+      </AppSwiperV2>
       <HomeCateContent
         cateList={allCateData}
         isFixedHeader={isFixedHeader}

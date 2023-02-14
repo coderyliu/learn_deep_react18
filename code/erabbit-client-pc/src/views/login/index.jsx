@@ -70,7 +70,7 @@ const AppLogin = memo(() => {
         return false;
       } else {
         LogWithAccount(accountValue, passwordValue).then((res) => {
-          if (res.code == 1) {
+          if (res.code === '1') {
             dispatch(changeIsLoginAction(true));
             dispatch(changeUserInfoAction(res?.result));
             localStorage.setItem("token", res?.result?.token);

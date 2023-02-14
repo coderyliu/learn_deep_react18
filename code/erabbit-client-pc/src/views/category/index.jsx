@@ -22,16 +22,36 @@ const Category = memo(() => {
     shallowEqual
   );
 
-  const dispatch = useDispatch();
-
   // ?发送网络请求请求数据
+  const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchCategoryData({ id: params.id }));
   }, [dispatch, params.id]);
 
+  // ?处理轮播图item的点击
+  const handleBannerItemClick = (data) => {
+    console.log(data);
+  };
+
   return (
     <CategoryWrapper isHavePadding={isFixedHeader}>
-      <AppSwiperV2 bannerData={homeBanner} isHaveLeftDistance={false}></AppSwiperV2>
+      <AppSwiperV2
+        indicatorList={homeBanner}
+        isHaveLeftDistance={false}
+        isShowBannerControl={true}
+      >
+        {homeBanner?.map((item) => {
+          return (
+            <div
+              key={item.id}
+              className="banner-list-item"
+              onClick={() => handleBannerItemClick(item)}
+            >
+              <img src={item.imgUrl} alt="" />
+            </div>
+          );
+        })}
+      </AppSwiperV2>
       <CateContentV1 cateData={firstCateInfo}></CateContentV1>
     </CategoryWrapper>
   );

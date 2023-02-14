@@ -45,7 +45,7 @@ const App = memo(() => {
       dispatch(changeIsLoginAction(true));
       dispatch(changeUserInfoAction(userInfo));
     }
-  }, [dispatch, localStorage]);
+  }, [dispatch]);
 
   return (
     <AppWrapper>

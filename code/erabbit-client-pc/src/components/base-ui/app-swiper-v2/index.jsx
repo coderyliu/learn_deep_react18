@@ -9,7 +9,14 @@ const AppSwiperV2 = memo((props) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const carouselRef = useRef();
 
-  const { bannerData, isHaveLeftDistance, isShowBannerControl } = props;
+  const {
+    indicatorList,
+    isHaveLeftDistance,
+    isShowBannerControl,
+    swiperHeight = 500,
+    indicatorActiveColor = "fff",
+    isHiddenControl = true,
+  } = props;
 
   // ?处理轮播图左右按钮点击
   const handleControlClick = (isRight = true) => {
@@ -19,7 +26,7 @@ const AppSwiperV2 = memo((props) => {
       let index = currentIndex;
       index++;
 
-      if (index > bannerData.length - 1) {
+      if (index > indicatorList.length - 1) {
         index = 0;
       }
 
@@ -29,16 +36,11 @@ const AppSwiperV2 = memo((props) => {
       index--;
 
       if (index < 0) {
-        index = bannerData.length - 1;
+        index = indicatorList.length - 1;
       }
 
       setCurrentIndex(index);
     }
-  };
-
-  // ?处理轮播图item的点击
-  const handleBannerItemClick = (data) => {
-    console.log(data);
   };
 
   // ?处理指示器点击
@@ -54,9 +56,11 @@ const AppSwiperV2 = memo((props) => {
 
   return (
     <AppSwiperV2Wrapper
-      imgsLength={bannerData.length}
       isHaveLeftDistance={isHaveLeftDistance}
       isShowBannerControl={isShowBannerControl}
+      swiperHeight={swiperHeight}
+      indicatorActiveColor={indicatorActiveColor}
+      isHiddenControl={isHiddenControl}
     >
       <div className="carousel-wrap">
         <div className="control-wrap">
@@ -80,24 +84,14 @@ const AppSwiperV2 = memo((props) => {
           afterChange={onCarouselChange}
           ref={carouselRef}
         >
-          {bannerData?.map((item) => {
-            return (
-              <div
-                key={item.id}
-                className="banner-list-item"
-                onClick={() => handleBannerItemClick(item)}
-              >
-                <img src={item.imgUrl} alt="" />
-              </div>
-            );
-          })}
+          {props.children}
         </Carousel>
       </div>
       <ul className="indicator-inner">
-        {bannerData?.map((item, index) => {
+        {indicatorList?.map((item, index) => {
           return (
             <li
-              key={item.id}
+              key={index}
               className={
                 currentIndex === index
                   ? "indicator-item active"
@@ -113,8 +107,11 @@ const AppSwiperV2 = memo((props) => {
 });
 
 AppSwiperV2.propTypes = {
-  bannerData: PropTypes.array,
+  indicatorList: PropTypes.array,
   isHaveLeftDistance: PropTypes.bool,
+  swiperHeight: PropTypes.number,
+  indicatorActiveColor: PropTypes.string,
+  isHiddenControl: PropTypes.bool,
 };
 
 export default AppSwiperV2;

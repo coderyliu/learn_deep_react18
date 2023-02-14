@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom";
 
 import { fetchGoodsDetailData } from "@/store/modules/detail";
 
+import SameGoodsRecommend from "./c-cpns/same-goods-recommend";
+import GoodsInfoDesc from "./c-cpns/goods-info-desc";
 import { DetailWrapper } from "./style";
 
 const Detail = memo(() => {
@@ -11,9 +13,19 @@ const Detail = memo(() => {
   const params = useParams();
 
   // ?redux相关
-  const { goodsDetailInfo } = useSelector(
+  const {
+    goodsDetailInfo,
+    isFixedHeader,
+    sameGoodsRecommend,
+    hotDayRankRecommend,
+    hotWeekRankRecommend,
+  } = useSelector(
     (state) => ({
+      isFixedHeader: state.main.isFixedHeader,
       goodsDetailInfo: state.detail.goodsDetailInfo,
+      sameGoodsRecommend: state.detail.sameGoodsRecommend,
+      hotDayRankRecommend: state.detail.hotDayRankRecommend,
+      hotWeekRankRecommend: state.detail.hotWeekRankRecommend,
     }),
     shallowEqual
   );
@@ -25,8 +37,17 @@ const Detail = memo(() => {
   }, [dispatch, params.id]);
 
   return (
-    <DetailWrapper>
-      <h2>详情页{goodsDetailInfo.id}</h2>
+    <DetailWrapper isHavePadding={isFixedHeader}>
+      <div className="content-wrap">
+        <SameGoodsRecommend
+          recommendList={sameGoodsRecommend}
+        ></SameGoodsRecommend>
+        <GoodsInfoDesc
+          detailInfo={goodsDetailInfo?.details}
+          hotDayRankRecommend={hotDayRankRecommend}
+          hotWeekRankRecommend={hotWeekRankRecommend}
+        ></GoodsInfoDesc>
+      </div>
     </DetailWrapper>
   );
 });
