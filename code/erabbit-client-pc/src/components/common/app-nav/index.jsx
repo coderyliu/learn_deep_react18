@@ -2,9 +2,12 @@ import PropTypes from "prop-types";
 import React, { memo } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { MobileOutlined } from "@ant-design/icons";
+import { MobileOutlined, UserOutlined } from "@ant-design/icons";
 
-import { changeIsLoginAction } from "@/store/modules/main";
+import {
+  changeIsLoginAction,
+  changeUserInfoAction,
+} from "@/store/modules/main";
 import { appNavList } from "@/common";
 
 import { AppNavWrapper } from "./style";
@@ -15,7 +18,7 @@ const AppNav = memo((props) => {
 
   // ?处理nav-item点击
   const navigate = useNavigate();
-  const dispatch=useDispatch()
+  const dispatch = useDispatch();
   function handleNavItemClick(item) {
     switch (item.title) {
       case "请先登录":
@@ -28,10 +31,15 @@ const AppNav = memo((props) => {
         navigate("/mine");
         break;
       case "退出登录":
-        dispatch(changeIsLoginAction(false))
-        logoutApp().then(res=>{
-        })
-        navigate("/home");
+        logoutApp().then((res) => {
+          if (res.code === 200) {
+            dispatch(changeIsLoginAction(false));
+            dispatch(changeUserInfoAction({}));
+            localStorage.removeItem("token");
+            localStorage.removeItem("userInfo");
+            navigate("/home");
+          }
+        });
         break;
       default:
         navigate(item.path);
@@ -64,7 +72,9 @@ const AppNav = memo((props) => {
             className="item"
             onClick={() => handleNavItemClick({ title: "个人中心" })}
           >
-            {userInfo.name}
+            <UserOutlined />
+            &nbsp;
+            {userInfo.name||userInfo.account}
           </li>
         )}
         {isLogin && (

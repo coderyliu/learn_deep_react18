@@ -26,6 +26,10 @@ export const AppNavWrapper=styled.div`
       color:#cdcdcd;
       font-size:14px;
 
+      &:first-of-type{
+        line-height:16px;
+      }
+
       &:last-of-type{
         border-right:none;
       }

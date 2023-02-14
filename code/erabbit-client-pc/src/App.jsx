@@ -10,6 +10,10 @@ import AppNav from "./components/common/app-nav";
 import AppHeader from "./components/common/app-header";
 import AppFooter from "./components/common/app-footer";
 import { AppWrapper } from "./style";
+import {
+  changeIsLoginAction,
+  changeUserInfoAction,
+} from "./store/modules/main";
 
 const App = memo(() => {
   const location = useLocation();
@@ -29,9 +33,19 @@ const App = memo(() => {
     dispatch(fetchBannerData());
   }, [dispatch]);
 
-  // useEffect(() => {
-  //   dispatch(changeIsLoginAction(isLogin));
-  // }, [dispatch, isLogin]);
+  // ?token状态持久化
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+
+    if (!token) {
+      dispatch(changeIsLoginAction(false));
+      dispatch(changeUserInfoAction({}));
+    } else {
+      dispatch(changeIsLoginAction(true));
+      dispatch(changeUserInfoAction(userInfo));
+    }
+  }, [dispatch, localStorage]);
 
   return (
     <AppWrapper>

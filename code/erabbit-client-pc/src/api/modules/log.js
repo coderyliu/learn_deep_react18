@@ -1,6 +1,19 @@
+import lyFetch from "..";
 import {
   logFetch
 } from "../config";
+
+// 账号登录请求
+export const LogWithAccount = (account, password) => {
+  return lyFetch.request({
+    url: '/login',
+    method: 'post',
+    data: {
+      account,
+      password
+    }
+  })
+}
 
 // 手机号登录请求
 export const logWithPhoneCate = (phone, cate) => {
@@ -8,7 +21,7 @@ export const logWithPhoneCate = (phone, cate) => {
     url: '/login/cellphone',
     params: {
       phone,
-      captcha: cate
+      password: 'ly20010421'
     }
   })
 }

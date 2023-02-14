@@ -21,8 +21,12 @@ const CaptchaTime = memo((props) => {
   }, [time]);
 
   function getCode() {
-    handleSendCaptcha()
-    setTime(60);
+    const isSentCaptcha = handleSendCaptcha();
+
+    console.log(isSentCaptcha);
+    if (isSentCaptcha) {
+      setTime(60);
+    }
   }
 
   return (

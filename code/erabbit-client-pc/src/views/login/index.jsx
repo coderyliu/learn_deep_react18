@@ -9,11 +9,15 @@ import {
 } from "@ant-design/icons";
 
 import {
+  LogWithAccount,
   getLoginCaptcha,
-  logWithPhoneCate,
-  verifyLoginCaptcha,
+  // logWithPhoneCate,
+  // verifyLoginCaptcha,
 } from "@/api/modules/log";
-import { changeIsLoginAction } from "@/store/modules/main";
+import {
+  changeIsLoginAction,
+  changeUserInfoAction,
+} from "@/store/modules/main";
 
 import CaptchaTime from "@/components/base-ui/captcha-time";
 import { AppLoginWrapper } from "./style";
@@ -41,23 +45,42 @@ const AppLogin = memo(() => {
       phoneValue === "" ||
       phoneValue.length !== 11
     ) {
-      return;
+      return false;
     } else {
       getLoginCaptcha(phoneValue).then((res) => {
         if (res.code === 200) {
           console.log("验证码发送成功!");
         }
       });
+      return true;
     }
-  }, [isChecked,phoneValue]);
+  }, [isChecked, phoneValue]);
 
   // ?点击登录
   const dispatch = useDispatch();
   function handleLoginClick() {
     if (!isChecked) return;
 
-    if (currentLogWay === "账号登录") {
-      //
+    if (currentLogWay === "账户登录") {
+      if (
+        accountValue === "" ||
+        accountValue.length >= 20 ||
+        String(passwordValue).length < 4
+      ) {
+        return false;
+      } else {
+        LogWithAccount(accountValue, passwordValue).then((res) => {
+          if (res.code == 1) {
+            dispatch(changeIsLoginAction(true));
+            dispatch(changeUserInfoAction(res?.result));
+            localStorage.setItem("token", res?.result?.token);
+            localStorage.setItem("userInfo", JSON.stringify(res?.result));
+            navigate("/home");
+          } else {
+            console.log("登录失败");
+          }
+        });
+      }
     } else {
       if (
         Number.isNaN(Number(phoneValue)) ||
@@ -68,18 +91,24 @@ const AppLogin = memo(() => {
       ) {
         return;
       } else {
-        verifyLoginCaptcha(phoneValue, captchaValue).then((res) => {
-          if (res.code === 200) {
-            logWithPhoneCate(phoneValue, captchaValue).then(
-              (res) => {
-                dispatch(changeIsLoginAction(true));
-              },
-              (err) => {
-                console.log(err);
-              }
-            );
-          }
-        });
+        // ?登录请求暂时不能用
+        // verifyLoginCaptcha(phoneValue, captchaValue).then((res) => {
+        //   if (res.code === 200) {
+        //     logWithPhoneCate(phoneValue, captchaValue).then(
+        //       (res) => {
+        //         // dispatch(changeIsLoginAction(true));
+        //       },
+        //       (err) => {
+        //         console.log(err);
+        //       }
+        //     );
+        //   }
+        // });
+
+        dispatch(changeIsLoginAction(true));
+        dispatch(changeUserInfoAction({ name: "coderyliu" }));
+        localStorage.setItem("token", "coderyliu_ly");
+        navigate("/home");
       }
     }
   }
