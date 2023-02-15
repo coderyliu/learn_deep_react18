@@ -62,6 +62,7 @@ const SubFilter = memo(() => {
       })
     );
   }, [
+    dispatch,
     params.id,
     page,
     pageSize,
