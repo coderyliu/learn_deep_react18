@@ -8,6 +8,7 @@ export const CateListItemV1Wrapper = styled.li `
 
   padding: 20px 30px;
   margin-bottom:10px;
+  margin-left:${props=>props.marginLeft}px;
 
   box-sizing: content-box;
   transition: all 0.4s ease;

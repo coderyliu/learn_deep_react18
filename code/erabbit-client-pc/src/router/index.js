@@ -6,6 +6,7 @@ const Home=React.lazy(()=>import('@/views/home'))
 
 // 分类页相关组件
 const Category=React.lazy(()=>import('@/views/category'))
+const SubFilter=React.lazy(()=>import('@/views/sub-filter'))
 
 // 详情页相关组件
 const Detail=React.lazy(()=>import('@/views/detail'))
@@ -33,6 +34,10 @@ const routes=[
   {
     path:'/category/:id',
     element:<Category></Category>
+  },
+  {
+    path:'/category/sub/:id',
+    element:<SubFilter></SubFilter>
   },
   {
     path:'/detail/:id',

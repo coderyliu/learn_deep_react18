@@ -2,6 +2,7 @@ import axios from 'axios'
 import {
   BASEURL,
   LOG_BASEURL,
+  SUB_BASEURL,
   TIMEOUT
 } from './common'
 class lyFetch {
@@ -43,7 +44,8 @@ class lyFetch {
   }
 }
 
-const fetch=new lyFetch(BASEURL,TIMEOUT)
-export const logFetch=new lyFetch(LOG_BASEURL,TIMEOUT)
+const fetch = new lyFetch(BASEURL, TIMEOUT)
+export const logFetch = new lyFetch(LOG_BASEURL, TIMEOUT)
+export const subFetch = new lyFetch(SUB_BASEURL, TIMEOUT)
 
 export default fetch

@@ -14,7 +14,8 @@ const CateListItemV1 = memo((props) => {
     imgWidth = 160,
     imgHeight = 160,
     nameColor = 333,
-    bgColor
+    bgColor,
+    marginLeft=0
   } = props;
 
   // ?处理商品item点击
@@ -32,6 +33,7 @@ const CateListItemV1 = memo((props) => {
       imgHeight={imgHeight}
       nameColor={nameColor}
       bgColor={bgColor}
+      marginLeft={marginLeft}
     >
       <div className="item-wrap" onClick={() => handleGoodsItemClick()}>
         <div className="top-cover">
