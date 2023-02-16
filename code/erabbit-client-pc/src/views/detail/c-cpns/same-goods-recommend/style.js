@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const SameGoodsRecommendWrapper = styled.div`
   width:100%;
   height: 460px;
-  margin-top:30px;
+  margin-top:10px;
   margin-bottom:30px;
 
   > .recommend-wrap {

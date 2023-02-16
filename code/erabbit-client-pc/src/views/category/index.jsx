@@ -4,6 +4,7 @@ import { shallowEqual, useDispatch, useSelector } from "react-redux";
 
 import { fetchCategoryData } from "@/store/modules/category";
 
+import AppBread from "@/components/common/app-bread";
 import AppSwiperV2 from "@/components/base-ui/app-swiper-v2";
 import CateContentV1 from "./c-cpns/cate-content-v1";
 import { CategoryWrapper } from "./style";
@@ -35,6 +36,7 @@ const Category = memo(() => {
 
   return (
     <CategoryWrapper isHavePadding={isFixedHeader}>
+      <AppBread></AppBread>
       <AppSwiperV2
         indicatorList={homeBanner}
         isHaveLeftDistance={false}

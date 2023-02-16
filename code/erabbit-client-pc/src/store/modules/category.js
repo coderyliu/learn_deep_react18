@@ -24,6 +24,8 @@ export const fetchFilterCategoryData = createAsyncThunk('fetch/subData', (info, 
 }) => {
   getSecondCategoryData(info.id).then(res => {
     dispatch(changeSecondCateInfoAction(res.result))
+  }).catch(err=>{
+    dispatch(changeSecondCateInfoAction({}))
   })
 })
 

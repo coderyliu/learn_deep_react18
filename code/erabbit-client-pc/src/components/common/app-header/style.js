@@ -15,6 +15,21 @@ export const AppHeaderWrapper = styled.div `
   top: 0;
   right: 0;
 
+  /* 这种方案不行，会有覆盖图层 */
+  /* > .covered{
+    position: fixed;
+    z-index:598;
+    top:${(props) => (props.headerHeight ? 20 : 102)}px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:1240px;
+    height:180px;
+
+    background-color:transparent ;
+  } */
+
   .app-header-wrap {
     display: flex;
     align-items: center;

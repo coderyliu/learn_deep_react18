@@ -7,6 +7,7 @@ import {
   fetchSubGoodsList,
 } from "@/store/modules/category";
 
+import AppBread from "@/components/common/app-bread";
 import FilterContainer from "./c-cpns/filter-container";
 import FilterGoodsContainer from "./c-cpns/filter-goods-container";
 import { SubFilterWrapper } from "./style";
@@ -76,6 +77,7 @@ const SubFilter = memo(() => {
   return (
     <SubFilterWrapper isHavePadding={isFixedHeader}>
       <div className="sub-container">
+        <AppBread></AppBread>
         <FilterContainer
           saleProperties={secondCateInfo?.saleProperties}
           brands={secondCateInfo?.brands}

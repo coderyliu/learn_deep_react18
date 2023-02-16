@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 
 import { fetchGoodsDetailData } from "@/store/modules/detail";
 
+import AppBread from "@/components/common/app-bread";
 import SameGoodsRecommend from "./c-cpns/same-goods-recommend";
 import GoodsInfoDesc from "./c-cpns/goods-info-desc";
 import { DetailWrapper } from "./style";
@@ -39,6 +40,7 @@ const Detail = memo(() => {
   return (
     <DetailWrapper isHavePadding={isFixedHeader}>
       <div className="content-wrap">
+        <AppBread></AppBread>
         <SameGoodsRecommend
           recommendList={sameGoodsRecommend}
         ></SameGoodsRecommend>

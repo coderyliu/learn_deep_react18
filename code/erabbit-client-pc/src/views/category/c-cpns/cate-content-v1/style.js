@@ -4,7 +4,7 @@ export const CateContentV1Wrapper = styled.div `
   width:100%;
   padding:20px 0;
 
-  background-color:#f5f5f5 ;
+  background-color:#e7e7e7 ;
 
   .content-outer{
     width:100%;

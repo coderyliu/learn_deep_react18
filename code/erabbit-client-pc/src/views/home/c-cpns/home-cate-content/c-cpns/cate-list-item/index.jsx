@@ -1,6 +1,9 @@
 import PropTypes from "prop-types";
 import React, { memo } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
+import { changeCurrentGoodsAction } from "@/store/modules/main";
 
 import { CateListItemWrapper } from "./style";
 
@@ -9,7 +12,10 @@ const CateListItem = memo((props) => {
 
   // ?商品item点击
   const navigate = useNavigate();
+  const dispatch=useDispatch()
   function handleGoodsItemClick() {
+    localStorage.setItem('currentGoods',JSON.stringify(dataInfo))
+    dispatch(changeCurrentGoodsAction(dataInfo))
     navigate(`/detail/${dataInfo.id}`);
   }
 

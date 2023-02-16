@@ -7,7 +7,10 @@ const mainSlice = createSlice({
   initialState: {
     isFixedHeader: false,
     isLogin: true,
-    userInfo: {}
+    userInfo: {},
+    currentCate: {},
+    currentSubCate: {},
+    currentGoods: {}
   },
   reducers: {
     changeIsFixedHeaderAction(state, {
@@ -24,6 +27,21 @@ const mainSlice = createSlice({
       payload
     }) {
       state.userInfo = payload
+    },
+    changeCurrentCateAction(state, {
+      payload
+    }) {
+      state.currentCate = payload
+    },
+    changeCurrentSubCateAction(state, {
+      payload
+    }) {
+      state.currentSubCate = payload
+    },
+    changeCurrentGoodsAction(state, {
+      payload
+    }) {
+      state.currentGoods = payload
     }
   }
 })
@@ -31,7 +49,10 @@ const mainSlice = createSlice({
 export const {
   changeIsFixedHeaderAction,
   changeIsLoginAction,
-  changeUserInfoAction
+  changeUserInfoAction,
+  changeCurrentCateAction,
+  changeCurrentSubCateAction,
+  changeCurrentGoodsAction
 } = mainSlice.actions
 
 export default mainSlice.reducer

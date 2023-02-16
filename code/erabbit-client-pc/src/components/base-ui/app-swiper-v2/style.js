@@ -7,7 +7,7 @@ export const AppSwiperV2Wrapper = styled.div `
 
   box-sizing: content-box;
 
-  background-color: #f5f5f5;
+  background-color: #e7e7e7;
 
   .carousel-wrap {
     position: relative;

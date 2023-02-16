@@ -19,6 +19,7 @@ export const fetchHomeData = createAsyncThunk('fetch/homeData', (info, {
   dispatch
 }) => {
   getAllCategoryData().then(res => {
+    localStorage.setItem('allCateData',JSON.stringify(res.result))
     dispatch(changeAllCateDataAction(res.result))
   })
 

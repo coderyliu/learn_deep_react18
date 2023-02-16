@@ -1,6 +1,9 @@
 import PropTypes from "prop-types";
 import React, { memo } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
+import { changeCurrentGoodsAction } from "@/store/modules/main";
 
 import { CateListItemV1Wrapper } from "./style";
 
@@ -8,19 +11,22 @@ const CateListItemV1 = memo((props) => {
   const {
     dataInfo,
     isShowDesc = true,
-    isTriggerHover=true,
+    isTriggerHover = true,
     wrapWidth = 160,
     wrapHeight = 260,
     imgWidth = 160,
     imgHeight = 160,
     nameColor = 333,
     bgColor,
-    marginLeft=0
+    marginLeft = 0,
   } = props;
 
   // ?处理商品item点击
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   function handleGoodsItemClick() {
+    dispatch(changeCurrentGoodsAction(dataInfo));
+    localStorage.setItem('currentGoods',JSON.stringify(dataInfo))
     navigate(`/detail/${dataInfo.id}`);
   }
 
@@ -52,7 +58,7 @@ const CateListItemV1 = memo((props) => {
 CateListItemV1.propTypes = {
   dataInfo: PropTypes.object,
   isShowDesc: PropTypes.bool,
-  isTriggerHover:PropTypes.bool,
+  isTriggerHover: PropTypes.bool,
   wrapWidth: PropTypes.number,
   wrapHeight: PropTypes.number,
   imgWidth: PropTypes.number,

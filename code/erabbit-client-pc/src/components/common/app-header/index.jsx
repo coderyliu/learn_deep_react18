@@ -1,30 +1,36 @@
 import React, { memo, useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { SearchOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 
 import { useScrollPosition } from "@/hooks";
 import { AppHeaderList } from "@/common";
+import { changeCurrentCateAction } from "@/store/modules/main";
 
 import { AppHeaderWrapper } from "./style";
-import { shallowEqual, useSelector } from "react-redux";
+import AppHeaderModal from "../app-header-modal";
 
 const AppHeader = memo(() => {
   // state状态
   const [inputValue, setInputValue] = useState("");
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isShowModal, setIsShowModal] = useState(false);
+  const [currentCateData, setCurrentCateData] = useState([]);
 
   const navigate = useNavigate();
   const location = useLocation();
 
   // ?监听scroll滚动
   useScrollPosition();
-  
-  const { isFixedHeader } = useSelector(
+
+  const { isFixedHeader, allCateData } = useSelector(
     (state) => ({
       isFixedHeader: state.main.isFixedHeader,
+      allCateData: state.home.allCateData,
     }),
     shallowEqual
   );
+  const dispatch = useDispatch();
 
   // ?处理头部item点击
   function handleItemClick(data, index) {
@@ -35,6 +41,8 @@ const AppHeader = memo(() => {
       return;
     }
 
+    dispatch(changeCurrentCateAction(data));
+    localStorage.setItem("currentCate", JSON.stringify(data));
     navigate(`/category/${data.id}`);
   }
 
@@ -51,6 +59,19 @@ const AppHeader = memo(() => {
   // ?点击搜索按钮搜索
   function handleSearchClick() {
     console.log(inputValue);
+  }
+
+  // todo Header头部弹出框
+  function handleItemEnter(item) {
+    setIsShowModal(true);
+
+    const cateData = allCateData.filter((v) => v.id == item.id);
+    setCurrentCateData(cateData[0]);
+  }
+
+  // todo 隐藏状态栏
+  function handleHiddenModal(){
+    setIsShowModal(false)
   }
 
   // ?处理刷新改变index
@@ -105,6 +126,8 @@ const AppHeader = memo(() => {
                 <li
                   key={item.id}
                   onClick={() => handleItemClick(item, index)}
+                  onMouseEnter={() => handleItemEnter(item)}
+                  onMouseLeave={() => handleHiddenModal(item)}
                   className={activeIndex === index ? "item active" : "item"}
                 >
                   {item.title}
@@ -142,6 +165,16 @@ const AppHeader = memo(() => {
           </ul>
         )}
       </div>
+      {isShowModal && (
+        <AppHeaderModal
+          isShowTitle={false}
+          totalCateList={currentCateData?.children}
+          isFixedLayout={true}
+          isFixedHeader={isFixedHeader}
+        ></AppHeaderModal>
+      )}
+      {/* 方案淘汰：图层覆盖问题 */}
+      {/* {isShowModal && <div className="covered" onMouseLeave={()=>handleHiddenModal()}></div>} */}
     </AppHeaderWrapper>
   );
 });

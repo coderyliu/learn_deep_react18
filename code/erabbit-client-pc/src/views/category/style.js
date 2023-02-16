@@ -4,6 +4,8 @@ export const CategoryWrapper=styled.div`
   width:100%;
   padding-top:${props=>props.isHavePadding?126:0}px;
 
+  background-color:#e7e7e7;
+
   /* transition:all 0.2s linear */
 
   .banner-list-item {
