@@ -14,7 +14,7 @@ const HomeListItemV1 = memo((props) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   function handleGoodsItemClick() {
-    localStorage.setItem("CurrentGoods", JSON.stringify(dataInfo));
+    localStorage.setItem("currentGoods", JSON.stringify(dataInfo));
     dispatch(changeCurrentGoodsAction(dataInfo));
     navigate(`/detail/${dataInfo.id}`);
   }

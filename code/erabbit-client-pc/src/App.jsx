@@ -5,6 +5,7 @@ import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import routes from "./router";
 import { changeAllCateDataAction, fetchBannerData } from "./store/modules/home";
 // import { changeIsLoginAction } from "./store/modules/main";
+import { useScrollTo } from "./hooks";
 import {
   changeCurrentCateAction,
   changeCurrentGoodsAction,
@@ -19,6 +20,7 @@ import AppFooter from "./components/common/app-footer";
 import { AppWrapper } from "./style";
 
 const App = memo(() => {
+  useScrollTo()
   const location = useLocation();
 
   // ?判断登录状态

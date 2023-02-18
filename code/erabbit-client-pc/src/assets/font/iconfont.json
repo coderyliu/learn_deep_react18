@@ -1,0 +1,16 @@
+{
+  "id": "3902906",
+  "name": "erabbit",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "11494514",
+      "name": "brand",
+      "font_class": "brand",
+      "unicode": "e79d",
+      "unicode_decimal": 59293
+    }
+  ]
+}

@@ -11,6 +11,9 @@ const SubFilter=React.lazy(()=>import('@/views/sub-filter'))
 // 详情页相关组件
 const Detail=React.lazy(()=>import('@/views/detail'))
 
+// 购物车组件
+const Cart=React.lazy(()=>import('@/views/cart'))
+
 // 个人中心相关组件
 const Mine=React.lazy(()=>import('@/views/mine'))
 const Profile=React.lazy(()=>import('@/views/mine/c-cpns/profile'))
@@ -76,6 +79,10 @@ const routes=[
   {
     path:'/login',
     element:<AppLogin></AppLogin>
+  },
+  {
+    path:'/cart',
+    element:<Cart></Cart>
   }
 ]
 

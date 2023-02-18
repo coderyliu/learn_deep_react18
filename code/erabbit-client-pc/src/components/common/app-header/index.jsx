@@ -70,7 +70,7 @@ const AppHeader = memo(() => {
   }
 
   // todo 隐藏状态栏
-  function handleHiddenModal(){
+  function handleHiddenModal() {
     setIsShowModal(false)
   }
 
