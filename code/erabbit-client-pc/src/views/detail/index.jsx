@@ -6,7 +6,7 @@ import { fetchGoodsDetailData } from "@/store/modules/detail";
 
 import AppBread from "@/components/common/app-bread";
 import GoodsDetailInfo from "./c-cpns/goods-detail-info";
-import SameGoodsRecommend from "./c-cpns/same-goods-recommend";
+import SameGoodsRecommend from "@/components/common/same-goods-recommend";
 import GoodsInfoDesc from "./c-cpns/goods-info-desc";
 import { DetailWrapper } from "./style";
 
@@ -42,10 +42,12 @@ const Detail = memo(() => {
     <DetailWrapper isHavePadding={isFixedHeader}>
       <div className="content-wrap">
         <AppBread></AppBread>
-        <GoodsDetailInfo></GoodsDetailInfo>
-        <SameGoodsRecommend
-          recommendList={sameGoodsRecommend}
-        ></SameGoodsRecommend>
+        {goodsDetailInfo?.id && <GoodsDetailInfo></GoodsDetailInfo>}
+        {sameGoodsRecommend.length && (
+          <SameGoodsRecommend
+            recommendList={sameGoodsRecommend}
+          ></SameGoodsRecommend>
+        )}
         <GoodsInfoDesc
           detailInfo={goodsDetailInfo?.details}
           hotDayRankRecommend={hotDayRankRecommend}

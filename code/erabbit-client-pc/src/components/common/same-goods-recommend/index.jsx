@@ -7,14 +7,14 @@ import CateListItemV1 from "@/components/common/cate-list-item-v1";
 import { SameGoodsRecommendWrapper } from "./style";
 
 const SameGoodsRecommend = memo((props) => {
-  const { recommendList } = props;
+  const { recommendList, title = "同类商品推荐" } = props;
 
   return (
     <SameGoodsRecommendWrapper>
       <div className="recommend-wrap">
         <div className="top-wrap">
           <AppstoreOutlined />
-          <span className="sign-title">同类商品推荐</span>
+          <span className="sign-title">{title}</span>
         </div>
         <AppSwiperV2
           indicatorList={recommendList}
@@ -52,6 +52,7 @@ const SameGoodsRecommend = memo((props) => {
 
 SameGoodsRecommend.propTypes = {
   recommendList: PropTypes.array,
+  title: PropTypes.string,
 };
 
 export default SameGoodsRecommend;

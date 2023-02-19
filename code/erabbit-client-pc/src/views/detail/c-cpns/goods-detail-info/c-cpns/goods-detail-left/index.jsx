@@ -24,7 +24,7 @@ const GoodsDetailLeft = memo(() => {
     if (!Array.isArray(goodsDetailInfo?.mainPictures)) return;
 
     setCurrentPicture(goodsDetailInfo?.mainPictures[0]);
-  }, []);
+  }, [goodsDetailInfo?.mainPictures]);
 
   return (
     <GoodsDetailLeftWrapper>

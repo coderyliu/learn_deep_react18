@@ -43,19 +43,26 @@ const persistConfig = {
 const cartSlice = createSlice({
   name: 'cart',
   initialState: {
-    cartList: []
+    cartList: [],
+    guessFavorite: []
   },
   reducers: {
     changeCartListAction(state, {
       payload
     }) {
       state.cartList = payload
+    },
+    changeGuessFavoriteAction(state, {
+      payload
+    }) {
+      state.guessFavorite = payload
     }
   }
 })
 
 export const {
-  changeCartListAction
+  changeCartListAction,
+  changeGuessFavoriteAction
 } = cartSlice.actions
 
 const persistedReducer = persistReducer(persistConfig, cartSlice.reducer);

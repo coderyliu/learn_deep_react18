@@ -47,12 +47,17 @@ const AppBread = memo(() => {
         >
           首页
         </span>
-        <span
-          className="bread-item"
-          onClick={() => handleBreadItemClick("second")}
-        >
-          &nbsp;&nbsp;&gt; {currentCate?.title}
-        </span>
+        {location.pathname.includes('cart') && (
+          <span className="bread-item">&nbsp;&nbsp;&gt; 购物车</span>
+        )}
+        {!location.pathname.includes("cart") && (
+          <span
+            className="bread-item"
+            onClick={() => handleBreadItemClick("second")}
+          >
+            &nbsp;&nbsp;&gt; {currentCate?.title}
+          </span>
+        )}
         {(location.pathname.includes("sub") ||
           location.pathname.includes("detail")) && (
           <span

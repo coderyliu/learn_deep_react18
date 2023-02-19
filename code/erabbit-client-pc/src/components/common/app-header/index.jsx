@@ -74,6 +74,11 @@ const AppHeader = memo(() => {
     setIsShowModal(false)
   }
 
+  // todo 跳转到购物车页面
+  function navigateToCart(){
+    navigate('/cart')
+  }
+
   // ?处理刷新改变index
   useEffect(() => {
     const pathname = location.pathname;
@@ -151,8 +156,7 @@ const AppHeader = memo(() => {
                 }}
               />
             </div>
-
-            <div className="right">
+            <div className="right" onClick={()=>navigateToCart()}>
               <ShoppingCartOutlined />
             </div>
           </div>

@@ -7,6 +7,7 @@ import {
   LockOutlined,
   UserOutlined,
 } from "@ant-design/icons";
+import { message } from "antd";
 
 import {
   LogWithAccount,
@@ -31,6 +32,8 @@ const AppLogin = memo(() => {
   const [captchaValue, setCaptchaValue] = useState("");
   const [isChecked, setIsChecked] = useState(false);
 
+  const [messageApi, contextHolder] = message.useMessage();
+
   // ?切换登录方式
   function toggleLogWay(way) {
     setCurrentLogWay(way);
@@ -49,7 +52,10 @@ const AppLogin = memo(() => {
     } else {
       getLoginCaptcha(phoneValue).then((res) => {
         if (res.code === 200) {
-          console.log("验证码发送成功!");
+          messageApi.open({
+            type: "success",
+            content: "验证码发送成功",
+          });
         }
       });
       return true;
@@ -67,10 +73,18 @@ const AppLogin = memo(() => {
         accountValue.length >= 20 ||
         String(passwordValue).length < 4
       ) {
-        return false;
+        return messageApi.open({
+          type: "error",
+          content: "请输入正确的账号密码",
+        });
       } else {
         LogWithAccount(accountValue, passwordValue).then((res) => {
-          if (res.code === '1') {
+          if (res.code === "1") {
+            messageApi.open({
+              type: "success",
+              content: "登录成功",
+            });
+
             dispatch(changeIsLoginAction(true));
             dispatch(changeUserInfoAction(res?.result));
             localStorage.setItem("token", res?.result?.token);
@@ -89,7 +103,10 @@ const AppLogin = memo(() => {
         Number.isNaN(Number(captchaValue)) ||
         captchaValue.length !== 4
       ) {
-        return;
+        return messageApi.open({
+          type: "error",
+          content: "请输入正确的手机号验证码",
+        });
       } else {
         // ?登录请求暂时不能用
         // verifyLoginCaptcha(phoneValue, captchaValue).then((res) => {
@@ -104,6 +121,10 @@ const AppLogin = memo(() => {
         //     );
         //   }
         // });
+        messageApi.open({
+          type: "success",
+          content: "登录成功",
+        });
 
         dispatch(changeIsLoginAction(true));
         dispatch(changeUserInfoAction({ name: "coderyliu" }));
@@ -144,6 +165,7 @@ const AppLogin = memo(() => {
 
   return (
     <AppLoginWrapper>
+      {contextHolder}
       <div className="top-nav">
         <div className="nav-outer">
           <h1 className="logo">小兔鲜</h1>
