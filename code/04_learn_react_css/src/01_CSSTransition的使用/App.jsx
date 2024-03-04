@@ -36,12 +36,12 @@ export class App extends PureComponent {
           appear
           timeout={2000}
           unmountOnExit={true}
-          onEnter={()=>console.log('enter')}
-          onEntering={()=>console.log('entering')}
-          onEntered={()=>console.log('entered')}
-          onExit={()=>console.log('exit')}
-          onExiting={()=>console.log('exiting')}
-          onExited={()=>console.log('exited')}
+          onEnter={() => console.log("enter")}
+          onEntering={() => console.log("entering")}
+          onEntered={() => console.log("entered")}
+          onExit={() => console.log("exit")}
+          onExiting={() => console.log("exiting")}
+          onExited={() => console.log("exited")}
         >
           <div>{isLogin && <h2>哈哈哈哈</h2>}</div>
         </CSSTransition>

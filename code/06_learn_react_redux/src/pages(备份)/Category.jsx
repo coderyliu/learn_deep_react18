@@ -1,12 +1,10 @@
 import React, { PureComponent } from "react";
 import { connect } from "react-redux";
-import {
-  fetchHomeMulitdata
-} from "../store/actionCreators";
+import { fetchHomeMulitdata } from "../store/actionCreators";
 
 export class Category extends PureComponent {
-  componentDidMount(){
-    this.props.changeHomeData()
+  componentDidMount() {
+    this.props.changeHomeData();
   }
 
   render() {
@@ -37,9 +35,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    changeHomeData(){
-      dispatch(fetchHomeMulitdata())
-    }
+    changeHomeData() {
+      dispatch(fetchHomeMulitdata());
+    },
   };
 };
 

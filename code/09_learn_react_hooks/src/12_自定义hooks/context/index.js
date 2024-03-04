@@ -1,9 +1,6 @@
 import { createContext } from "react";
 
-const ThemeContext=createContext()
-const UserContext=createContext()
+const ThemeContext = createContext();
+const UserContext = createContext();
 
-export {
-  ThemeContext,
-  UserContext
-}
+export { ThemeContext, UserContext };

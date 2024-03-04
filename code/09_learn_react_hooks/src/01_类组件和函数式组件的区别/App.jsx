@@ -1,14 +1,14 @@
-import React, { PureComponent,memo } from "react";
+import React, { PureComponent, memo } from "react";
 
-const Helloworld = memo(function(props) {
-  let message='hello world'
-  
+const Helloworld = memo(function (props) {
+  let message = "hello world";
+
   return (
     <div>
       <h2>{message}</h2>
-      <button onClick={()=>message='你好啊，李银河'}>修改信息</button>
+      <button onClick={() => (message = "你好啊，李银河")}>修改信息</button>
     </div>
-  )
+  );
 });
 
 // ?上面的是函数式组件，下面的是类组件
@@ -27,29 +27,31 @@ const Helloworld = memo(function(props) {
 // 帮助我们继承了React的核心技术：state,生命周期函数，render函数，setState()
 
 export class App extends PureComponent {
-  constructor(props){
-    super()
+  constructor(props) {
+    super();
 
-    this.props=props
-    this.state={
-      message:'hello curry'
-    }
+    this.props = props;
+    this.state = {
+      message: "hello curry",
+    };
   }
 
-  componentDidMount(){}
-  componentWillUnmount(){}
+  componentDidMount() {}
+  componentWillUnmount() {}
 
   render() {
-    const {message}=this.state
+    const { message } = this.state;
 
     return (
       <div>
         <h2>{message}</h2>
-        <button onClick={(e)=>this.setState({message:'hello coderyliu'})}>修改信息</button>
+        <button onClick={(e) => this.setState({ message: "hello coderyliu" })}>
+          修改信息
+        </button>
         <hr />
         <Helloworld></Helloworld>
       </div>
-    )
+    );
   }
 }
 

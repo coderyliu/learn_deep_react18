@@ -1,7 +1,7 @@
-const ADD_NUMBER='addNumber'
-const SUB_NUMBER='subNumber'
+const ADD_NUMBER = "addNumber";
+const SUB_NUMBER = "subNumber";
 
-module.exports={
+module.exports = {
   ADD_NUMBER,
-  SUB_NUMBER
-}
+  SUB_NUMBER,
+};

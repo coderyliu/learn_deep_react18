@@ -1,6 +1,6 @@
 import React, { memo, useRef } from "react";
 import { useCallback } from "react";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 
 // ?useRef有两个作用
 // 1.能够像在类组件中一样，通过createRef获取DOM引用
@@ -15,16 +15,16 @@ const App = memo(() => {
   obj = titleRef;
 
   // todo 2.获取DOM引用
-  useEffect(()=>{
+  useEffect(() => {
     console.log(titleRef.current);
-  },[counter])
+  }, [counter]);
 
   // todo 3.解决闭包问题，保留上一次的引用
-  const counterRef=useRef()
-  counterRef.current=counter
-  const increment=useCallback(()=>{
-    setCounter(counterRef.current+1)
-  },[])
+  const counterRef = useRef();
+  counterRef.current = counter;
+  const increment = useCallback(() => {
+    setCounter(counterRef.current + 1);
+  }, []);
 
   return (
     <div>

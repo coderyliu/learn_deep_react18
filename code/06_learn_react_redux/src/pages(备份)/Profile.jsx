@@ -1,5 +1,5 @@
 import React, { PureComponent } from "react";
-import store from '../store'
+import store from "../store";
 import { subNumberAction } from "../store/actionCreators";
 
 export class Profile extends PureComponent {

@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { PureComponent } from "react";
 
 export class NotFound extends PureComponent {
   render() {
@@ -6,8 +6,8 @@ export class NotFound extends PureComponent {
       <div>
         <h1>对不起，您访问的路径有误，请检查访问地址是否正确!</h1>
       </div>
-    )
+    );
   }
 }
 
-export default NotFound
+export default NotFound;

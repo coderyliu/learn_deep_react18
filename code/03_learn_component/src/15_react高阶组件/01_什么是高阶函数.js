@@ -12,8 +12,7 @@
 
 // todo 数组常用的高阶函数有很多
 // 比如filter,map,reduce等
-const arr=[1,2,3]
-const newArr=arr.map((value,index)=>{
-  return value*2
-})
-
+const arr = [1, 2, 3];
+const newArr = arr.map((value, index) => {
+  return value * 2;
+});

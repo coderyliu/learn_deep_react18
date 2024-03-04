@@ -1,21 +1,21 @@
-const actionTypes=require('./constants')
+const actionTypes = require("./constants");
 
 // 创建要分发的dispatch
-const addNumberAction = counter => {
+const addNumberAction = (counter) => {
   return {
     type: actionTypes.ADD_NUMBER,
-    counter
-  }
-}
+    counter,
+  };
+};
 
-const subNumberAction = counter => {
+const subNumberAction = (counter) => {
   return {
     type: actionTypes.SUB_NUMBER,
-    counter
-  }
-}
+    counter,
+  };
+};
 
 module.exports = {
   addNumberAction,
-  subNumberAction
-}
+  subNumberAction,
+};

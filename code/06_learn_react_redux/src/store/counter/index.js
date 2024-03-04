@@ -1,3 +1,3 @@
-import counterReducer from './reducer'
+import counterReducer from "./reducer";
 
-export default counterReducer
+export default counterReducer;

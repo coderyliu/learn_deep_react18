@@ -1,5 +1,5 @@
-import React, { PureComponent } from 'react'
-import Home from './Home/Home'
+import React, { PureComponent } from "react";
+import Home from "./Home/Home";
 
 export class App extends PureComponent {
   render() {
@@ -7,8 +7,8 @@ export class App extends PureComponent {
       <div>
         <Home></Home>
       </div>
-    )
+    );
   }
 }
 
-export default App
+export default App;

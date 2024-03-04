@@ -1,61 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
+  <body>
+    <div id="root"></div>
 
-<body>
-  <div id="root"></div>
+    <script src="../lib/react.js"></script>
+    <script src="../lib/react-dom.js"></script>
+    <script src="../lib/babel.js"></script>
 
-  <script src="../lib/react.js"></script>
-  <script src="../lib/react-dom.js"></script>
-  <script src="../lib/babel.js"></script>
+    <script type="text/babel">
+      const root = ReactDOM.createRoot(document.querySelector("#root"));
 
-  <script type="text/babel">
-    const root=ReactDOM.createRoot(document.querySelector('#root'))
+      class App extends React.Component {
+        constructor() {
+          super();
 
-    class App extends React.Component{
-      constructor(){
-        super()
+          this.state = {
+            message: "你好啊，李银河",
+            isShow: true,
+          };
+        }
 
-        this.state={
-          message:'你好啊，李银河',
-          isShow:true
+        toggleClick() {
+          this.setState({
+            isShow: !this.state.isShow,
+          });
+        }
+
+        render() {
+          const { isShow, message } = this.state;
+
+          let showMessage;
+          if (isShow) {
+            showMessage = <h2>{message}</h2>;
+          }
+
+          return (
+            <div>
+              <button onClick={() => this.toggleClick()}>切换</button>
+              {showMessage}
+
+              {/* 通过display实现v-show效果 */}
+              <h2 style={{ display: isShow ? "block" : "none" }}>{message}</h2>
+            </div>
+          );
         }
       }
 
-      toggleClick(){
-        this.setState({
-          isShow:!this.state.isShow
-        })
-      }
-
-      render(){
-        const {isShow,message}=this.state
-
-        let showMessage
-        if(isShow){
-          showMessage=<h2>{message}</h2>
-        }
-
-        return (
-          <div>
-            <button onClick={()=>this.toggleClick()}>切换</button>
-            {showMessage}
-
-            {/* 通过display实现v-show效果 */}            
-            <h2 style={{display:isShow?'block':'none'}}>{message}</h2>
-          </div>
-        )
-      }
-    }
-
-    root.render(<App />)
-  </script>
-</body>
-
+      root.render(<App />);
+    </script>
+  </body>
 </html>

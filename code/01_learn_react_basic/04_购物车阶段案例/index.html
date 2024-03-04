@@ -1,138 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      th,
+      td {
+        padding: 12px;
+        border: 1px solid #333;
+      }
+    </style>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <style>
-    th,
-    td {
-      padding: 12px;
-      border:1px solid #333;
-    }
-  </style>
-</head>
+  <body>
+    <div id="root"></div>
 
-<body>
-  <div id="root"></div>
+    <script src="../lib/react.js"></script>
+    <script src="../lib/react-dom.js"></script>
+    <script src="../lib/babel.js"></script>
 
-  <script src="../lib/react.js"></script>
-  <script src="../lib/react-dom.js"></script>
-  <script src="../lib/babel.js"></script>
+    <script type="text/babel">
+      const root = ReactDOM.createRoot(document.querySelector("#root"));
 
-  <script type="text/babel">
-    const root=ReactDOM.createRoot(document.querySelector('#root'))
+      class App extends React.Component {
+        constructor() {
+          super();
 
-    class App extends React.Component{
-      constructor(){
-        super()
+          this.state = {
+            shops: [
+              { name: "算法导论", date: "2006-9", price: 85.0, count: 0 },
+              { name: "UNIX编程艺术", date: "2006-2", price: 59.0, count: 0 },
+              { name: "编程珠玑", date: "2008-10", price: 39.0, count: 0 },
+              { name: "代码大全", date: "2006-3", price: 128.0, count: 0 },
+            ],
+            totalPrice: 0,
+          };
+        }
 
-        this.state={
-          shops:[
-            {name:'算法导论',date:'2006-9',price:85.00,count:0},
-            {name:'UNIX编程艺术',date:'2006-2',price:59.00,count:0},
-            {name:'编程珠玑',date:'2008-10',price:39.00,count:0},
-            {name:'代码大全',date:'2006-3',price:128.00,count:0},
-          ],
-          totalPrice:0
+        increment(index) {
+          this.setState({
+            shops: this.state.shops.map((item, i) => {
+              if (i === index) {
+                item.count += 1;
+              }
+
+              return item;
+            }),
+          });
+        }
+
+        decrement(index) {
+          this.setState({
+            shops: this.state.shops.map((item, i) => {
+              if (i === index) {
+                item.count -= 1;
+              }
+
+              return item;
+            }),
+          });
+        }
+
+        removeItem(index) {
+          let shops = this.state.shops;
+          shops.splice(index, 1);
+          this.setState({
+            shops: shops,
+          });
+        }
+
+        totalPrice() {
+          return this.state.shops.reduce((pre, cur) => {
+            return cur.count * cur.price + pre;
+          }, 0);
+        }
+
+        renderBookList() {
+          const { shops, totalPrice } = this.state;
+
+          return (
+            <div>
+              <table
+                style={{
+                  border: "1px solid #333",
+                  textAlign: "center",
+                  borderCollapse: "collapse",
+                }}
+              >
+                <thead style={{ backgroundColor: "#f2f2f2" }}>
+                  <tr>
+                    <th>序号</th>
+                    <th>书籍名称</th>
+                    <th>出版日期</th>
+                    <th>价格</th>
+                    <th>购买数量</th>
+                    <th>操作</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {shops.map((item, index) => {
+                    return (
+                      <tr key={item.name}>
+                        <td>{index + 1}</td>
+                        <td>{item.name}</td>
+                        <td>{item.date}</td>
+                        <td>{"¥" + item.price}</td>
+                        <td>
+                          <button
+                            onClick={() => this.decrement(index)}
+                            disabled={item.count === 0 ? true : false}
+                          >
+                            -
+                          </button>
+                          <span style={{ padding: "0 5px" }}>{item.count}</span>
+                          <button onClick={() => this.increment(index)}>
+                            +
+                          </button>
+                        </td>
+                        <td>
+                          <button onClick={() => this.removeItem(index)}>
+                            移除
+                          </button>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+              <h2>总价格:{"¥ " + this.totalPrice().toFixed(2)}</h2>
+            </div>
+          );
+        }
+
+        renderBook() {
+          return (
+            <div>
+              <h2>购物车为空, 请添加书籍~</h2>
+            </div>
+          );
+        }
+
+        render() {
+          return this.state.shops.length > 0
+            ? this.renderBookList()
+            : this.renderBook();
         }
       }
 
-      increment(index){
-        this.setState({
-          shops:this.state.shops.map((item,i)=>{
-            if(i===index){
-              item.count+=1
-            }
-
-            return item
-          })
-        })
-      }
-
-      decrement(index){
-        this.setState({
-          shops:this.state.shops.map((item,i)=>{
-            if(i===index){
-              item.count-=1
-            }
-
-            return item
-          })
-        })
-      }
-
-      removeItem(index){
-        let shops=this.state.shops
-        shops.splice(index,1)
-        this.setState({
-          shops:shops
-        }) 
-      }
-
-      totalPrice(){
-        return this.state.shops.reduce((pre,cur)=>{
-          return cur.count*cur.price+pre
-        },0) 
-      }
-
-      renderBookList(){
-        const {shops,totalPrice}=this.state
-
-        return (
-          <div>
-            <table style={{border:'1px solid #333',textAlign:'center',borderCollapse:'collapse'}}>
-              <thead style={{backgroundColor:'#f2f2f2'}}>
-                <tr>
-                  <th>序号</th>
-                  <th>书籍名称</th>  
-                  <th>出版日期</th>  
-                  <th>价格</th>  
-                  <th>购买数量</th>  
-                  <th>操作</th>  
-                </tr>
-              </thead>  
-              <tbody>
-                {
-                  shops.map((item,index)=>{
-                    return (
-                      <tr key={item.name}>
-                        <td>{index+1}</td>
-                        <td>{item.name}</td>  
-                        <td>{item.date}</td>  
-                        <td>{'¥'+item.price}</td>  
-                        <td>
-                          <button onClick={()=>this.decrement(index)} disabled={item.count===0?true:false}>-</button>  
-                          <span style={{padding:'0 5px'}}>{item.count}</span>
-                          <button onClick={()=>this.increment(index)}>+</button>
-                        </td>
-                        <td>
-                          <button onClick={()=>this.removeItem(index)}>移除</button>
-                        </td>
-                      </tr>
-                    )
-                  })  
-                }
-              </tbody>
-            </table>
-            <h2>总价格:{'¥ '+this.totalPrice().toFixed(2)}</h2>
-          </div>
-        )
-      }
-
-      renderBook(){
-        return <div><h2>购物车为空, 请添加书籍~</h2></div>
-      }
-
-      render(){
-        return this.state.shops.length>0?this.renderBookList():this.renderBook()
-      }
-    }
-
-    root.render(<App />)
-  </script>
-</body>
-
+      root.render(<App />);
+    </script>
+  </body>
 </html>

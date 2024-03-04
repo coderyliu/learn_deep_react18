@@ -1,3 +1,3 @@
-import { HYEventBus } from 'hy-event-store'
+import { HYEventBus } from "hy-event-store";
 
-export default new HYEventBus()
+export default new HYEventBus();

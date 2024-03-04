@@ -1,9 +1,9 @@
-const path=require('path')
-const CracoLessPlugin = require('craco-less')
+const path = require("path");
+const CracoLessPlugin = require("craco-less");
 
-const pathName=pathName=>path.join(__dirname,pathName)
+const pathName = (pathName) => path.join(__dirname, pathName);
 
-module.exports={
+module.exports = {
   // less
   plugins: [
     {
@@ -12,7 +12,7 @@ module.exports={
       options: {
         lessLoaderOptions: {
           lessOptions: {
-            modifyVars: { },
+            modifyVars: {},
             javascriptEnabled: true,
           },
         },
@@ -20,11 +20,11 @@ module.exports={
     },
   ],
   // webpack
-  webpack:{
-    alias:{
-      '@':pathName('src'),
-      'components':pathName('src/components'),
-      'utils':pathName('src/utils')
-    } 
-  }
-}
+  webpack: {
+    alias: {
+      "@": pathName("src"),
+      components: pathName("src/components"),
+      utils: pathName("src/utils"),
+    },
+  },
+};

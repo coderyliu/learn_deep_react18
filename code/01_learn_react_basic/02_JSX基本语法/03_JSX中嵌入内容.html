@@ -1,84 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
+  <body>
+    <div id="root"></div>
 
-<body>
-  <div id="root"></div>
+    <script src="../lib/react.js"></script>
+    <script src="../lib/react-dom.js"></script>
+    <script src="../lib/babel.js"></script>
 
-  <script src="../lib/react.js"></script>
-  <script src="../lib/react-dom.js"></script>
-  <script src="../lib/babel.js"></script>
+    <script type="text/babel">
+      const root = ReactDOM.createRoot(document.querySelector("#root"));
 
-  <script type="text/babel">
-    const root=ReactDOM.createRoot(document.querySelector('#root'))
+      class App extends React.Component {
+        constructor() {
+          super();
 
-    class App extends React.Component{
-      constructor(){
-        super()
+          this.state = {
+            counter: 0,
+            message: "hello react",
+            movie: ["nba", "cba", "abc"],
 
-        this.state={
-          counter:0,
-          message:'hello react',
-          movie:['nba','cba','abc'],
+            aaa: null,
+            bbb: undefined,
+            ccc: true,
 
-          aaa:null,
-          bbb:undefined,
-          ccc:true,
+            friend: { name: "coder", age: 21 },
+          };
+        }
 
-          friend:{name:'coder',age:21}
+        render() {
+          // 1.直接插入变量
+          const { counter, message, movie } = this.state;
+
+          const { aaa, bbb, ccc } = this.state;
+          const { friend } = this.state;
+
+          // 2.做一些逻辑运算
+          const startName = "kobe";
+          const lastName = "curry";
+          let sub = 0;
+
+          return (
+            <div>
+              {/* 1.Number,String,Array类型的变量直接插入，在页面上直接显示转化为字符串的内容 */}
+              <h2>{counter}</h2>
+              <h2>{message}</h2>
+              <h2>{movie}</h2>
+
+              {/* 2.null,undefined,boolean类型的变量在页面上不会显示，如果要显示必须转化为字符串*/}
+              <h2>{aaa + ""}</h2>
+              <h2>{String(bbb)}</h2>
+              <h2>{ccc.toString()}</h2>
+
+              {/* 3.Object类型的变量不能直接插入,否则报错,可以把它上边的内容解构出来 */}
+              <h2>{friend.name}</h2>
+              <h2>{friend.age}</h2>
+
+              {/* 4.像vue的插值语法一样，也可以做一些逻辑运算，判断*/}
+              <h2>{startName + " " + lastName}</h2>
+              <h2>{sub + 580}</h2>
+
+              {/* 5.也可以是三元运算符*/}
+              <h2>{sub === 0 ? "yes" : "ok"}</h2>
+
+              {/* 6.还可以调用函数*/}
+              <h2>
+                {movie.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </h2>
+            </div>
+          );
         }
       }
 
-      render(){
-        // 1.直接插入变量
-        const {counter,message,movie}=this.state
-
-        const {aaa,bbb,ccc}=this.state
-        const {friend}=this.state
-
-        // 2.做一些逻辑运算
-        const startName='kobe'
-        const lastName='curry'
-        let sub=0
-
-        return (
-          <div>
-            {/* 1.Number,String,Array类型的变量直接插入，在页面上直接显示转化为字符串的内容 */}
-            <h2>{counter}</h2>
-            <h2>{message}</h2>
-            <h2>{movie}</h2>
-
-            {/* 2.null,undefined,boolean类型的变量在页面上不会显示，如果要显示必须转化为字符串*/}
-            <h2>{aaa+''}</h2>
-            <h2>{String(bbb)}</h2>
-            <h2>{ccc.toString()}</h2>
-
-            {/* 3.Object类型的变量不能直接插入,否则报错,可以把它上边的内容解构出来 */}
-            <h2>{friend.name}</h2>
-            <h2>{friend.age}</h2>
-
-            {/* 4.像vue的插值语法一样，也可以做一些逻辑运算，判断*/}
-            <h2>{startName+' '+lastName}</h2>
-            <h2>{sub+580}</h2>
-
-            {/* 5.也可以是三元运算符*/}
-            <h2>{sub===0?'yes':'ok'}</h2>
-
-            {/* 6.还可以调用函数*/}
-            <h2>{movie.map(item=><li>{item}</li>)}</h2>
-          </div>
-        )
-      }
-    }
-
-    root.render(<App />)
-  </script>
-</body>
-
+      root.render(<App />);
+    </script>
+  </body>
 </html>

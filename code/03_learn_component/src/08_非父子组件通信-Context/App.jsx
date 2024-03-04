@@ -5,18 +5,18 @@ import Home from "./Home";
 // ?但是react中没有，如果一层一层通过props传递的话可能会很麻烦,因此react提供了context来实现子孙之间的通信
 
 // todo 第一步：创建context实例，可以创建很多
-import ThemeContext from './context/themeContext'
+import ThemeContext from "./context/themeContext";
 import Profile from "./Profile";
 
 export class App extends Component {
-  constructor(){
-    super()
+  constructor() {
+    super();
 
-    this.state={
-      name:'coder',
-      age:18,
-      height:1.88
-    }
+    this.state = {
+      name: "coder",
+      age: 18,
+      height: 1.88,
+    };
   }
 
   render() {
@@ -26,14 +26,14 @@ export class App extends Component {
         {/* 第三步，指定ThemeContext.Provider 的value，value是要共享给消费组件的值 */}
         {/* 第四步，在相应的消费组件中指定要使用的context，一个消费组件只能使用一个context */}
         {/* 第五步，在消费组件中通过this.context使用 */}
-        <ThemeContext.Provider value={{...this.state}}>
+        <ThemeContext.Provider value={{ ...this.state }}>
           <Home></Home>
         </ThemeContext.Provider>
 
         {/* 使用Consumer组件，提供非消费组件来使用context的defaultValue */}
         <Profile></Profile>
       </div>
-    )
+    );
   }
 }
 

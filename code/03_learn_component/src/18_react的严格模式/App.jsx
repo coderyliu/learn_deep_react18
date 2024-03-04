@@ -1,6 +1,6 @@
-import React, { PureComponent ,StrictMode} from 'react'
-import Home from './Home'
-import Profile from './Profile'
+import React, { PureComponent, StrictMode } from "react";
+import Home from "./Home";
+import Profile from "./Profile";
 
 // ?react的严格模式StrictMode，是为了帮助我们更好的发现问题
 // todo 使用方式，通过StrictMode包裹要开启严格模式的组件
@@ -23,8 +23,8 @@ export class App extends PureComponent {
         {/* 未开启严格模式的组件 */}
         <Profile></Profile>
       </div>
-    )
+    );
   }
 }
 
-export default App
+export default App;

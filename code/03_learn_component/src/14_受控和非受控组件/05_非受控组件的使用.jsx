@@ -1,4 +1,4 @@
-import React, { PureComponent,createRef } from "react";
+import React, { PureComponent, createRef } from "react";
 
 // ?我们知道，早期的表单都是通过点击直接跳转到指定的action地址
 // ?但是，这种会触发页面刷新，所以不推荐这种，都是通过我们点击提交按钮之后，发起ajax请求来实现的
@@ -16,13 +16,13 @@ export class App extends PureComponent {
         { name: "排球", value: "volumnball", isChecked: false },
         { name: "乒乓球", value: "ping-pang", isChecked: false },
       ],
-      fruits:'orange',
-      fruitsArr:[],
+      fruits: "orange",
+      fruitsArr: [],
 
-      defaultValue:'coderwhy'
+      defaultValue: "coderwhy",
     };
 
-    this.infoRef=createRef()
+    this.infoRef = createRef();
   }
 
   // 表单提交事件
@@ -33,9 +33,9 @@ export class App extends PureComponent {
     // 获取表单中的数据
     console.log("用户名，密码为:", this.state.username, this.state.password);
     console.log("爱好：", this.state.hobbies);
-    console.log('水果:',this.state.fruits);
-    console.log('数组',this.state.fruitsArr);
-    console.log('信息:',this.infoRef.current.value);
+    console.log("水果:", this.state.fruits);
+    console.log("数组", this.state.fruitsArr);
+    console.log("信息:", this.infoRef.current.value);
 
     // 发起ajax/axios/fetch请求
   }
@@ -62,26 +62,34 @@ export class App extends PureComponent {
   }
 
   // 单个select
-  handleSingleSelect(e){
+  handleSingleSelect(e) {
     this.setState({
-      fruits:e.target.value
-    })
+      fruits: e.target.value,
+    });
   }
 
   // 多个select
-  handleMultipleSelect(e){
+  handleMultipleSelect(e) {
     // 先拿到选中的元素
-    const htmlCollects=e.target.selectedOptions
+    const htmlCollects = e.target.selectedOptions;
 
     // 转为数组
-    const values=Array.from(htmlCollects).map(item=>item.value)
+    const values = Array.from(htmlCollects).map((item) => item.value);
 
     // 设置值
-    this.setState({fruitsArr:values})
+    this.setState({ fruitsArr: values });
   }
 
   render() {
-    const { username, password, isChecked, hobbies,fruits,fruitsArr ,defaultValue} = this.state;
+    const {
+      username,
+      password,
+      isChecked,
+      hobbies,
+      fruits,
+      fruitsArr,
+      defaultValue,
+    } = this.state;
 
     return (
       <div>
@@ -131,7 +139,7 @@ export class App extends PureComponent {
             <ul>
               {hobbies.map((item, index) => {
                 return (
-                  <label htmlFor={item.value}  key={index}>
+                  <label htmlFor={item.value} key={index}>
                     <input
                       type="checkbox"
                       id={item.value}
@@ -148,7 +156,7 @@ export class App extends PureComponent {
           <hr />
           {/* 3.select的单选和多选 */}
           {/* 单选 */}
-          <select value={fruits} onChange={(e)=>this.handleSingleSelect(e)}>
+          <select value={fruits} onChange={(e) => this.handleSingleSelect(e)}>
             <option value="orange">橘子</option>
             <option value="apple">苹果</option>
             <option value="pear">梨</option>
@@ -156,7 +164,11 @@ export class App extends PureComponent {
           </select>
           <hr />
           {/* 多选 */}
-          <select value={fruitsArr} onChange={(e)=>this.handleMultipleSelect(e)} multiple>
+          <select
+            value={fruitsArr}
+            onChange={(e) => this.handleMultipleSelect(e)}
+            multiple
+          >
             <option value="orange">橘子</option>
             <option value="apple">苹果</option>
             <option value="pear">梨</option>
@@ -166,7 +178,7 @@ export class App extends PureComponent {
 
           {/* 4.非受控组件的值获取 */}
           <input type="text" defaultValue={defaultValue} ref={this.infoRef} />
-            
+
           <hr />
           <input type="submit" />
         </form>

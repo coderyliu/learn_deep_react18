@@ -1,73 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
+  <body>
+    <div id="root"></div>
 
-<body>
-  <div id="root"></div>
+    <script src="../lib/react.js"></script>
+    <script src="../lib/react-dom.js"></script>
+    <script src="../lib/babel.js"></script>
 
-  <script src="../lib/react.js"></script>
-  <script src="../lib/react-dom.js"></script>
-  <script src="../lib/babel.js"></script>
+    <script type="text/babel">
+      const root = ReactDOM.createRoot(document.querySelector("#root"));
 
-  <script type="text/babel">
-    const root=ReactDOM.createRoot(document.querySelector('#root'))
+      class App extends React.Component {
+        constructor() {
+          super();
 
-    class App extends React.Component{
-      constructor(){
-        super()
-
-        this.state={
-
+          this.state = {};
         }
-      }
 
-      render(){
-        {/* 
+        render() {
+          {
+            /* 
           实际上，jsx经过React.createElement()之后，会返回给我们一个react-element对象
           这个reactElement对象的作用就是会形成Virtual DOM（javascript对象树）
-        */}
+        */
+          }
 
-        {/*
+          {
+            /*
           虚拟DOM的作用：
             1.结合diff算法，尽可能的复用，而不用直接重新渲染整个页面
             2.虚拟DOM在vue中经过render渲染器可以在不同的平台，ios/安卓/等跨平台，react的虚拟DOM可以利用RN 在移动端使用----跨平台
             3.把命令式编程转化为声明式编程，我们在react只要写好ui界面，维护好state中的状态，而不用直接操作DOM
-        */}
+        */
+          }
 
-        {
-          /*
+          {
+            /*
             react中的编译过程：
               jsx-->react-element（虚拟DOM  js对象树）-->真实DOM
 
             vue编译过程：
               template-->render-->vNode-->vDOm -->真实DOM
           */
+          }
+
+          const element =
+            /*#__PURE__*/
+            React.createElement(
+              "div",
+              null,
+              /*#__PURE__*/ React.createElement(
+                "div",
+                {
+                  className: "header",
+                },
+                "Header"
+              ),
+              /*#__PURE__*/ React.createElement(
+                "ul",
+                {
+                  className: "conetnt",
+                },
+                /*#__PURE__*/ React.createElement(
+                  "li",
+                  null,
+                  "\u5217\u8868\u6570\u636E1"
+                ),
+                /*#__PURE__*/ React.createElement(
+                  "li",
+                  null,
+                  "\u5217\u8868\u6570\u636E2"
+                ),
+                /*#__PURE__*/ React.createElement(
+                  "li",
+                  null,
+                  "\u5217\u8868\u6570\u636E3"
+                ),
+                /*#__PURE__*/ React.createElement(
+                  "li",
+                  null,
+                  "\u5217\u8868\u6570\u636E4"
+                ),
+                /*#__PURE__*/ React.createElement(
+                  "li",
+                  null,
+                  "\u5217\u8868\u6570\u636E5"
+                )
+              ),
+              /*#__PURE__*/ React.createElement(
+                "div",
+                {
+                  className: "footer",
+                },
+                "Footer"
+              )
+            );
+
+          console.log(element);
+          return element;
         }
-
-        const element =/*#__PURE__*/
-          React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
-            className: "header"
-          }, "Header"), /*#__PURE__*/React.createElement("ul", {
-            className: "conetnt"
-          }, /*#__PURE__*/React.createElement("li", null, "\u5217\u8868\u6570\u636E1"), /*#__PURE__*/React.createElement("li", null, "\u5217\u8868\u6570\u636E2"), /*#__PURE__*/React.createElement("li", null, "\u5217\u8868\u6570\u636E3"), /*#__PURE__*/React.createElement("li", null, "\u5217\u8868\u6570\u636E4"), /*#__PURE__*/React.createElement("li", null, "\u5217\u8868\u6570\u636E5")), /*#__PURE__*/React.createElement("div", {
-            className: "footer"
-          }, "Footer"))
-
-        console.log(element)
-        return (
-          element
-        )
       }
-    }
 
-    root.render(<App />)
-  </script>
-</body>
-
+      root.render(<App />);
+    </script>
+  </body>
 </html>

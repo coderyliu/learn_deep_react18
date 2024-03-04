@@ -20,7 +20,9 @@ export class About extends PureComponent {
         </ThemeContext.Consumer> */}
 
         {/* 使用高阶组件 */}
-        <h2>颜色:{this.props.color},大小:{this.props.size}</h2>
+        <h2>
+          颜色:{this.props.color},大小:{this.props.size}
+        </h2>
       </div>
     );
   }

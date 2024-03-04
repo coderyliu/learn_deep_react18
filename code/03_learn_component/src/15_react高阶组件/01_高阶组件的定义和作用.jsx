@@ -6,7 +6,7 @@ import React, { PureComponent } from "react";
 // 2.返回一个新的组件
 
 // ?这个就是一个高阶组件
-function enhancedCom(OriginComponent){
+function enhancedCom(OriginComponent) {
   // 函数式组件
   // return props=>{
   //   return (
@@ -15,14 +15,11 @@ function enhancedCom(OriginComponent){
   // }
 
   // 类组件
-  return class extends PureComponent{
-
-    render(){
-      return (
-        <OriginComponent></OriginComponent>
-      )
+  return class extends PureComponent {
+    render() {
+      return <OriginComponent></OriginComponent>;
     }
-  }
+  };
 }
 
 export class App extends PureComponent {

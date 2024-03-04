@@ -1,4 +1,4 @@
-import React, { PureComponent ,Fragment} from 'react'
+import React, { PureComponent, Fragment } from "react";
 
 // ?fragment的意思就是文档碎片，作用就是可以包裹子元素, 且不会被渲染
 // ?在Vue2当中，一个template只能有一个根元素，vue3中可以有多个根元素，最主要的原因也是vue的template模版使用了Fragment,而Fragment也不会被渲染
@@ -15,8 +15,8 @@ export class App extends PureComponent {
         <h2>哈哈哈</h2>
         <h2>嘻嘻嘻</h2>
       </>
-    )
+    );
   }
 }
 
-export default App
+export default App;

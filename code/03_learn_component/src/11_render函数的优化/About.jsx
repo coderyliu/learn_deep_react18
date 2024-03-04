@@ -3,14 +3,14 @@
 
 import { memo } from "react";
 
-const About=memo(function(props){
-  console.log('about render');
+const About = memo(function (props) {
+  console.log("about render");
 
   return (
     <div>
       <h2>About Page</h2>
     </div>
-  )
-})
+  );
+});
 
-export default About
+export default About;

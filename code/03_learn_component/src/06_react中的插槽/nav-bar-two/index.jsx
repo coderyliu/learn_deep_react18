@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 export class NavBarTwo extends Component {
   render() {
-    const { leftSlot,centerSlot,rightSlot } = this.props;
+    const { leftSlot, centerSlot, rightSlot } = this.props;
 
     return (
       <div className="nav-bar">

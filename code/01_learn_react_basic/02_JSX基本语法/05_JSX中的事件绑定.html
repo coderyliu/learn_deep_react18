@@ -1,74 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
+  <body>
+    <div id="root"></div>
 
-<body>
-  <div id="root"></div>
+    <script src="../lib/react.js"></script>
+    <script src="../lib/react-dom.js"></script>
+    <script src="../lib/babel.js"></script>
 
-  <script src="../lib/react.js"></script>
-  <script src="../lib/react-dom.js"></script>
-  <script src="../lib/babel.js"></script>
+    <script type="text/babel">
+      const root = ReactDOM.createRoot(document.querySelector("#root"));
 
-  <script type="text/babel">
-    const root=ReactDOM.createRoot(document.querySelector('#root'))
+      class App extends React.Component {
+        constructor() {
+          super();
 
-    class App extends React.Component{
-      constructor(){
-        super()
-
-        this.state={
-          counter:0
+          this.state = {
+            counter: 0,
+          };
         }
-      }
 
-      handleBtnClick(){
-        this.setState({
-          counter:this.state.counter+1
-        })
-      }
+        handleBtnClick() {
+          this.setState({
+            counter: this.state.counter + 1,
+          });
+        }
 
-      /* 绑定方式二：通过ES6 class fields语法 */
-      handleBtnClick2=()=>{
-        this.setState({
-          counter:9000
-        })
-      }
+        /* 绑定方式二：通过ES6 class fields语法 */
+        handleBtnClick2 = () => {
+          this.setState({
+            counter: 9000,
+          });
+        };
 
-      render(){
-        const {counter}=this.state
+        render() {
+          const { counter } = this.state;
 
-        return (
-          <div>
-            {/* 简单的计数器案例 */}
-            <h2>{counter}</h2>
-            {/* 事件绑定的方式通常有三种：这都涉及到了其中的this绑定的关键问题 */}
-            {/* 
+          return (
+            <div>
+              {/* 简单的计数器案例 */}
+              <h2>{counter}</h2>
+              {/* 事件绑定的方式通常有三种：这都涉及到了其中的this绑定的关键问题 */}
+              {/* 
               这种情况在react中最终经过babel的编译，转化为React.createElement('button',{props},children),实际上，也是给dom元素通过addEventListener的方式绑定事件
               拿到config的值，相当于是一个引用，默认绑定this的方式，所以这样调用this,指向window,而经过babel转译之后，为严格模式，指向undefined
             */}
-            <button onClick={this.handleBtnClick}>按钮1</button>
+              <button onClick={this.handleBtnClick}>按钮1</button>
 
-            {/* 绑定方式一：通过bind显示绑定 */}
-            <button onClick={this.handleBtnClick.bind(this)}>按钮2</button>
-            
-            {/* 绑定方式二：通过ES6 class fields语法 */}
-            <button onClick={this.handleBtnClick2}>按钮3</button>
+              {/* 绑定方式一：通过bind显示绑定 */}
+              <button onClick={this.handleBtnClick.bind(this)}>按钮2</button>
 
-            {/* 绑定方式三：通过箭头函数来实现（推荐这种做法） */}
-            <button onClick={()=>this.handleBtnClick()}>按钮4</button>
-          </div>
-        )
+              {/* 绑定方式二：通过ES6 class fields语法 */}
+              <button onClick={this.handleBtnClick2}>按钮3</button>
+
+              {/* 绑定方式三：通过箭头函数来实现（推荐这种做法） */}
+              <button onClick={() => this.handleBtnClick()}>按钮4</button>
+            </div>
+          );
+        }
       }
-    }
 
-    root.render(<App />)
-  </script>
-</body>
-
+      root.render(<App />);
+    </script>
+  </body>
 </html>

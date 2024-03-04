@@ -1,11 +1,8 @@
-const {
-  createStore
-} = require('redux')
+const { createStore } = require("redux");
 
-const reducer=require('./reducers')
-
+const reducer = require("./reducers");
 
 // 创建单一数据源：store
-const store=createStore(reducer)
+const store = createStore(reducer);
 
-module.exports=store
+module.exports = store;

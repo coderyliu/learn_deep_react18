@@ -2,10 +2,10 @@
 import { useContext } from "react";
 import { UserContext } from "../context";
 
-function useUserInfo(){
-  const userInfo=useContext(UserContext)
+function useUserInfo() {
+  const userInfo = useContext(UserContext);
 
-  return userInfo
+  return userInfo;
 }
 
-export default useUserInfo
+export default useUserInfo;

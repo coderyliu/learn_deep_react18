@@ -1,62 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
+  <body>
+    <div id="root"></div>
 
-<body>
-  <div id="root"></div>
+    <script src="../lib/react.js"></script>
+    <script src="../lib/react-dom.js"></script>
+    <script src="../lib/babel.js"></script>
 
-  <script src="../lib/react.js"></script>
-  <script src="../lib/react-dom.js"></script>
-  <script src="../lib/babel.js"></script>
+    <script type="text/babel">
+      const root = ReactDOM.createRoot(document.querySelector("#root"));
 
-  <script type="text/babel">
-    const root=ReactDOM.createRoot(document.querySelector('#root'))
+      class App extends React.Component {
+        constructor() {
+          super();
 
-    class App extends React.Component{
-      constructor(){
-        super()
+          this.state = {
+            students: [
+              { id: 1, name: "coder", score: 99 },
+              { id: 2, name: "curry", score: 100 },
+              { id: 3, name: "kobe", score: 100 },
+              { id: 4, name: "james", score: 0 },
+            ],
+          };
+        }
 
-        this.state={
-          students:[
-            {id:1,name:'coder',score:99},
-            {id:2,name:'curry',score:100},
-            {id:3,name:'kobe',score:100},
-            {id:4,name:'james',score:0},
-          ]
+        render() {
+          const { students } = this.state;
+
+          return (
+            <div>
+              <h2>篮球运动员</h2>
+              {students.map((item) => {
+                {
+                  /* react中也是有diff算法的，渲染列表key的作用也是为了尽可能的复用 */
+                }
+                return (
+                  <div key={item.id} style={{ border: "1px solid #f00" }}>
+                    <h3>学号:{item.id}</h3>
+                    <h3>姓名:{item.name}</h3>
+                    <h3>得分:{item.score}</h3>
+                  </div>
+                );
+              })}
+            </div>
+          );
         }
       }
 
-      render(){
-        const {students}=this.state
-
-        return (
-          <div>
-            <h2>篮球运动员</h2>    
-            {
-              students.map((item)=>{
-                {/* react中也是有diff算法的，渲染列表key的作用也是为了尽可能的复用 */}
-                return (
-                  <div key={item.id} style={{border:'1px solid #f00'}}>
-                    <h3>学号:{item.id}</h3>  
-                    <h3>姓名:{item.name}</h3>  
-                    <h3>得分:{item.score}</h3>  
-                  </div>
-                )
-              })
-            }
-          </div>
-        )
-      }
-    }
-
-    root.render(<App />)
-  </script>
-</body>
-
+      root.render(<App />);
+    </script>
+  </body>
 </html>

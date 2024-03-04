@@ -41,8 +41,8 @@ export class App extends PureComponent {
           {books.map((value, index) => {
             return (
               // ?TransitionGroup必须和CSSTransition一起结合使用
-              <CSSTransition 
-                classNames='coder'
+              <CSSTransition
+                classNames="coder"
                 unmountOnExit={true}
                 key={value.name}
                 timeout={2000}

@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
-import NavBar from './nav-bar'
-import NavBarTwo from './nav-bar-two'
+import React, { Component } from "react";
+import NavBar from "./nav-bar";
+import NavBarTwo from "./nav-bar-two";
 
 // ?实际上，react中是没有像vue一样提供给我们<slot></slot>这样的插槽的，但是react太灵活了，我们也可以通过props实现插槽
 // 方式一：this.props.children
@@ -10,9 +10,9 @@ import NavBarTwo from './nav-bar-two'
 export class App extends Component {
   render() {
     // ?2.通过props来实现
-    const leftSlot=<button>呵呵呵</button>
-    const centerSlot=<button>哈哈哈</button>
-    const rightSlot=<button>嘻嘻嘻</button>
+    const leftSlot = <button>呵呵呵</button>;
+    const centerSlot = <button>哈哈哈</button>;
+    const rightSlot = <button>嘻嘻嘻</button>;
 
     return (
       <div>
@@ -24,15 +24,14 @@ export class App extends Component {
         </NavBar>
 
         {/* 2.通过props来实现  */}
-        <NavBarTwo 
+        <NavBarTwo
           leftSlot={leftSlot}
           centerSlot={centerSlot}
           rightSlot={rightSlot}
-        >
-        </NavBarTwo>
+        ></NavBarTwo>
       </div>
-    )
+    );
   }
 }
 
-export default App
+export default App;

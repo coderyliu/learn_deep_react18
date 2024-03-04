@@ -1,6 +1,6 @@
-import React, { PureComponent } from 'react'
-import CounterClass from './CounterClass'
-import CounterFunction from './CounterFunction'
+import React, { PureComponent } from "react";
+import CounterClass from "./CounterClass";
+import CounterFunction from "./CounterFunction";
 
 export class App extends PureComponent {
   render() {
@@ -10,8 +10,8 @@ export class App extends PureComponent {
         <hr />
         <CounterFunction></CounterFunction>
       </div>
-    )
+    );
   }
 }
 
-export default App
+export default App;

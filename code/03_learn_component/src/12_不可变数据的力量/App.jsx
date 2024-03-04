@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { PureComponent } from "react";
 
 // ?这里要说的不可变数据的力量，指的是在使用pureComponent的时候如何使用setState()去改变state中的数据，重新执行render函数
 // ?主要还是和PureComponent的性能优化原理有关
@@ -11,25 +11,25 @@ import React, { PureComponent } from 'react'
 
 //?那么这样在PureComponent中使用SetState()的时候，我们也要这样修改
 export class App extends PureComponent {
-  constructor(){
-    super()
+  constructor() {
+    super();
 
-    this.state={
-      books:[
-        {name:'你不知道的javascript',price:99,count:1},
-        {name:'高级程序设计Javascript',price:129,count:1},
-        {name:'深入浅出NodeJs',price:59,count:1},
-        {name:'深入浅出VueJs',price:79,count:1},
-        {name:'算法图论',price:159,count:1}
-      ]
-    }
+    this.state = {
+      books: [
+        { name: "你不知道的javascript", price: 99, count: 1 },
+        { name: "高级程序设计Javascript", price: 129, count: 1 },
+        { name: "深入浅出NodeJs", price: 59, count: 1 },
+        { name: "深入浅出VueJs", price: 79, count: 1 },
+        { name: "算法图论", price: 159, count: 1 },
+      ],
+    };
   }
 
-  addBookClick(){
+  addBookClick() {
     // ?注意：最重要的点就在这里
     // ?我们的PureComponent判断是否更新render函数，是浅层解析判断
     // todo 方式一：setState()错误做法
-    const newBook={name:'大话数据结构',price:39,count:1}
+    const newBook = { name: "大话数据结构", price: 39, count: 1 };
     // todo 这样做，内存当中books数组的指针并没有改变，所以render函数不会重新执行
     // this.state.books.push(newBook)
     // this.setState({
@@ -37,46 +37,45 @@ export class App extends PureComponent {
     // })
 
     // todo 方式二：正确做法，改变内存地址，创建新的对象
-    const bookLists=[...this.state.books]
-    bookLists.push(newBook)
+    const bookLists = [...this.state.books];
+    bookLists.push(newBook);
     this.setState({
-      books:bookLists
-    })
+      books: bookLists,
+    });
   }
 
-  increment(index){
+  increment(index) {
     // ?同样，对于对象内部的每个属性的修改，我们也要改变整个对象的内存地址，而不是单纯的修改某个值
-    const bookLists=[...this.state.books]
-    bookLists[index].count++
+    const bookLists = [...this.state.books];
+    bookLists[index].count++;
     this.setState({
-      books:bookLists
-    })
+      books: bookLists,
+    });
   }
-
 
   render() {
-    const {books}=this.state
+    const { books } = this.state;
 
     return (
       <div>
         <h2>书籍列表</h2>
         <ul>
-          {
-            books.map((item,index)=>{
-              return (
-               <div key={index}>
-                  <li>{item.name}-{item.price}-{item.count}</li>
-                  <button onClick={()=>this.increment(index)}>+1</button>
-               </div>
-              )
-            })
-          }
+          {books.map((item, index) => {
+            return (
+              <div key={index}>
+                <li>
+                  {item.name}-{item.price}-{item.count}
+                </li>
+                <button onClick={() => this.increment(index)}>+1</button>
+              </div>
+            );
+          })}
         </ul>
 
-        <button onClick={()=>this.addBookClick()}>添加书籍</button>
+        <button onClick={() => this.addBookClick()}>添加书籍</button>
       </div>
-    )
+    );
   }
-} 
+}
 
-export default App
+export default App;

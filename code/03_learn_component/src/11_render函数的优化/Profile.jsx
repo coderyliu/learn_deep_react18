@@ -1,7 +1,6 @@
-import React, { PureComponent } from 'react'
+import React, { PureComponent } from "react";
 
 export class Profile extends PureComponent {
-
   // ?子组件也得这样做一个判断
   // shouldComponentUpdate(newProps,newState,nextContext){
   //   console.log(newProps,newState,nextContext);
@@ -14,14 +13,14 @@ export class Profile extends PureComponent {
   // }
 
   render() {
-    console.log('profile render');
+    console.log("profile render");
 
     return (
       <div>
         <h2>Profile Page</h2>
       </div>
-    )
+    );
   }
 }
 
-export default Profile
+export default Profile;

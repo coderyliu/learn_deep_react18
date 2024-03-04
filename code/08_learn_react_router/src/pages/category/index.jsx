@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { PureComponent } from "react";
 
 export class Category extends PureComponent {
   render() {
@@ -6,8 +6,8 @@ export class Category extends PureComponent {
       <div>
         <h2>Category Page</h2>
       </div>
-    )
+    );
   }
 }
 
-export default Category
+export default Category;

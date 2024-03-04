@@ -1,9 +1,6 @@
-const store = require('./store')
+const store = require("./store");
 
-const {
-  addNumberAction,
-  subNumberAction
-} = require('./store/createActions')
+const { addNumberAction, subNumberAction } = require("./store/createActions");
 
 // ?react中的三个基本思想
 // 1.单一数据源
@@ -15,11 +12,11 @@ const {
 // ?如果要分发函数：需要借助一个插件redux-thunk,来增强store的分发类型
 
 // todo 分发的时候，如果写成对象格式{},这种效率低，所以一般都写成函数形式，返回一个对象
-store.dispatch(addNumberAction(1))
-store.dispatch(addNumberAction(2))
+store.dispatch(addNumberAction(1));
+store.dispatch(addNumberAction(2));
 
-console.log(store.getState())
+console.log(store.getState());
 
-store.dispatch(subNumberAction(10))
+store.dispatch(subNumberAction(10));
 
-console.log(store.getState())
+console.log(store.getState());

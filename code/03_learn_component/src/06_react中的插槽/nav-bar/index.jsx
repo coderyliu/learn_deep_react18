@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import PropTypes from 'prop-types'
+import PropTypes from "prop-types";
 import "./style.css";
 
 export class NavBar extends Component {
   render() {
     const { children } = this.props;
-    console.log(children)
+    console.log(children);
 
     return (
       <div className="nav-bar">
@@ -18,8 +18,8 @@ export class NavBar extends Component {
   }
 }
 
-NavBar.propTypes={
-  children:PropTypes.arrayOf(PropTypes.element)
-}
+NavBar.propTypes = {
+  children: PropTypes.arrayOf(PropTypes.element),
+};
 
 export default NavBar;

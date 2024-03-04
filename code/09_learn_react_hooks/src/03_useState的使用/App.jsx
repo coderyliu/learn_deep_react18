@@ -1,5 +1,4 @@
-
-import React, { memo ,useState} from 'react'
+import React, { memo, useState } from "react";
 
 // ?hooks是对一类hook的统称：比如：useState(),useEffect(),useReducer(),useContext(),useRef()等
 // ?hook就是一个hook函数；比如：state hook ==>useState()
@@ -12,14 +11,14 @@ const App = memo(() => {
   // ?useState()接受一个参数，这个参数是初始化的state的值，只会在函数第一次执行时初始化
   // ?useState()返回一个数组，[],第一个返回值为state,第二个返回值为一个函数，通过这个函数传递参数执行，可以更改state
   // ?在使用第二个参数的函数后，会更改state,并且会实现和class的render一样的效果，函数式组件会被重新渲染
-  const [message,setMessage]=useState('hello react')
+  const [message, setMessage] = useState("hello react");
 
   return (
     <div>
       <h2>{message}</h2>
-      <button onClick={(e)=>setMessage('hello world')}>修改信息</button>
+      <button onClick={(e) => setMessage("hello world")}>修改信息</button>
     </div>
-  )
-})
+  );
+});
 
-export default App
+export default App;

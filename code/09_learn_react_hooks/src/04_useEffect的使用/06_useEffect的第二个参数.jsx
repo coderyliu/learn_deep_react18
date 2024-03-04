@@ -47,7 +47,7 @@ const App = memo(() => {
   useEffect(() => {
     // 3.网络请求
     // axios.get('')
-  },[]);
+  }, []);
 
   return (
     <div>

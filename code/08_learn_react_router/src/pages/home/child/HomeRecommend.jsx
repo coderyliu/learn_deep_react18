@@ -1,11 +1,9 @@
-import React, { PureComponent } from 'react'
+import React, { PureComponent } from "react";
 
 export class HomeRecommend extends PureComponent {
   render() {
-    return (
-      <div>HomeRecommend</div>
-    )
+    return <div>HomeRecommend</div>;
   }
 }
 
-export default HomeRecommend
+export default HomeRecommend;

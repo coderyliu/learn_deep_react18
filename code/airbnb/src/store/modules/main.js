@@ -1,26 +1,20 @@
-import {
-  createSlice
-} from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit";
 
 const mainSlice = createSlice({
-  name: 'main',
+  name: "main",
   initialState: {
     headerInfo: {
       isFixed: false,
-      topAlpha: false
-    }
+      topAlpha: false,
+    },
   },
   reducers: {
-    changeHeaderInfoFixedAction(state, {
-      payload
-    }) {
-      state.headerInfo = payload
-    }
-  }
-})
+    changeHeaderInfoFixedAction(state, { payload }) {
+      state.headerInfo = payload;
+    },
+  },
+});
 
-export const {
-  changeHeaderInfoFixedAction
-} = mainSlice.actions
+export const { changeHeaderInfoFixedAction } = mainSlice.actions;
 
-export default mainSlice.reducer
+export default mainSlice.reducer;

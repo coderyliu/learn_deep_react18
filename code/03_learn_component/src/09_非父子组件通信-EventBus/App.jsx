@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import eventBus from "./utils/eventBus";
 import Cart from "./Cart";
-import Home from "./Home"
+import Home from "./Home";
 
 // ?非父子组件的通信我们可以借助事件总线eventBus来实现
 export class App extends Component {
   componentDidMount() {
-    eventBus.on("info",this.nextPre);
+    eventBus.on("info", this.nextPre);
   }
 
   nextPre(name, age, height) {

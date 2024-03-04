@@ -8,20 +8,19 @@ export class App extends PureComponent {
 
     this.state = {
       username: "coderyliu",
-      password:''
+      password: "",
     };
   }
 
   // 表单提交事件
-  handleSubmitClick(e){
+  handleSubmitClick(e) {
     // 阻止表单的默认行为
-    e.preventDefault()
+    e.preventDefault();
 
     // 获取表单中的数据
-    console.log('用户名，密码为:',this.state.username,this.state.password);
+    console.log("用户名，密码为:", this.state.username, this.state.password);
 
     // 发起ajax/axios/fetch请求
-
   }
 
   inputHandleChange(e) {
@@ -31,11 +30,11 @@ export class App extends PureComponent {
   }
 
   render() {
-    const { username,password } = this.state;
+    const { username, password } = this.state;
 
     return (
       <div>
-        <form onSubmit={(e)=>this.handleSubmitClick(e)}>
+        <form onSubmit={(e) => this.handleSubmitClick(e)}>
           {/* label和表单的id相关联，点击label文本，表单元素可以获取到焦点 */}
           <label htmlFor="username">
             {/* 这个时候，你只指定了表单的默认值，react要求如果制定了默认值（state唯一的数据源），必须通过onChange事件更新state中响应的数据源,这就是受控组件 */}

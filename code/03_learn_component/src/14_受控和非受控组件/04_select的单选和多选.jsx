@@ -16,8 +16,8 @@ export class App extends PureComponent {
         { name: "排球", value: "volumnball", isChecked: false },
         { name: "乒乓球", value: "ping-pang", isChecked: false },
       ],
-      fruits:'orange',
-      fruitsArr:[]
+      fruits: "orange",
+      fruitsArr: [],
     };
   }
 
@@ -29,8 +29,8 @@ export class App extends PureComponent {
     // 获取表单中的数据
     console.log("用户名，密码为:", this.state.username, this.state.password);
     console.log("爱好：", this.state.hobbies);
-    console.log('水果:',this.state.fruits);
-    console.log('数组',this.state.fruitsArr);
+    console.log("水果:", this.state.fruits);
+    console.log("数组", this.state.fruitsArr);
 
     // 发起ajax/axios/fetch请求
   }
@@ -57,26 +57,27 @@ export class App extends PureComponent {
   }
 
   // 单个select
-  handleSingleSelect(e){
+  handleSingleSelect(e) {
     this.setState({
-      fruits:e.target.value
-    })
+      fruits: e.target.value,
+    });
   }
 
   // 多个select
-  handleMultipleSelect(e){
+  handleMultipleSelect(e) {
     // 先拿到选中的元素
-    const htmlCollects=e.target.selectedOptions
+    const htmlCollects = e.target.selectedOptions;
 
     // 转为数组
-    const values=Array.from(htmlCollects).map(item=>item.value)
+    const values = Array.from(htmlCollects).map((item) => item.value);
 
     // 设置值
-    this.setState({fruitsArr:values})
+    this.setState({ fruitsArr: values });
   }
 
   render() {
-    const { username, password, isChecked, hobbies,fruits,fruitsArr } = this.state;
+    const { username, password, isChecked, hobbies, fruits, fruitsArr } =
+      this.state;
 
     return (
       <div>
@@ -126,7 +127,7 @@ export class App extends PureComponent {
             <ul>
               {hobbies.map((item, index) => {
                 return (
-                  <label htmlFor={item.value}  key={index}>
+                  <label htmlFor={item.value} key={index}>
                     <input
                       type="checkbox"
                       id={item.value}
@@ -143,7 +144,7 @@ export class App extends PureComponent {
           <hr />
           {/* 3.select的单选和多选 */}
           {/* 单选 */}
-          <select value={fruits} onChange={(e)=>this.handleSingleSelect(e)}>
+          <select value={fruits} onChange={(e) => this.handleSingleSelect(e)}>
             <option value="orange">橘子</option>
             <option value="apple">苹果</option>
             <option value="pear">梨</option>
@@ -151,7 +152,11 @@ export class App extends PureComponent {
           </select>
           <hr />
           {/* 多选 */}
-          <select value={fruitsArr} onChange={(e)=>this.handleMultipleSelect(e)} multiple>
+          <select
+            value={fruitsArr}
+            onChange={(e) => this.handleMultipleSelect(e)}
+            multiple
+          >
             <option value="orange">橘子</option>
             <option value="apple">苹果</option>
             <option value="pear">梨</option>

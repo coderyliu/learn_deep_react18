@@ -1,13 +1,13 @@
-import React, { Component } from 'react'
-import HomeBanner from './HomeBanner'
-import ThemeContext from './context/themeContext'
-import HomeInfo from './HomeInfo';
+import React, { Component } from "react";
+import HomeBanner from "./HomeBanner";
+import ThemeContext from "./context/themeContext";
+import HomeInfo from "./HomeInfo";
 
 export class Home extends Component {
   render() {
-    const {name,age,height}=this.context
+    const { name, age, height } = this.context;
 
-    console.log(name,age,height);
+    console.log(name, age, height);
 
     return (
       <div>
@@ -15,10 +15,10 @@ export class Home extends Component {
         <HomeBanner></HomeBanner>
         <HomeInfo></HomeInfo>
       </div>
-    )
+    );
   }
 }
 
-Home.contextType=ThemeContext
+Home.contextType = ThemeContext;
 
-export default Home
+export default Home;

@@ -1,81 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
+  <body>
+    <div id="root"></div>
 
-<body>
-  <div id="root"></div>
+    <script src="../lib/react.js"></script>
+    <script src="../lib/react-dom.js"></script>
+    <script src="../lib/babel.js"></script>
 
-  <script src="../lib/react.js"></script>
-  <script src="../lib/react-dom.js"></script>
-  <script src="../lib/babel.js"></script>
+    <script type="text/babel">
+      const root = ReactDOM.createRoot(document.querySelector("#root"));
+      // jsx中，没有像vue一样的自定义指令，v-if,v-show这种，在jsx中都是通过if进行逻辑判断来实现的
 
-  <script type="text/babel">
-    const root=ReactDOM.createRoot(document.querySelector('#root'))
-    // jsx中，没有像vue一样的自定义指令，v-if,v-show这种，在jsx中都是通过if进行逻辑判断来实现的
+      class App extends React.Component {
+        constructor() {
+          super();
 
-    class App extends React.Component{
-      constructor(){
-        super()
+          this.state = {
+            message: "你好啊，李银河",
+            isShow: false,
+            friend: {
+              name: "coder",
+              age: 21,
+            },
+          };
+        }
 
-        this.state={
-          message:'你好啊，李银河',
-          isShow:false,
-          friend:{
-            name:"coder",
-            age:21
+        toggleClick() {
+          this.setState({
+            isShow: !this.state.isShow,
+          });
+        }
+
+        render() {
+          const { isShow, message, friend } = this.state;
+          {
+            /* 1.条件判断的方式一：if  适合逻辑比较复杂*/
           }
+          // if(isShow){
+          //   return (
+          //     <div>
+          //       <h2>{message}</h2>
+          //     </div>
+          //   )
+          // }else{
+          //   return (
+          //     <div>
+          //       <h2>抱歉,404</h2>
+          //       <button onClick={()=>this.toggleClick()}>切换</button>
+          //     </div>
+          //   )
+          // }
+
+          {
+            /* 2.三元运算符:适合逻辑比较简单*/
+          }
+          // return (
+          //   <div>
+          //     <h2>{isShow?<button>按钮</button>:<button>开始战斗</button>}</h2>
+          //   </div>
+          // )
+
+          {
+            /* 3.&&与运算符 */
+          }
+          return (
+            <div>
+              {/* 场景: 当某一个值, 有可能为undefined时, 使用&&进行条件判断 */}
+              <h2>{friend && <button>开始战斗</button>}</h2>
+            </div>
+          );
         }
       }
 
-      toggleClick(){
-        this.setState({
-          isShow:!this.state.isShow
-        })
-      }
-
-      render(){
-        const {isShow,message,friend}=this.state
-        {/* 1.条件判断的方式一：if  适合逻辑比较复杂*/}
-        // if(isShow){
-        //   return (
-        //     <div>
-        //       <h2>{message}</h2>
-        //     </div>
-        //   )
-        // }else{
-        //   return (
-        //     <div>
-        //       <h2>抱歉,404</h2> 
-        //       <button onClick={()=>this.toggleClick()}>切换</button> 
-        //     </div>
-        //   )
-        // }
-
-        {/* 2.三元运算符:适合逻辑比较简单*/}
-        // return (
-        //   <div>
-        //     <h2>{isShow?<button>按钮</button>:<button>开始战斗</button>}</h2>
-        //   </div>
-        // )
-
-        {/* 3.&&与运算符 */}
-        return (
-          <div>
-            {/* 场景: 当某一个值, 有可能为undefined时, 使用&&进行条件判断 */}
-            <h2>{friend&&<button>开始战斗</button>}</h2>  
-          </div>
-        )
-      }
-    }
-
-    root.render(<App />)
-  </script>
-</body>
-
+      root.render(<App />);
+    </script>
+  </body>
 </html>

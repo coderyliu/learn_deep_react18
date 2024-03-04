@@ -1,9 +1,5 @@
-import log from './log'
-import thunk from './thunk'
-import applyMiddleWare from './applyMiddleware'
+import log from "./log";
+import thunk from "./thunk";
+import applyMiddleWare from "./applyMiddleware";
 
-export {
-  log,
-  thunk,
-  applyMiddleWare
-}
+export { log, thunk, applyMiddleWare };

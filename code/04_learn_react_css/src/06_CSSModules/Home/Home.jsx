@@ -1,6 +1,6 @@
-import React, { PureComponent } from 'react'
+import React, { PureComponent } from "react";
 
-import homeStyle from './style.module.css'
+import homeStyle from "./style.module.css";
 
 export class Home extends PureComponent {
   render() {
@@ -8,8 +8,8 @@ export class Home extends PureComponent {
       <div>
         <h2 className={homeStyle.title}>Home Page</h2>
       </div>
-    )
+    );
   }
 }
 
-export default Home
+export default Home;

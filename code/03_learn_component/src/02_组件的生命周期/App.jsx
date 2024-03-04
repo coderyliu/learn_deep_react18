@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 
-import HelloWorld from './HelloWorld'
+import HelloWorld from "./HelloWorld";
 
 // ?组件的生命周期比较重要的几个生命周期函数
 // 1.shouldComponentUpdate 在这里面做一些性能优化，触发的时机是当我们出发setState或者props的时候，会重新渲染render函数，这个时候我们可以考虑要不要重新渲染，return true渲染，false不渲染
@@ -10,30 +10,30 @@ import HelloWorld from './HelloWorld'
 // 5.componentWillUnmount 触发的时机，我们的组件在被销毁之前，可以做一些逻辑，避免内存泄漏
 
 export class App extends Component {
-  constructor(){
-    super()
+  constructor() {
+    super();
 
-    this.state={
-      isShow:true
-    }
+    this.state = {
+      isShow: true,
+    };
   }
 
-  hideCom(){
+  hideCom() {
     this.setState({
-      isShow:!this.state.isShow
-    })
+      isShow: !this.state.isShow,
+    });
   }
 
   render() {
-    const {isShow}=this.state
+    const { isShow } = this.state;
 
     return (
       <div>
-        {isShow&& <HelloWorld></HelloWorld>}
-        <button onClick={()=>this.hideCom()}>隐藏</button>
+        {isShow && <HelloWorld></HelloWorld>}
+        <button onClick={() => this.hideCom()}>隐藏</button>
       </div>
-    )
+    );
   }
 }
 
-export default App
+export default App;
